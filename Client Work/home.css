@@ -1,3 +1,7 @@
+html,body { 
+  height:100%; 
+}
+
 .top {
   border-bottom:1px solid #CCC;
   top: -3px;
@@ -6,8 +10,10 @@
 }
 
 .header {
-  padding-left:25px;
   top:3px;
+}
+.header h4 {
+  padding-left:10px;
 }
 
 .tab {
@@ -16,12 +22,26 @@
 
 .index {
   height:100%;
+  top: -3px;
+  position: relative;
 }
 
 .index-btn {
-  border-right:1px solid #CCC;
+  padding-right: -1px;
+}
+
+.btn-default {
+  border-right:0px;
+  border-left:0px;
 }
 
 .index-head {
   text-align:center;
+}
+
+#sideBar {
+  height: 100%;
+  top: 0px;
+  padding: 0px;
+  border-right:1px solid #CCC;
 }
