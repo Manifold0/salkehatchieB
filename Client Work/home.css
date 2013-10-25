@@ -1,4 +1,27 @@
+.top {
+  border-bottom:1px solid #CCC;
+  top: -3px;
+  position: relative;
+  background: #EEE;
+}
 
-h1 {
-  font-size: 72px;
+.header {
+  padding-left:25px;
+  top:3px;
+}
+
+.tab {
+  top:1px;
+}
+
+.index {
+  height:100%;
+}
+
+.index-btn {
+  border-right:1px solid #CCC;
+}
+
+.index-head {
+  text-align:center;
 }
