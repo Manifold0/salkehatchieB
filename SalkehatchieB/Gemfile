@@ -9,6 +9,12 @@ gem 'rails', '4.0.0'
  #Use mysql2 for database connection
 gem 'mysql2'
 
+#Use devise for user authentication
+gem 'devise'
+
+#Use cancan for user permissions/abilities
+gem 'cancan'
+
 #Bootstrap functionality
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
 
