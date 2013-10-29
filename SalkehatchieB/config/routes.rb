@@ -1,4 +1,6 @@
 SalkehatchieB::Application.routes.draw do
+  resources :sites
+
   resources :photos
 
   resources :share_medical_requests
