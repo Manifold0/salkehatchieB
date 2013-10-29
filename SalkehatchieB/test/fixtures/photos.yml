@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  references: 
+  references: 
+  boolean: 
+  references: 
+  string: 
+
+two:
+  references: 
+  references: 
+  boolean: 
+  references: 
+  string: 
