@@ -1,0 +1,39 @@
+<h1>Listing reference_forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Relationship</th>
+      <th>Approval status</th>
+      <th>Reviewed by camp director</th>
+      <th>Printed date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reference_forms.each do |reference_form| %>
+      <tr>
+        <td><%= reference_form.user %></td>
+        <td><%= reference_form.name %></td>
+        <td><%= reference_form.email %></td>
+        <td><%= reference_form.relationship %></td>
+        <td><%= reference_form.approval_status %></td>
+        <td><%= reference_form.reviewed_by_camp_director %></td>
+        <td><%= reference_form.printed_date %></td>
+        <td><%= link_to 'Show', reference_form %></td>
+        <td><%= link_to 'Edit', edit_reference_form_path(reference_form) %></td>
+        <td><%= link_to 'Destroy', reference_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reference form', new_reference_form_path %>

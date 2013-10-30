@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @reference_form.user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @reference_form.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @reference_form.email %>
+</p>
+
+<p>
+  <strong>Relationship:</strong>
+  <%= @reference_form.relationship %>
+</p>
+
+<p>
+  <strong>Approval status:</strong>
+  <%= @reference_form.approval_status %>
+</p>
+
+<p>
+  <strong>Reviewed by camp director:</strong>
+  <%= @reference_form.reviewed_by_camp_director %>
+</p>
+
+<p>
+  <strong>Printed date:</strong>
+  <%= @reference_form.printed_date %>
+</p>
+
+<%= link_to 'Edit', edit_reference_form_path(@reference_form) %> |
+<%= link_to 'Back', reference_forms_path %>

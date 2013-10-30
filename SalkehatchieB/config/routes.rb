@@ -1,4 +1,6 @@
 SalkehatchieB::Application.routes.draw do
+  resources :reference_forms
+
   resources :sites
 
   resources :photos
