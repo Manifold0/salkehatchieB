@@ -52,13 +52,20 @@ html,body {
   text-align:center;
 }
 
+.checkList {
+  width: 100%;
+}
+.checkList > tbody > tr > td > .glyphicon {
+  float: right;
+}
+
 #sideBar {
   height: 100%;
   top: 0px;
   padding: 0px;
   border-right:1px solid #CCC;
 }
-.glyphicon {
+#sideBar > .btn > .glyphicon {
   float: left;
   position: absolute;
   top: 8px;
