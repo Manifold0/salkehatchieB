@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  occupation: MyString
+  why_participate: MyString
+  carpentry: 1
+  plumbing: 1
+  electrical: 1
+  roofing: 1
+  song_leader: 1
+  bible: 1
+  recreation: 1
+  lifeguard: 1
+  accounting: 1
+  firstaid: 1
+  cpr_firstaid: false
+  camp: MyString
+  year: MyString
+  site_leader: false
+  involved_activities: MyText
+  camp_director_approval: false
+  camp_director_approval_date: 2013-10-30
+  user_approval: false
+  user_approval_date: 2013-10-30
+  printed_date: 2013-10-30 16:06:29
+  user_id: 
+
+two:
+  occupation: MyString
+  why_participate: MyString
+  carpentry: 1
+  plumbing: 1
+  electrical: 1
+  roofing: 1
+  song_leader: 1
+  bible: 1
+  recreation: 1
+  lifeguard: 1
+  accounting: 1
+  firstaid: 1
+  cpr_firstaid: false
+  camp: MyString
+  year: MyString
+  site_leader: false
+  involved_activities: MyText
+  camp_director_approval: false
+  camp_director_approval_date: 2013-10-30
+  user_approval: false
+  user_approval_date: 2013-10-30
+  printed_date: 2013-10-30 16:06:29
+  user_id: 

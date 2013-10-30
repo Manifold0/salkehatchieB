@@ -1,0 +1,71 @@
+<h1>Listing questionnaires</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Occupation</th>
+      <th>Why participate</th>
+      <th>Carpentry</th>
+      <th>Plumbing</th>
+      <th>Electrical</th>
+      <th>Roofing</th>
+      <th>Song leader</th>
+      <th>Bible</th>
+      <th>Recreation</th>
+      <th>Lifeguard</th>
+      <th>Accounting</th>
+      <th>Firstaid</th>
+      <th>Cpr firstaid</th>
+      <th>Camp</th>
+      <th>Year</th>
+      <th>Site leader</th>
+      <th>Involved activities</th>
+      <th>Camp director approval</th>
+      <th>Camp director approval date</th>
+      <th>User approval</th>
+      <th>User approval date</th>
+      <th>Printed date</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questionnaires.each do |questionnaire| %>
+      <tr>
+        <td><%= questionnaire.occupation %></td>
+        <td><%= questionnaire.why_participate %></td>
+        <td><%= questionnaire.carpentry %></td>
+        <td><%= questionnaire.plumbing %></td>
+        <td><%= questionnaire.electrical %></td>
+        <td><%= questionnaire.roofing %></td>
+        <td><%= questionnaire.song_leader %></td>
+        <td><%= questionnaire.bible %></td>
+        <td><%= questionnaire.recreation %></td>
+        <td><%= questionnaire.lifeguard %></td>
+        <td><%= questionnaire.accounting %></td>
+        <td><%= questionnaire.firstaid %></td>
+        <td><%= questionnaire.cpr_firstaid %></td>
+        <td><%= questionnaire.camp %></td>
+        <td><%= questionnaire.year %></td>
+        <td><%= questionnaire.site_leader %></td>
+        <td><%= questionnaire.involved_activities %></td>
+        <td><%= questionnaire.camp_director_approval %></td>
+        <td><%= questionnaire.camp_director_approval_date %></td>
+        <td><%= questionnaire.user_approval %></td>
+        <td><%= questionnaire.user_approval_date %></td>
+        <td><%= questionnaire.printed_date %></td>
+        <td><%= questionnaire.user %></td>
+        <td><%= link_to 'Show', questionnaire %></td>
+        <td><%= link_to 'Edit', edit_questionnaire_path(questionnaire) %></td>
+        <td><%= link_to 'Destroy', questionnaire, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Questionnaire', new_questionnaire_path %>

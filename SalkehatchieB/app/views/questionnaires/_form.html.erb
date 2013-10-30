@@ -1,0 +1,109 @@
+<%= form_for(@questionnaire) do |f| %>
+  <% if @questionnaire.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@questionnaire.errors.count, "error") %> prohibited this questionnaire from being saved:</h2>
+
+      <ul>
+      <% @questionnaire.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :occupation %><br>
+    <%= f.text_field :occupation %>
+  </div>
+  <div class="field">
+    <%= f.label :why_participate %><br>
+    <%= f.text_field :why_participate %>
+  </div>
+  <div class="field">
+    <%= f.label :carpentry %><br>
+    <%= f.number_field :carpentry %>
+  </div>
+  <div class="field">
+    <%= f.label :plumbing %><br>
+    <%= f.number_field :plumbing %>
+  </div>
+  <div class="field">
+    <%= f.label :electrical %><br>
+    <%= f.number_field :electrical %>
+  </div>
+  <div class="field">
+    <%= f.label :roofing %><br>
+    <%= f.number_field :roofing %>
+  </div>
+  <div class="field">
+    <%= f.label :song_leader %><br>
+    <%= f.number_field :song_leader %>
+  </div>
+  <div class="field">
+    <%= f.label :bible %><br>
+    <%= f.number_field :bible %>
+  </div>
+  <div class="field">
+    <%= f.label :recreation %><br>
+    <%= f.number_field :recreation %>
+  </div>
+  <div class="field">
+    <%= f.label :lifeguard %><br>
+    <%= f.number_field :lifeguard %>
+  </div>
+  <div class="field">
+    <%= f.label :accounting %><br>
+    <%= f.number_field :accounting %>
+  </div>
+  <div class="field">
+    <%= f.label :firstaid %><br>
+    <%= f.number_field :firstaid %>
+  </div>
+  <div class="field">
+    <%= f.label :cpr_firstaid %><br>
+    <%= f.check_box :cpr_firstaid %>
+  </div>
+  <div class="field">
+    <%= f.label :camp %><br>
+    <%= f.text_field :camp %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.text_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :site_leader %><br>
+    <%= f.check_box :site_leader %>
+  </div>
+  <div class="field">
+    <%= f.label :involved_activities %><br>
+    <%= f.text_area :involved_activities %>
+  </div>
+  <div class="field">
+    <%= f.label :camp_director_approval %><br>
+    <%= f.check_box :camp_director_approval %>
+  </div>
+  <div class="field">
+    <%= f.label :camp_director_approval_date %><br>
+    <%= f.date_select :camp_director_approval_date %>
+  </div>
+  <div class="field">
+    <%= f.label :user_approval %><br>
+    <%= f.check_box :user_approval %>
+  </div>
+  <div class="field">
+    <%= f.label :user_approval_date %><br>
+    <%= f.date_select :user_approval_date %>
+  </div>
+  <div class="field">
+    <%= f.label :printed_date %><br>
+    <%= f.datetime_select :printed_date %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br>
+    <%= f.text_field :user %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
