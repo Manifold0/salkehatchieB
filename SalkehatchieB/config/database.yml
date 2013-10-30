@@ -6,8 +6,8 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: SalkehatchieB
-  username: SalkehatchieB
+  database: Salkehatchie
+  username: ConsultantsB
   password: csc342
   host: cs.furman.edu
   port: 3306
