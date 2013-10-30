@@ -1,0 +1,57 @@
+<%= form_for(@covenant_form) do |f| %>
+  <% if @covenant_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@covenant_form.errors.count, "error") %> prohibited this covenant_form from being saved:</h2>
+
+      <ul>
+      <% @covenant_form.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user %><br>
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :policy %><br>
+    <%= f.check_box :policy %>
+  </div>
+  <div class="field">
+    <%= f.label :two_adult %><br>
+    <%= f.check_box :two_adult %>
+  </div>
+  <div class="field">
+    <%= f.label :training %><br>
+    <%= f.check_box :training %>
+  </div>
+  <div class="field">
+    <%= f.label :report_abuse %><br>
+    <%= f.check_box :report_abuse %>
+  </div>
+  <div class="field">
+    <%= f.label :child_abuse %><br>
+    <%= f.check_box :child_abuse %>
+  </div>
+  <div class="field">
+    <%= f.label :agree_to_covenant %><br>
+    <%= f.check_box :agree_to_covenant %>
+  </div>
+  <div class="field">
+    <%= f.label :user_signature %><br>
+    <%= f.text_field :user_signature %>
+  </div>
+  <div class="field">
+    <%= f.label :signature_date %><br>
+    <%= f.date_select :signature_date %>
+  </div>
+  <div class="field">
+    <%= f.label :printed_date %><br>
+    <%= f.datetime_select :printed_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

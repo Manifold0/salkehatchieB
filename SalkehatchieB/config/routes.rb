@@ -1,5 +1,7 @@
 SalkehatchieB::Application.routes.draw do
   
+  resources :covenant_forms
+
   resources :reference_forms
   resources :camps
   devise_for :users

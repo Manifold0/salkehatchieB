@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @covenant_form.user %>
+</p>
+
+<p>
+  <strong>Policy:</strong>
+  <%= @covenant_form.policy %>
+</p>
+
+<p>
+  <strong>Two adult:</strong>
+  <%= @covenant_form.two_adult %>
+</p>
+
+<p>
+  <strong>Training:</strong>
+  <%= @covenant_form.training %>
+</p>
+
+<p>
+  <strong>Report abuse:</strong>
+  <%= @covenant_form.report_abuse %>
+</p>
+
+<p>
+  <strong>Child abuse:</strong>
+  <%= @covenant_form.child_abuse %>
+</p>
+
+<p>
+  <strong>Agree to covenant:</strong>
+  <%= @covenant_form.agree_to_covenant %>
+</p>
+
+<p>
+  <strong>User signature:</strong>
+  <%= @covenant_form.user_signature %>
+</p>
+
+<p>
+  <strong>Signature date:</strong>
+  <%= @covenant_form.signature_date %>
+</p>
+
+<p>
+  <strong>Printed date:</strong>
+  <%= @covenant_form.printed_date %>
+</p>
+
+<%= link_to 'Edit', edit_covenant_form_path(@covenant_form) %> |
+<%= link_to 'Back', covenant_forms_path %>

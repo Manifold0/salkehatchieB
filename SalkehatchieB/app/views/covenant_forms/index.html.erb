@@ -1,0 +1,45 @@
+<h1>Listing covenant_forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Policy</th>
+      <th>Two adult</th>
+      <th>Training</th>
+      <th>Report abuse</th>
+      <th>Child abuse</th>
+      <th>Agree to covenant</th>
+      <th>User signature</th>
+      <th>Signature date</th>
+      <th>Printed date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @covenant_forms.each do |covenant_form| %>
+      <tr>
+        <td><%= covenant_form.user %></td>
+        <td><%= covenant_form.policy %></td>
+        <td><%= covenant_form.two_adult %></td>
+        <td><%= covenant_form.training %></td>
+        <td><%= covenant_form.report_abuse %></td>
+        <td><%= covenant_form.child_abuse %></td>
+        <td><%= covenant_form.agree_to_covenant %></td>
+        <td><%= covenant_form.user_signature %></td>
+        <td><%= covenant_form.signature_date %></td>
+        <td><%= covenant_form.printed_date %></td>
+        <td><%= link_to 'Show', covenant_form %></td>
+        <td><%= link_to 'Edit', edit_covenant_form_path(covenant_form) %></td>
+        <td><%= link_to 'Destroy', covenant_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Covenant form', new_covenant_form_path %>
