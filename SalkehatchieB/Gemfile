@@ -17,7 +17,7 @@ gem 'cancan'
 
 #Bootstrap functionality
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
-gem 'bootstrap-generators', '~> 3.0'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

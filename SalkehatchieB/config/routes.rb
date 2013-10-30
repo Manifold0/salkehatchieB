@@ -1,6 +1,12 @@
 SalkehatchieB::Application.routes.draw do
+<<<<<<< HEAD
   resources :reference_forms
 
+=======
+  resources :camps
+
+  devise_for :users
+>>>>>>> 153294ab19e21b0748e35366e5ee8516cbaf7d41
   resources :sites
 
   resources :photos
