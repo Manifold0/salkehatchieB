@@ -22,9 +22,7 @@ html,body {
 
 .tab {
   position: absolute;
-  top:1px;
   right: 0px;
-  
 }
 
 .index {
@@ -41,6 +39,15 @@ html,body {
   border-right:0px;
   border-left:0px;
 }
+
+.nav-tabs.nav-justified > li > a {
+  border-bottom: 0px;
+}
+.nav-tabs.nav-justified > li > a:hover {
+  border-bottom:0px;
+  background-color: #FFF;
+}
+
 
 .index-head {
   text-align:center;
