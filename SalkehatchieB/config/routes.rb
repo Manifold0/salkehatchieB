@@ -1,7 +1,5 @@
 SalkehatchieB::Application.routes.draw do
   
-  resources :events
-
   resources :camp_requests
 
   resources :covenant_forms
