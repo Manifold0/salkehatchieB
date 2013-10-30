@@ -1,0 +1,2 @@
+module CampPermissionFormsHelper
+end

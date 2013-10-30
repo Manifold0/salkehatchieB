@@ -1,0 +1,81 @@
+<%= form_for(@camp_permission_form) do |f| %>
+  <% if @camp_permission_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@camp_permission_form.errors.count, "error") %> prohibited this camp_permission_form from being saved:</h2>
+
+      <ul>
+      <% @camp_permission_form.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user %><br>
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :relationship %><br>
+    <%= f.text_field :relationship %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address1 %><br>
+    <%= f.text_field :address1 %>
+  </div>
+  <div class="field">
+    <%= f.label :address2 %><br>
+    <%= f.text_field :address2 %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.text_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :zip %><br>
+    <%= f.text_field :zip %>
+  </div>
+  <div class="field">
+    <%= f.label :business %><br>
+    <%= f.text_field :business %>
+  </div>
+  <div class="field">
+    <%= f.label :work_phone_number %><br>
+    <%= f.text_field :work_phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :signature_of_guardian %><br>
+    <%= f.text_field :signature_of_guardian %>
+  </div>
+  <div class="field">
+    <%= f.label :approval %><br>
+    <%= f.check_box :approval %>
+  </div>
+  <div class="field">
+    <%= f.label :camp %><br>
+    <%= f.text_field :camp %>
+  </div>
+  <div class="field">
+    <%= f.label :printed_date %><br>
+    <%= f.datetime_select :printed_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

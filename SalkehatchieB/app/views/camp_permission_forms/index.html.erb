@@ -1,0 +1,57 @@
+<h1>Listing camp_permission_forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Type</th>
+      <th>Relationship</th>
+      <th>Name</th>
+      <th>Address1</th>
+      <th>Address2</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Business</th>
+      <th>Work phone number</th>
+      <th>Phone number</th>
+      <th>Signature of guardian</th>
+      <th>Approval</th>
+      <th>Camp</th>
+      <th>Printed date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @camp_permission_forms.each do |camp_permission_form| %>
+      <tr>
+        <td><%= camp_permission_form.user %></td>
+        <td><%= camp_permission_form.type %></td>
+        <td><%= camp_permission_form.relationship %></td>
+        <td><%= camp_permission_form.name %></td>
+        <td><%= camp_permission_form.address1 %></td>
+        <td><%= camp_permission_form.address2 %></td>
+        <td><%= camp_permission_form.city %></td>
+        <td><%= camp_permission_form.state %></td>
+        <td><%= camp_permission_form.zip %></td>
+        <td><%= camp_permission_form.business %></td>
+        <td><%= camp_permission_form.work_phone_number %></td>
+        <td><%= camp_permission_form.phone_number %></td>
+        <td><%= camp_permission_form.signature_of_guardian %></td>
+        <td><%= camp_permission_form.approval %></td>
+        <td><%= camp_permission_form.camp %></td>
+        <td><%= camp_permission_form.printed_date %></td>
+        <td><%= link_to 'Show', camp_permission_form %></td>
+        <td><%= link_to 'Edit', edit_camp_permission_form_path(camp_permission_form) %></td>
+        <td><%= link_to 'Destroy', camp_permission_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Camp permission form', new_camp_permission_form_path %>

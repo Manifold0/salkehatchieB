@@ -1,4 +1,6 @@
 SalkehatchieB::Application.routes.draw do
+  resources :camp_permission_forms
+
   resources :medical_forms
 
   resources :questionnaires
