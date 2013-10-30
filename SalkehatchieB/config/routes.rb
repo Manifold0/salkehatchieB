@@ -1,4 +1,5 @@
 SalkehatchieB::Application.routes.draw do
+  devise_for :users
   resources :sites
 
   resources :photos

@@ -6,8 +6,8 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
- #Use mysql2 for database connection
-gem 'mysql2'
+#Use mysql2 for database connection
+# gem 'mysql2'
 
 #Use devise for user authentication
 gem 'devise'
