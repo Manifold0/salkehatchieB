@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @camp_request.user %>
+</p>
+
+<p>
+  <strong>Camp:</strong>
+  <%= @camp_request.camp %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @camp_request.status %>
+</p>
+
+<p>
+  <strong>Preference1:</strong>
+  <%= @camp_request.preference1 %>
+</p>
+
+<p>
+  <strong>Preference2:</strong>
+  <%= @camp_request.preference2 %>
+</p>
+
+<p>
+  <strong>Preference3:</strong>
+  <%= @camp_request.preference3 %>
+</p>
+
+<%= link_to 'Edit', edit_camp_request_path(@camp_request) %> |
+<%= link_to 'Back', camp_requests_path %>

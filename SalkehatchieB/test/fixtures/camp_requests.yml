@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  camp_id: 
+  status: false
+  preference1: MyString
+  preference2: MyString
+  preference3: MyString
+
+two:
+  user_id: 
+  camp_id: 
+  status: false
+  preference1: MyString
+  preference2: MyString
+  preference3: MyString
