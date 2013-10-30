@@ -1,0 +1,45 @@
+<%= form_for(@reference_form) do |f| %>
+  <% if @reference_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reference_form.errors.count, "error") %> prohibited this reference_form from being saved:</h2>
+
+      <ul>
+      <% @reference_form.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user %><br>
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :relationship %><br>
+    <%= f.text_field :relationship %>
+  </div>
+  <div class="field">
+    <%= f.label :approval_status %><br>
+    <%= f.check_box :approval_status %>
+  </div>
+  <div class="field">
+    <%= f.label :reviewed_by_camp_director %><br>
+    <%= f.check_box :reviewed_by_camp_director %>
+  </div>
+  <div class="field">
+    <%= f.label :printed_date %><br>
+    <%= f.datetime_select :printed_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

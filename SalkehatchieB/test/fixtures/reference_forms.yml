@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  name: MyString
+  email: MyString
+  relationship: MyString
+  approval_status: false
+  reviewed_by_camp_director: false
+  printed_date: 2013-10-30 19:49:28
+
+two:
+  user_id: 
+  name: MyString
+  email: MyString
+  relationship: MyString
+  approval_status: false
+  reviewed_by_camp_director: false
+  printed_date: 2013-10-30 19:49:28
