@@ -1,4 +1,6 @@
 SalkehatchieB::Application.routes.draw do
+  resources :camps
+
   devise_for :users
   resources :sites
 

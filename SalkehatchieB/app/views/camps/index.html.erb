@@ -1,0 +1,33 @@
+<h1>Listing camps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>City</th>
+      <th>Hq address</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @camps.each do |camp| %>
+      <tr>
+        <td><%= camp.start_date %></td>
+        <td><%= camp.end_date %></td>
+        <td><%= camp.city %></td>
+        <td><%= camp.hq_address %></td>
+        <td><%= link_to 'Show', camp %></td>
+        <td><%= link_to 'Edit', edit_camp_path(camp) %></td>
+        <td><%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Camp', new_camp_path %>
