@@ -31,6 +31,32 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
 
 
+	  #Salkewhatever-specific
+	  
+	  t.string :first_name
+	  t.string :last_name
+	  t.string :preferred_name
+	  t.string :address_line1
+	  t.string :address_line2
+	  t.string :city
+	  t.string :zip
+	  t.string :state
+	  t.string :district
+	  t.string :gender
+	  t.string :tshirt_size
+	  t.date :date_of_birth
+	  t.string :phone_number
+	  t.string :mobile_devices
+	  t.string :service_provider
+	  t.string :church
+	  t.string :church_city
+	  t.string :church_pastor
+	  t.integer :permission_level
+	  t.boolean :background_check
+	  t.date :background_check_date
+	  t.string :photoID
+	  t.string :signatureID
+	  
       t.timestamps
     end
 
