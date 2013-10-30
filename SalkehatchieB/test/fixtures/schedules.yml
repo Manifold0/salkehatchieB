@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  camp_id: 
+  day: 2013-10-30
+  event_id: 
+
+two:
+  camp_id: 
+  day: 2013-10-30
+  event_id: 
