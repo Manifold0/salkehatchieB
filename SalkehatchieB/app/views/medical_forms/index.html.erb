@@ -1,0 +1,79 @@
+<h1>Listing medical_forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Camp</th>
+      <th>Information</th>
+      <th>Insurance card image</th>
+      <th>Physician name</th>
+      <th>Physician number</th>
+      <th>Physician address 1</th>
+      <th>Physician address 2</th>
+      <th>Physician city</th>
+      <th>Physician state</th>
+      <th>Physician zip</th>
+      <th>Health insurance company</th>
+      <th>Policy number</th>
+      <th>Company address</th>
+      <th>Company number</th>
+      <th>Health insurance agent</th>
+      <th>Allergies</th>
+      <th>Diet restrictions</th>
+      <th>Recent illness injury</th>
+      <th>Medications</th>
+      <th>Additional conditions</th>
+      <th>Date of last tetanus shot</th>
+      <th>User approval</th>
+      <th>User approval date</th>
+      <th>Guardian approval</th>
+      <th>Guardian approval date</th>
+      <th>Printed date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @medical_forms.each do |medical_form| %>
+      <tr>
+        <td><%= medical_form.user %></td>
+        <td><%= medical_form.camp %></td>
+        <td><%= medical_form.information %></td>
+        <td><%= medical_form.insurance_card_image %></td>
+        <td><%= medical_form.physician_name %></td>
+        <td><%= medical_form.physician_number %></td>
+        <td><%= medical_form.physician_address_1 %></td>
+        <td><%= medical_form.physician_address_2 %></td>
+        <td><%= medical_form.physician_city %></td>
+        <td><%= medical_form.physician_state %></td>
+        <td><%= medical_form.physician_zip %></td>
+        <td><%= medical_form.health_insurance_company %></td>
+        <td><%= medical_form.policy_number %></td>
+        <td><%= medical_form.company_address %></td>
+        <td><%= medical_form.company_number %></td>
+        <td><%= medical_form.health_insurance_agent %></td>
+        <td><%= medical_form.allergies %></td>
+        <td><%= medical_form.diet_restrictions %></td>
+        <td><%= medical_form.recent_illness_injury %></td>
+        <td><%= medical_form.medications %></td>
+        <td><%= medical_form.additional_conditions %></td>
+        <td><%= medical_form.date_of_last_tetanus_shot %></td>
+        <td><%= medical_form.user_approval %></td>
+        <td><%= medical_form.user_approval_date %></td>
+        <td><%= medical_form.guardian_approval %></td>
+        <td><%= medical_form.guardian_approval_date %></td>
+        <td><%= medical_form.printed_date %></td>
+        <td><%= link_to 'Show', medical_form %></td>
+        <td><%= link_to 'Edit', edit_medical_form_path(medical_form) %></td>
+        <td><%= link_to 'Destroy', medical_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Medical form', new_medical_form_path %>

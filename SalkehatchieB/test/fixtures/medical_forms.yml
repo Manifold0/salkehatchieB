@@ -1,0 +1,59 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  camp_id: 
+  information: MyText
+  insurance_card_image: MyString
+  physician_name: MyString
+  physician_number: MyString
+  physician_address_1: MyString
+  physician_address_2: MyString
+  physician_city: MyString
+  physician_state: MyString
+  physician_zip: MyString
+  health_insurance_company: MyString
+  policy_number: MyString
+  company_address: MyString
+  company_number: MyString
+  health_insurance_agent: MyString
+  allergies: MyText
+  diet_restrictions: MyText
+  recent_illness_injury: MyText
+  medications: MyText
+  additional_conditions: MyText
+  date_of_last_tetanus_shot: 2013-10-30
+  user_approval: false
+  user_approval_date: 2013-10-30
+  guardian_approval: false
+  guardian_approval_date: 2013-10-30
+  printed_date: 2013-10-30 16:14:47
+
+two:
+  user_id: 
+  camp_id: 
+  information: MyText
+  insurance_card_image: MyString
+  physician_name: MyString
+  physician_number: MyString
+  physician_address_1: MyString
+  physician_address_2: MyString
+  physician_city: MyString
+  physician_state: MyString
+  physician_zip: MyString
+  health_insurance_company: MyString
+  policy_number: MyString
+  company_address: MyString
+  company_number: MyString
+  health_insurance_agent: MyString
+  allergies: MyText
+  diet_restrictions: MyText
+  recent_illness_injury: MyText
+  medications: MyText
+  additional_conditions: MyText
+  date_of_last_tetanus_shot: 2013-10-30
+  user_approval: false
+  user_approval_date: 2013-10-30
+  guardian_approval: false
+  guardian_approval_date: 2013-10-30
+  printed_date: 2013-10-30 16:14:47
