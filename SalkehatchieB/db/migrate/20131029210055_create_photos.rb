@@ -4,7 +4,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.site :references
       t.user :references
       t.approval :boolean
-	  t.users_tagged :text
+	    t.users_tagged :text
       t.image :string
 
       t.timestamps
