@@ -48,7 +48,6 @@ html,body {
   background-color: #FFF;
 }
 
-
 .index-head {
   text-align:center;
 }
@@ -58,4 +57,9 @@ html,body {
   top: 0px;
   padding: 0px;
   border-right:1px solid #CCC;
+}
+.glyphicon {
+  float: left;
+  position: absolute;
+  top: 8px;
 }
