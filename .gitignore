@@ -10,6 +10,9 @@ SalkehatchieB/.idea/uiDesigner.xml
 SalkehatchieB/.idea/vcs.xml
 SalkehatchieB/.idea/workspace.xml
 SalkehatchieB/SalkehatchieB.iml
+SalkehatchieB/config/database.yml
+SalkehatchieB/Gemfile
+SalkehatchieB/Gemfile.lock
 .idea/.name
 .idea/compiler.xml
 .idea/copyright/profiles_settings.xml
