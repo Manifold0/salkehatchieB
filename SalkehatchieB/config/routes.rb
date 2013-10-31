@@ -2,7 +2,15 @@ SalkehatchieB::Application.routes.draw do
   
   resources :reference_forms
   resources :camps
-  devise_for :users
+
+  get '/', to: redirect('/signin')
+
+  # devise_for :users
+
+  get "/signin" => "devise/sessions#new"
+  get "/apply" => "devise/registrations#new"
+
+
   resources :sites
   resources :photos
     resources :camp_permission_forms
