@@ -1,0 +1,37 @@
+<h1>Listing camp_requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Camp</th>
+      <th>Status</th>
+      <th>Preference1</th>
+      <th>Preference2</th>
+      <th>Preference3</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @camp_requests.each do |camp_request| %>
+      <tr>
+        <td><%= camp_request.user %></td>
+        <td><%= camp_request.camp %></td>
+        <td><%= camp_request.status %></td>
+        <td><%= camp_request.preference1 %></td>
+        <td><%= camp_request.preference2 %></td>
+        <td><%= camp_request.preference3 %></td>
+        <td><%= link_to 'Show', camp_request %></td>
+        <td><%= link_to 'Edit', edit_camp_request_path(camp_request) %></td>
+        <td><%= link_to 'Destroy', camp_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Camp request', new_camp_request_path %>

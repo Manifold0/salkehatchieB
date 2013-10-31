@@ -1,0 +1,2 @@
+module CampRequestsHelper
+end

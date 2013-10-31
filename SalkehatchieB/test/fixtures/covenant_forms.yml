@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  policy: false
+  two_adult: false
+  training: false
+  report_abuse: false
+  child_abuse: false
+  agree_to_covenant: false
+  user_signature: MyString
+  signature_date: 2013-10-30
+  printed_date: 2013-10-30 16:36:03
+
+two:
+  user_id: 
+  policy: false
+  two_adult: false
+  training: false
+  report_abuse: false
+  child_abuse: false
+  agree_to_covenant: false
+  user_signature: MyString
+  signature_date: 2013-10-30
+  printed_date: 2013-10-30 16:36:03
