@@ -15,9 +15,15 @@ SalkehatchieB::Application.routes.draw do
 
   # devise_for :users
 
-  get "/signin" => "devise/sessions#new"
-  get "/apply" => "devise/registrations#new"
-
+  devise_for :users, :skip => [:sessions,:registrations]
+  as :user do
+    get 'apply' => 'devise/registrations#new', :as => :new_user_registration
+    post 'apply' => 'devise/registrations#create', :as => :user_registration
+    get 'signin' => 'devise/sessions#new', :as => :new_user_session
+    post 'signin' => 'devise/sessions#create', :as => :user_session
+    match 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session,
+    :via => Devise.mappings[:user].sign_out_via
+  end
 
   resources :sites
   resources :photos
