@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  year: 2013-11-02
+  amount: 1
+  identifier: MyString
+
+two:
+  user_id: 
+  year: 2013-11-02
+  amount: 1
+  identifier: MyString

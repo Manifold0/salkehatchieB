@@ -56,6 +56,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
 	  t.date :background_check_date
 	  t.string :photoID
 	  t.string :signatureID
+
+    t.references :camp
+    t.references :site
 	  
       t.timestamps
     end
