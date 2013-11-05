@@ -3,7 +3,7 @@ class CreatePayments < ActiveRecord::Migration
     create_table :payments do |t|
       t.references :user, index: true
       t.date :year
-      t.integer :amount
+      t.float :amount
       t.string :identifier
 
       t.timestamps

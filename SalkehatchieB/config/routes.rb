@@ -1,5 +1,7 @@
 SalkehatchieB::Application.routes.draw do
   
+  resources :costs
+
   resources :payments
 
   resources :schedules

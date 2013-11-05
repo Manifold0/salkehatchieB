@@ -1,0 +1,33 @@
+<h1>Listing costs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Amount</th>
+      <th>Admin approver</th>
+      <th>Approved date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @costs.each do |cost| %>
+      <tr>
+        <td><%= cost.year %></td>
+        <td><%= cost.amount %></td>
+        <td><%= cost.admin_approver %></td>
+        <td><%= cost.approved_date %></td>
+        <td><%= link_to 'Show', cost %></td>
+        <td><%= link_to 'Edit', edit_cost_path(cost) %></td>
+        <td><%= link_to 'Destroy', cost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cost', new_cost_path %>

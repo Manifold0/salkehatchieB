@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @cost.year %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @cost.amount %>
+</p>
+
+<p>
+  <strong>Admin approver:</strong>
+  <%= @cost.admin_approver %>
+</p>
+
+<p>
+  <strong>Approved date:</strong>
+  <%= @cost.approved_date %>
+</p>
+
+<%= link_to 'Edit', edit_cost_path(@cost) %> |
+<%= link_to 'Back', costs_path %>
