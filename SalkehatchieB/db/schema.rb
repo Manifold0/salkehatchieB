@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030201820) do
+ActiveRecord::Schema.define(version: 20131105205020) do
 
   create_table "camp_permission_forms", force: true do |t|
     t.integer  "user_id"
@@ -36,11 +36,63 @@ ActiveRecord::Schema.define(version: 20131030201820) do
 
   add_index "camp_permission_forms", ["user_id"], name: "index_camp_permission_forms_on_user_id"
 
+  create_table "camp_requests", force: true do |t|
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.string   "preference1"
+    t.string   "preference2"
+    t.string   "preference3"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "camp_requests", ["user_id"], name: "index_camp_requests_on_user_id"
+
   create_table "camps", force: true do |t|
     t.date     "start_date"
     t.date     "end_date"
     t.string   "city"
     t.string   "hq_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "costs", force: true do |t|
+    t.date     "year"
+    t.float    "amount"
+    t.integer  "admin_approver_id"
+    t.date     "approved_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "covenant_forms", force: true do |t|
+    t.integer  "user_id"
+    t.boolean  "policy"
+    t.boolean  "two_adult"
+    t.boolean  "training"
+    t.boolean  "report_abuse"
+    t.boolean  "child_abuse"
+    t.boolean  "agree_to_covenant"
+    t.string   "user_signature"
+    t.date     "signature_date"
+    t.datetime "printed_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "covenant_forms", ["user_id"], name: "index_covenant_forms_on_user_id"
+
+  create_table "events", force: true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text     "description"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "email"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,8 +132,20 @@ ActiveRecord::Schema.define(version: 20131030201820) do
   add_index "medical_forms", ["camp_id"], name: "index_medical_forms_on_camp_id"
   add_index "medical_forms", ["user_id"], name: "index_medical_forms_on_user_id"
 
+  create_table "payments", force: true do |t|
+    t.integer  "user_id"
+    t.date     "year"
+    t.float    "amount"
+    t.string   "identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id"
+
   create_table "photos", force: true do |t|
     t.integer  "user_id"
+    t.integer  "site_id"
     t.boolean  "approval"
     t.text     "users_tagged"
     t.string   "image"
@@ -135,6 +199,17 @@ ActiveRecord::Schema.define(version: 20131030201820) do
 
   add_index "reference_forms", ["user_id"], name: "index_reference_forms_on_user_id"
 
+  create_table "schedules", force: true do |t|
+    t.integer  "camp_id"
+    t.date     "day"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "schedules", ["camp_id"], name: "index_schedules_on_camp_id"
+  add_index "schedules", ["event_id"], name: "index_schedules_on_event_id"
+
   create_table "sites", force: true do |t|
     t.string   "homeowner"
     t.datetime "created_at"
@@ -175,6 +250,8 @@ ActiveRecord::Schema.define(version: 20131030201820) do
     t.date     "background_check_date"
     t.string   "photoID"
     t.string   "signatureID"
+    t.integer  "camp_id"
+    t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
