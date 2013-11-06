@@ -5,9 +5,9 @@ class CreateCampRequests < ActiveRecord::Migration
       #Camp doesn't matter. If it does you can pull it through the user
       #t.references :camp, index: true
       t.boolean :status
-      t.references :preference1
-      t.references :preference2
-      t.references :preference3
+      add_foreign_key(:camp, t, :dependant, name: "preference1")
+      add_foreign_key(:camp, t, :dependant, name: "preference2")
+      add_foreign_key(:camp, t, :dependant, name: "preference3")
 
       t.timestamps
     end

@@ -15,6 +15,9 @@ gem 'devise'
 #Use cancan for user permissions/abilities
 gem 'cancan'
 
+#foreign-key management for migrations
+gem 'foreigner'
+
 #Bootstrap functionality
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
 
