@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20131030224844) do
+=======
 ActiveRecord::Schema.define(version: 20131105205020) do
+>>>>>>> 7cfb39ceddcb72ffcdaefcc3237812392313986e
 
   create_table "camp_permission_forms", force: true do |t|
     t.integer  "user_id"
@@ -38,7 +42,10 @@ ActiveRecord::Schema.define(version: 20131105205020) do
 
   create_table "camp_requests", force: true do |t|
     t.integer  "user_id"
+<<<<<<< HEAD
     t.integer  "camp_id"
+=======
+>>>>>>> 7cfb39ceddcb72ffcdaefcc3237812392313986e
     t.boolean  "status"
     t.string   "preference1"
     t.string   "preference2"
@@ -47,7 +54,10 @@ ActiveRecord::Schema.define(version: 20131105205020) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   add_index "camp_requests", ["camp_id"], name: "index_camp_requests_on_camp_id"
+=======
+>>>>>>> 7cfb39ceddcb72ffcdaefcc3237812392313986e
   add_index "camp_requests", ["user_id"], name: "index_camp_requests_on_user_id"
 
   create_table "camps", force: true do |t|
@@ -59,6 +69,8 @@ ActiveRecord::Schema.define(version: 20131105205020) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
+=======
   create_table "costs", force: true do |t|
     t.date     "year"
     t.float    "amount"
@@ -68,6 +80,7 @@ ActiveRecord::Schema.define(version: 20131105205020) do
     t.datetime "updated_at"
   end
 
+>>>>>>> 7cfb39ceddcb72ffcdaefcc3237812392313986e
   create_table "covenant_forms", force: true do |t|
     t.integer  "user_id"
     t.boolean  "policy"
@@ -147,6 +160,7 @@ ActiveRecord::Schema.define(version: 20131105205020) do
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"
+    t.integer  "site_id"
     t.boolean  "approval"
     t.text     "users_tagged"
     t.string   "image"
@@ -251,6 +265,8 @@ ActiveRecord::Schema.define(version: 20131105205020) do
     t.date     "background_check_date"
     t.string   "photoID"
     t.string   "signatureID"
+    t.integer  "camp_id"
+    t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

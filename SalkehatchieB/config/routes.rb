@@ -13,7 +13,11 @@ SalkehatchieB::Application.routes.draw do
   resources :covenant_forms
 
   resources :reference_forms
-  resources :camps
+
+
+  scope 'admin' do
+    resources :camps
+  end
 
   get '/', to: redirect('/signin')
 
@@ -36,6 +40,8 @@ SalkehatchieB::Application.routes.draw do
   resources :medical_forms
 
   resources :questionnaires
+
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -7,8 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="row index">
+	<div id="sideBar" class="col-md-3 btn-group-vertical index-btn custom-vertical-nav-bar">
+	<% 
+	admin = true;
+	if admin==true %>
+		<div class="row list-group">
+      <div class="col-md-12 index-head"><h5>Admin</h5></div></div>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+		  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span>Forms</button>
+      <a href="<%= camps_path %>"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button></a>
+  		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
 
+    <% end %>
+      <!--<div class="row"><div class="col-md-12 index-head"><h5>Site 5</h5></div></div>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>-->
+  </div>
+  <div class="col-md-9">
+    <h2>Home</h2>
+    <div class="row">
+<div class="col-md-6">
 <%= yield %>
-
+</div>
 </body>
 </html>
