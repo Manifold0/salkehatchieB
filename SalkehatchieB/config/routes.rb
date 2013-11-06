@@ -15,6 +15,8 @@ SalkehatchieB::Application.routes.draw do
   resources :reference_forms
 
 
+  resources :camps, only: :show
+
   scope 'admin' do
     resources :camps
   end

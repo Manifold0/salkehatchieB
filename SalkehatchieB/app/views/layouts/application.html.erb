@@ -9,14 +9,23 @@
 <body>
 <div class="row index">
 	<div id="sideBar" class="col-md-3 btn-group-vertical index-btn custom-vertical-nav-bar">
+	<div class="row list-group">
 	<% 
-	admin = true;
+	admin = false;
 	if admin==true %>
-		<div class="row list-group">
+		
       <div class="col-md-12 index-head"><h5>Admin</h5></div></div>
       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
 		  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span>Forms</button>
-      <a href="<%= camps_path %>"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button></a>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
+  		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+
+    <% else %>
+<div class="col-md-12 index-head"><h5>Camper</h5></div></div>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+		  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span>Forms</button>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
   		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
 
