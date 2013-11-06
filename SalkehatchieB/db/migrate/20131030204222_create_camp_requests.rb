@@ -5,9 +5,9 @@ class CreateCampRequests < ActiveRecord::Migration
       #Camp doesn't matter. If it does you can pull it through the user
       #t.references :camp, index: true
       t.boolean :status
-      t.string :preference1
-      t.string :preference2
-      t.string :preference3
+      t.references :preference1
+      t.references :preference2
+      t.references :preference3
 
       t.timestamps
     end

@@ -1,4 +1,4 @@
 class CampRequest < ActiveRecord::Base
   belongs_to :user
-  belongs_to :camp
+  has_many :camps
 end
