@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030224844) do
+ActiveRecord::Schema.define(version: 20131105205020) do
 
   create_table "camp_permission_forms", force: true do |t|
     t.integer  "user_id"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20131030224844) do
 
   create_table "camp_requests", force: true do |t|
     t.integer  "user_id"
-    t.integer  "camp_id"
     t.boolean  "status"
     t.string   "preference1"
     t.string   "preference2"
@@ -47,7 +46,6 @@ ActiveRecord::Schema.define(version: 20131030224844) do
     t.datetime "updated_at"
   end
 
-  add_index "camp_requests", ["camp_id"], name: "index_camp_requests_on_camp_id"
   add_index "camp_requests", ["user_id"], name: "index_camp_requests_on_user_id"
 
   create_table "camps", force: true do |t|
@@ -55,6 +53,15 @@ ActiveRecord::Schema.define(version: 20131030224844) do
     t.date     "end_date"
     t.string   "city"
     t.string   "hq_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "costs", force: true do |t|
+    t.date     "year"
+    t.float    "amount"
+    t.integer  "admin_approver_id"
+    t.date     "approved_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -125,8 +132,20 @@ ActiveRecord::Schema.define(version: 20131030224844) do
   add_index "medical_forms", ["camp_id"], name: "index_medical_forms_on_camp_id"
   add_index "medical_forms", ["user_id"], name: "index_medical_forms_on_user_id"
 
+  create_table "payments", force: true do |t|
+    t.integer  "user_id"
+    t.date     "year"
+    t.float    "amount"
+    t.string   "identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id"
+
   create_table "photos", force: true do |t|
     t.integer  "user_id"
+    t.integer  "site_id"
     t.boolean  "approval"
     t.text     "users_tagged"
     t.string   "image"
@@ -231,6 +250,8 @@ ActiveRecord::Schema.define(version: 20131030224844) do
     t.date     "background_check_date"
     t.string   "photoID"
     t.string   "signatureID"
+    t.integer  "camp_id"
+    t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

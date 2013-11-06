@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  year: 
+  amount: 1.5
+  admin_approver: 
+  approved_date: 2013-11-05
+
+two:
+  year: 
+  amount: 1.5
+  admin_approver: 
+  approved_date: 2013-11-05
