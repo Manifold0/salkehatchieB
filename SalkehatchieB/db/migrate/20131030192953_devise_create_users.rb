@@ -51,7 +51,15 @@ class DeviseCreateUsers < ActiveRecord::Migration
 	  t.string :church
 	  t.string :church_city
 	  t.string :church_pastor
+
 	  t.integer :permission_level
+    #higher integer, higher priority
+    #5 = admin
+    #4 = camp director
+    #3 = site leader
+    #2= parents
+    #1 = campers
+
 	  t.boolean :background_check
 	  t.date :background_check_date
 	  t.string :photoID

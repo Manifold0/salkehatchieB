@@ -1,4 +1,4 @@
 class Schedule < ActiveRecord::Base
   belongs_to :camp
-  belongs_to :event
+  has_many :event
 end

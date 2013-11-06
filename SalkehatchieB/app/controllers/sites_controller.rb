@@ -61,6 +61,25 @@ class SitesController < ApplicationController
     end
   end
 
+  def print_camper_information
+    @site = current_user.site
+    #TODO
+    #might have to change to site_id
+    @campers = User.where(site: @site)
+  end
+
+  def update_site_schedule
+    @site = current_user.site
+    #might need to add this property
+    site.schedule
+  end
+
+
+  def view_site_photos
+    @site = current_user.site
+    @photos = User.where(site: @site )
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_site

@@ -61,6 +61,30 @@ class CampsController < ApplicationController
     end
   end
 
+  def update_assignments
+    #TODO
+  end
+
+  def manage_campers
+    #TODO
+  end
+
+  def print_health_info
+     @camp = current_user.camp
+     @users = User.where(camp: @camp).order(:site)
+  end
+
+  def print_roster_listing
+    @camp = current_user.camp
+    @users = User.where(camp: @camp)
+  end
+
+  def update_schedule
+    @camp = current_user.camp
+    #might need to add this property
+    camp.schedule
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_camp
@@ -71,4 +95,6 @@ class CampsController < ApplicationController
     def camp_params
       params.require(:camp).permit(:start_date, :end_date, :city, :hq_address)
     end
+
+
 end
