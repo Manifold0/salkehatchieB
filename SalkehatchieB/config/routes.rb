@@ -19,6 +19,7 @@ SalkehatchieB::Application.routes.draw do
 
   scope 'admin' do
     resources :camps
+    resources :users
   end
 
   get '/', to: redirect('/signin')
