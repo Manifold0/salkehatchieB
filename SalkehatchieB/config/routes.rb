@@ -2,13 +2,12 @@ SalkehatchieB::Application.routes.draw do
   
   resources :costs
 
-  resources :payments
+  resources :payments, only: [:new,:index,:show]
 
   resources :schedules
 
   resources :events
 
-  resources :camp_requests
 
   resources :covenant_forms
 
@@ -20,7 +19,14 @@ SalkehatchieB::Application.routes.draw do
   scope 'admin' do
     resources :camps
     resources :users
+    resources :camp_requests
+    resources :payments
+    as :payments do
+      get 'payments/:id' => 'payments#show', :as => :admin_payments_show
+    end
   end
+
+  resources :camp_requests, only: :new
 
   get '/', to: redirect('/signin')
 
@@ -38,7 +44,7 @@ SalkehatchieB::Application.routes.draw do
 
   resources :sites
   resources :photos
-    resources :camp_permission_forms
+  resources :camp_permission_forms
 
   resources :medical_forms
 

@@ -10,30 +10,34 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
-    <%= f.label :camp %><br>
-    <%= f.text_field :camp %>
-  </div>
   <div class="field">
     <%= f.label :status %><br>
     <%= f.check_box :status %>
   </div>
+  
+
+  <%
+
+  array = Array.new()
+  array.push(['none',nil]);
+  Camp.all.each do |camp|
+    array.push([camp.city,camp.id])
+  end
+%>
+  
   <div class="field">
     <%= f.label :preference1 %><br>
-    <%= f.text_field :preference1 %>
+    <%= f.select(:preference1_id, array) %>
   </div>
+  
+
   <div class="field">
     <%= f.label :preference2 %><br>
-    <%= f.text_field :preference2 %>
+    <%= f.select(:preference2_id, array) %>
   </div>
   <div class="field">
     <%= f.label :preference3 %><br>
-    <%= f.text_field :preference3 %>
+   <%= f.select(:preference3_id, array) %>
   </div>
   <div class="actions">
     <%= f.submit %>

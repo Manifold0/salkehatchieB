@@ -24,12 +24,16 @@ class CampRequestsController < ApplicationController
   # POST /camp_requests
   # POST /camp_requests.json
   def create
-    @camp_request = CampRequest.new(camp_request_params)
+    p = camp_request_params
+
+    @camp_request = CampRequest.new(p)
 
     respond_to do |format|
       if @camp_request.save
+
         format.html { redirect_to @camp_request, notice: 'Camp request was successfully created.' }
         format.json { render action: 'show', status: :created, location: @camp_request }
+
       else
         format.html { render action: 'new' }
         format.json { render json: @camp_request.errors, status: :unprocessable_entity }
@@ -69,6 +73,6 @@ class CampRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def camp_request_params
-      params.require(:camp_request).permit(:user_id, :camp_id, :status, :preference1, :preference2, :preference3)
+      params.require(:camp_request).permit(:user_id, :camp_id, :status, :preference1_id, :preference2_id, :preference3_id)
     end
 end

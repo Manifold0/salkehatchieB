@@ -39,14 +39,23 @@ ActiveRecord::Schema.define(version: 20131105205020) do
   create_table "camp_requests", force: true do |t|
     t.integer  "user_id"
     t.boolean  "status"
-    t.string   "preference1"
-    t.string   "preference2"
-    t.string   "preference3"
+    t.integer  "preference1_id"
+    t.integer  "preference2_id"
+    t.integer  "preference3_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "camp_requests", ["user_id"], name: "index_camp_requests_on_user_id"
+
+  create_table "camps", force: true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "city"
+    t.string   "hq_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "costs", force: true do |t|
     t.date     "year"
