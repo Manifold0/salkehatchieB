@@ -5,6 +5,7 @@ class CreateCamps < ActiveRecord::Migration
       t.date :end_date
       t.string :city
       t.string :hq_address
+      t.integer :max_campers
 
       t.timestamps
     end

@@ -4,8 +4,8 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    admin = false
-    if admin
+    
+    if current_user.is_admin?
       @payments = Payment.all
     else
       @payments = Payment.where(:user => current_user)
@@ -72,6 +72,14 @@ class PaymentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to payments_url }
       format.json { head :no_content }
+    end
+  end
+
+  def payments_back
+    if current_user.is_admin?
+      return admin_payments_path
+    else
+      return payments_path
     end
   end
 

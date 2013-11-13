@@ -6,10 +6,11 @@ SalkehatchieB::Application.routes.draw do
 
   resources :payments, only: [:new,:index,:show]
 
+  resources :camps, only: [:index, :show]
+
   resources :schedules
 
   resources :events
-
 
   resources :covenant_forms
 
@@ -20,17 +21,26 @@ SalkehatchieB::Application.routes.draw do
 
   scope 'admin' do
     resources :camps
+    as resources :camps do
+      get 'camps/' => "camps#index", :as => :admin_camps
+    end
     resources :users
     resources :camp_requests
+    get 'camp_request/assign' => "camp_requests#assign", as: :camp_request_assign
     resources :payments
     as :payments do
+      get 'payments' => 'payments#index', :as => :admin_payments
       get 'payments/:id' => 'payments#show', :as => :admin_payments_show
     end
   end
 
-  resources :camp_requests, only: :new
+  get '/request' => 'camp_requests#new', :as => :request_camps
+
+  post '/request#create' => 'camp_requests#create', :as => :request_camps_create
 
   get '/', to: redirect('/signin')
+
+  root 'devise/session#new'
 
   # devise_for :users
 
@@ -39,7 +49,7 @@ SalkehatchieB::Application.routes.draw do
     get 'apply' => 'devise/registrations#new', :as => :new_user_registration
     post 'apply' => 'devise/registrations#create', :as => :user_registration
     get 'signin' => 'devise/sessions#new', :as => :new_user_session
-    post 'signin' => 'devise/sessions#create', :as => :user_session
+    post 'signin.user' => 'devise/sessions#create', :as => :user_session
     match 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session,
     :via => Devise.mappings[:user].sign_out_via
   end

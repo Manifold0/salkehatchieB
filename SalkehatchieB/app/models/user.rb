@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :camp_assignments
+
 	#belongs_to :medical_form
 	#has_one :whatever_form
 	

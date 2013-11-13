@@ -4,7 +4,29 @@ class CampRequestsController < ApplicationController
   # GET /camp_requests
   # GET /camp_requests.json
   def index
-    @camp_requests = CampRequest.all
+    @camp_requests = CampRequest.find(:all, :order => "status ASC")
+  end
+
+  def assign
+    p = params.permit(:user, :camp, :camp_request)
+
+    request = CampRequest.find(p['camp_request'])
+    
+    request.status = 1
+
+    if !request.save
+      redirect_to camp_requests_path
+    end
+
+    assignment = CampAssignment.new(camp: Camp.find(p['camp']), user: User.find(p['user']), permission_level: 1)
+
+    if assignment.save
+      redirect_to camp_requests_path
+    else
+      render action: 'new'
+    end
+
+
   end
 
   # GET /camp_requests/1
@@ -27,18 +49,28 @@ class CampRequestsController < ApplicationController
     p = camp_request_params
 
     @camp_request = CampRequest.new(p)
+    @camp_request.user = current_user
 
-    respond_to do |format|
+    if @camp_request.save
+      redirect_to root_path
+    else
+      render action: 'new'
+    end
+
+
+=begin    respond_to do |format|
       if @camp_request.save
 
-        format.html { redirect_to @camp_request, notice: 'Camp request was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @camp_request }
+        #format.json { render action: 'show', status: :created, location: @camp_request }
+
+        redirect_to root_path
 
       else
         format.html { render action: 'new' }
         format.json { render json: @camp_request.errors, status: :unprocessable_entity }
       end
-    end
+  end
+=end 
   end
 
   # PATCH/PUT /camp_requests/1
