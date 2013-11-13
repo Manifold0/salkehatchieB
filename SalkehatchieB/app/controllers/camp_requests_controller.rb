@@ -4,7 +4,29 @@ class CampRequestsController < ApplicationController
   # GET /camp_requests
   # GET /camp_requests.json
   def index
-    @camp_requests = CampRequest.all
+    @camp_requests = CampRequest.find(:all, :order => "status ASC")
+  end
+
+  def assign
+    p = params.permit(:user, :camp, :camp_request)
+
+    request = CampRequest.find(p['camp_request'])
+    
+    request.status = 1
+
+    if !request.save
+      redirect_to camp_requests_path
+    end
+
+    assignment = CampAssignment.new(camp: Camp.find(p['camp']), user: User.find(p['user']), permission_level: 1)
+
+    if assignment.save
+      redirect_to camp_requests_path
+    else
+      render action: 'new'
+    end
+
+
   end
 
   # GET /camp_requests/1
@@ -34,7 +56,7 @@ class CampRequestsController < ApplicationController
     else
       render action: 'new'
     end
-    
+
 
 =begin    respond_to do |format|
       if @camp_request.save

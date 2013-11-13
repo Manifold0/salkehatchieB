@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>User</th>
-      <th>Camp</th>
       <th>Status</th>
       <th>Preference1</th>
       <th>Preference2</th>
@@ -20,12 +19,18 @@
       <tr>
         <td><%= camp_request.user.first_name %> <%= camp_request.user.last_name %></td>
         <td><%= camp_request.status %></td>
+        <% if !camp_request.status? %>
+        <td><%= Camp.find(camp_request.preference1_id).city %> [<%= link_to 'Accept', camp_request_assign_path(user: camp_request.user,camp: camp_request.preference1_id, camp_request: camp_request.id) %>]</td>
+        <td><%= Camp.find(camp_request.preference2_id).city %> [<%= link_to 'Accept', camp_request_assign_path(user: camp_request.user,camp: camp_request.preference2_id, camp_request: camp_request.id) %>]</td>
+        <td><%= Camp.find(camp_request.preference3_id).city %> [<%= link_to 'Accept', camp_request_assign_path(user: camp_request.user,camp: camp_request.preference3_id, camp_request: camp_request.id) %>]</td>
+        <% end %>
         <td><%= Camp.find(camp_request.preference1_id).city %></td>
         <td><%= Camp.find(camp_request.preference2_id).city %></td>
         <td><%= Camp.find(camp_request.preference3_id).city %></td>
         <td><%= link_to 'Show', camp_request %></td>
         <td><%= link_to 'Edit', edit_camp_request_path(camp_request) %></td>
         <td><%= link_to 'Destroy', camp_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>

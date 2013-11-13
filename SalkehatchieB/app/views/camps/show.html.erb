@@ -20,6 +20,13 @@
   <%= @camp.hq_address %>
 </p>
 
+<p>
+<strong>Campers:</strong>
+ <% @camp.camp_assignments.each do |assignment| %>
+ 	<%= assignment.user.first_name %> <%= assignment.user.last_name %>,
+ <% end %>
+</p>
+
 <%= link_to 'Edit', edit_camp_path(@camp) %> |
 <% if current_user.is_admin? %>
 <%= link_to 'Admin Back', admin_camps_path %>

@@ -26,6 +26,7 @@ SalkehatchieB::Application.routes.draw do
     end
     resources :users
     resources :camp_requests
+    get 'camp_request/assign' => "camp_requests#assign", as: :camp_request_assign
     resources :payments
     as :payments do
       get 'payments' => 'payments#index', :as => :admin_payments

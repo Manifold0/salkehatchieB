@@ -20,6 +20,7 @@
         <td><%= camp.end_date %></td>
         <td><%= camp.city %></td>
         <td><%= camp.hq_address %></td>
+        <td><%= camp.camp_assignments.count %></td>
         <td><%= link_to 'Show', camp %></td>
         <td><%= link_to 'Edit', edit_camp_path(camp) %></td>
         <td><%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
