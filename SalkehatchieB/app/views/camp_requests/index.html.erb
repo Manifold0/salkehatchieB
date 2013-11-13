@@ -18,12 +18,11 @@
   <tbody>
     <% @camp_requests.each do |camp_request| %>
       <tr>
-        <td><%= camp_request.user %></td>
-        <td><%= camp_request.camp %></td>
+        <td><%= camp_request.user.first_name %> <%= camp_request.user.last_name %></td>
         <td><%= camp_request.status %></td>
-        <td><%= camp_request.preference1 %></td>
-        <td><%= camp_request.preference2 %></td>
-        <td><%= camp_request.preference3 %></td>
+        <td><%= Camp.find(camp_request.preference1_id).city %></td>
+        <td><%= Camp.find(camp_request.preference2_id).city %></td>
+        <td><%= Camp.find(camp_request.preference3_id).city %></td>
         <td><%= link_to 'Show', camp_request %></td>
         <td><%= link_to 'Edit', edit_camp_request_path(camp_request) %></td>
         <td><%= link_to 'Destroy', camp_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>

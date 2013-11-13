@@ -1,4 +1,5 @@
-<%= form_for(@camp_request) do |f| %>
+<%= form_for @camp_request, :url => request_camps_create_path(@camp_request) do |f| %>
+
   <% if @camp_request.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@camp_request.errors.count, "error") %> prohibited this camp_request from being saved:</h2>
@@ -10,10 +11,7 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.check_box :status %>
-  </div>
+
   
 
   <%

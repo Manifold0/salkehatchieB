@@ -27,18 +27,28 @@ class CampRequestsController < ApplicationController
     p = camp_request_params
 
     @camp_request = CampRequest.new(p)
+    @camp_request.user = current_user
 
-    respond_to do |format|
+    if @camp_request.save
+      redirect_to root_path
+    else
+      render action: 'new'
+    end
+    
+
+=begin    respond_to do |format|
       if @camp_request.save
 
-        format.html { redirect_to @camp_request, notice: 'Camp request was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @camp_request }
+        #format.json { render action: 'show', status: :created, location: @camp_request }
+
+        redirect_to root_path
 
       else
         format.html { render action: 'new' }
         format.json { render json: @camp_request.errors, status: :unprocessable_entity }
       end
-    end
+  end
+=end 
   end
 
   # PATCH/PUT /camp_requests/1
