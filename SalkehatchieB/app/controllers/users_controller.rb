@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @payment = Payment.where(user_id:params[:id]).sum(:amount)
+    @current_cost = Cost.where(year: Time.now.year)
+    @balance = @current_cost.amount - @payment
   end
 
   # GET /users/new
@@ -59,6 +62,27 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+
+  def background_check?
+    #TODO
+  end
+
+  def unpaid_users
+    #TODO
+  end
+
+  def unassigned_users
+     #TODO
+  end
+
+  def total_adults
+    #TODO
+  end
+
+  def total_youth
+    #TODO
   end
 
   private

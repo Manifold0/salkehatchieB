@@ -15,6 +15,9 @@ class PhotosController < ApplicationController
   # GET /photos/new
   def new
     @photo = Photo.new
+    #@photo.users_tagged = params[:users_tagged]
+    #@photo.image = params[:image]
+    #@photo.save!
   end
 
   # GET /photos/1/edit
@@ -60,6 +63,7 @@ class PhotosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

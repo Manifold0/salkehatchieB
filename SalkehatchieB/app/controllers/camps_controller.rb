@@ -61,15 +61,20 @@ class CampsController < ApplicationController
     end
   end
 
-  def update_assignments
+  def update_camp_assignments
     #TODO
+    @camp = current_user.camp
+
   end
 
   def manage_campers
     #TODO
+    @camp = current_user.camp
+    @users = User
   end
 
   def print_health_info
+    #TODO
      @camp = current_user.camp
      @users = User.where(camp: @camp).order(:site)
   end
@@ -83,6 +88,12 @@ class CampsController < ApplicationController
     @camp = current_user.camp
     #might need to add this property
     camp.schedule
+  end
+
+  def missing_insurance_cards
+    #TODO
+    @camp = current_user.camp
+
   end
 
   private
