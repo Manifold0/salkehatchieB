@@ -1,0 +1,31 @@
+<h1>Listing camp_assignments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Camp</th>
+      <th>Permission level</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @camp_assignments.each do |camp_assignment| %>
+      <tr>
+        <td><%= camp_assignment.user %></td>
+        <td><%= camp_assignment.camp %></td>
+        <td><%= camp_assignment.permission_level %></td>
+        <td><%= link_to 'Show', camp_assignment %></td>
+        <td><%= link_to 'Edit', edit_camp_assignment_path(camp_assignment) %></td>
+        <td><%= link_to 'Destroy', camp_assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Camp assignment', new_camp_assignment_path %>

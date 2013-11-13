@@ -1,0 +1,2 @@
+module CampAssignmentsHelper
+end

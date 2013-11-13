@@ -1,5 +1,7 @@
 SalkehatchieB::Application.routes.draw do
   
+  resources :camp_assignments
+
   resources :costs
 
   resources :payments, only: [:new,:index,:show]
