@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @camp_assignment.user %>
+</p>
+
+<p>
+  <strong>Camp:</strong>
+  <%= @camp_assignment.camp %>
+</p>
+
+<p>
+  <strong>Permission level:</strong>
+  <%= @camp_assignment.permission_level %>
+</p>
+
+<%= link_to 'Edit', edit_camp_assignment_path(@camp_assignment) %> |
+<%= link_to 'Back', camp_assignments_path %>

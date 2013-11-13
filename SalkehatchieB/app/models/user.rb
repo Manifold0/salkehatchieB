@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
      end
   end
 
+  #Example of how to do abilities with camp_assignment model
+  #def is_camp_director?
+  # if self.camp_assignment.permission_level == 4
+  #etc., etc.
+
   def is_camp_director?
     if self.permission_level == 4
       return true

@@ -1,0 +1,29 @@
+<%= form_for(@camp_assignment) do |f| %>
+  <% if @camp_assignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@camp_assignment.errors.count, "error") %> prohibited this camp_assignment from being saved:</h2>
+
+      <ul>
+      <% @camp_assignment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user %><br>
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :camp %><br>
+    <%= f.text_field :camp %>
+  </div>
+  <div class="field">
+    <%= f.label :permission_level %><br>
+    <%= f.text_field :permission_level %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
