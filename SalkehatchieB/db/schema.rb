@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20131113195009) do
     t.date     "end_date"
     t.string   "city"
     t.string   "hq_address"
+    t.integer  "max_campers"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

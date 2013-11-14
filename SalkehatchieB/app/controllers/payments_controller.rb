@@ -74,7 +74,6 @@ class PaymentsController < ApplicationController
     end
   end
 
-<<<<<<< Updated upstream
   def payments_back
     if current_user.is_admin?
       return admin_payments_path
@@ -82,7 +81,7 @@ class PaymentsController < ApplicationController
       return payments_path
     end
   end
-=======
+
   def has_paid?
     #FIXME
     @payment = Payment.where(user_id:params[:id]).sum(:amount)
@@ -90,11 +89,8 @@ class PaymentsController < ApplicationController
     @balance = @current_cost.amount - @payment
      if balance == 0
        return true
-      else
-      return false
-      end
+     end
     end
->>>>>>> Stashed changes
 
   private
     # Use callbacks to share common setup or constraints between actions.
