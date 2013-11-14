@@ -83,6 +83,8 @@ class UsersController < ApplicationController
 
   def total_youth
     #TODO
+
+
   end
 
   private
