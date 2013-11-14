@@ -2,6 +2,10 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+
+    #IMPORTANT: Abilities further down will override a previous one. For example, if we have a can :manage, Camp
+    #then a cannot :destroy, Camp, the user will be able to do anything except destroy the camp.
+
     #if admin, can do x
     if user.is_admin?
       can :manage, :all
@@ -29,15 +33,17 @@ class Ability
     if user.is_camp_director?
       #can update site assignments for their camp
       can :update_assignments, Camp, current_user.camp_id => camp_id
+      #can :update, Site, current_user.camp_id =>
+
 
       #can edit camper information for their camp only
-      can :manage_campers, Camp
+      can :update, Camp
 
       #can print health information on all campers from that camp, organized by site
       can :print_health_info, Camp
 
       #print camp/site roster listings including name, church, age, gender, cell phone #
-      can :print_roster_listing, Camp
+      can :roster_listing, Camp
 
       #can edit/update daily schedule for their camp only
       can :update, Schedule, current_user.camp_id => schedule.camp_id
@@ -62,7 +68,10 @@ class Ability
 
       #can upload pictures, videos, and their blog entries for their site only
       can :read, Photo, :user.site => user.site  #temporary
+
+      cannot :manage, :all
     end
 
-
   end
+
+end

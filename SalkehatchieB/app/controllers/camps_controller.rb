@@ -1,6 +1,9 @@
 class CampsController < ApplicationController
   before_action :set_camp, only: [:show, :edit, :update, :destroy]
 
+  #CanCan specific authorization
+  load_and_authorize_resource
+
   # GET /camps
   # GET /camps.json
   def index
@@ -79,7 +82,7 @@ class CampsController < ApplicationController
      @users = User.where(camp: @camp).order(:site)
   end
 
-  def print_roster_listing
+  def roster_listing
     @camp = current_user.camp
     @users = User.where(camp: @camp)
   end
