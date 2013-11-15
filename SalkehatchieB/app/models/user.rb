@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   #etc., etc.
 
   def is_camp_director?
-    if self.current_camp_assignment.permission_level == 4
+    if self.permission_level == 4
       return true
     else
       return false
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def is_site_leader?
-    if self.current_camp_assignment.permission_level == 3
+    if self.permission_level == 3
       return true
     else
       return false
@@ -48,7 +48,8 @@ class User < ActiveRecord::Base
   end
 
   def is_camper?
-    if self.current_camp_assignment.permission_level == 1
+    #current_camp_assignment?
+    if self.permission_level == 1
       return true
     else
       return false

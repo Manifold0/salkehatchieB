@@ -32,7 +32,7 @@ class Ability
 
     if user.is_camp_director?
       #can update site assignments for their camp
-      can :update_assignments, Camp, current_user.camp_id => camp_id
+      can :update_assignments, Camp
       #can :update, Site, current_user.camp_id =>
 
 
@@ -46,7 +46,7 @@ class Ability
       can :roster_listing, Camp
 
       #can edit/update daily schedule for their camp only
-      can :update, Schedule, current_user.camp_id => schedule.camp_id
+      can :update, Schedule
     end
 
     if user.is_site_leader?

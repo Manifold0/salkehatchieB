@@ -1,6 +1,8 @@
 class CampAssignmentsController < ApplicationController
   before_action :set_camp_assignment, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /camp_assignments
   # GET /camp_assignments.json
   def index
