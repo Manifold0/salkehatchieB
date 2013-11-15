@@ -1,6 +1,7 @@
 class CampsController < ApplicationController
   before_action :set_camp, only: [:show, :edit, :update, :destroy]
 
+
   #CanCan specific authorization
   load_and_authorize_resource
 
@@ -63,6 +64,10 @@ class CampsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+   def load_camp
+     @camp = Camp.new(camp_params)
+   end
 
   def update_camp_assignments
     #TODO

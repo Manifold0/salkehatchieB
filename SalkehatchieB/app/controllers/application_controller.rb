@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access Denied"
-    redirect_to :back
   end
 
   def after_sign_in_path_for(user)

@@ -34,7 +34,7 @@ class Ability
       #can update site assignments for their camp
       can :update_assignments, Camp
       #can :update, Site, current_user.camp_id =>
-
+      can :read, Camp
 
       #can edit camper information for their camp only
       can :update, Camp
@@ -54,22 +54,22 @@ class Ability
       can :print_camper_information, Site
 
       #can edit/update daily schedule information for their camp/site combination only
-      can :update, Schedule, :user.site => user.site
+      can :update, Schedule
+      can :read, Camp
     end
 
     if user.is_parent?
       #can view photos from their child's camp only
-      can :read, Photo, :user.camp => user.camp
+      can :read, Photo
     end
 
     if user.is_camper?
       #can view daily schedule from their site only
-      can :read, Schedule, current_user.camp_id => schedule.camp_id
+      can :read, Schedule
 
       #can upload pictures, videos, and their blog entries for their site only
-      can :read, Photo, :user.site => user.site  #temporary
-
-      cannot :manage, :all
+      can :read, Photo
+      can :read, Camp
     end
 
   end
