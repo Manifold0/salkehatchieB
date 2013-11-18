@@ -27,9 +27,13 @@
  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_camp_path(@camp) %> |
-<% if current_user.is_admin? %>
-<%= link_to 'Admin Back', admin_camps_path %>
-<% else %>
-<%= link_to 'Back', camps_path %>
-<% end %>
+
+    <% if can? :update, Camp %>
+        <%= link_to 'Edit', edit_camp_path(@camp) %> |
+    <% end %>
+
+    <% if current_user.is_admin? %>
+        <%= link_to 'Admin Back', admin_camps_path %>
+    <% else %>
+        <%= link_to 'Back', camps_path %>
+    <% end %>

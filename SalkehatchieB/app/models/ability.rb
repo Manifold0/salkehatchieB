@@ -6,15 +6,16 @@ class Ability
     #IMPORTANT: Abilities further down will override a previous one. For example, if we have a can :manage, Camp
     #then a cannot :destroy, Camp, the user will be able to do anything except destroy the camp.
 
-    #if admin, can do x
     if user.is_admin?
       can :manage, :all
 
       #can update camp assignments for all applicants
       can :update, CampAssignment
       #cannot assign camper unless payment has been made
+      #cannot :update, User, User.includes(:payments).where()
 
-      #cannot assign camper 18+ if they haven't passed background check
+      #cannot assign camper 18+ if they haven't passed background check; temporary
+      cannot :update, User, User.where(:background_check => false && :date_of_birth > 1/1/1995)
 
       #can assign camp directors
 
@@ -37,7 +38,7 @@ class Ability
       can :read, Camp
 
       #can edit camper information for their camp only
-      can :update, Camp
+
 
       #can print health information on all campers from that camp, organized by site
       can :print_health_info, Camp
@@ -46,15 +47,15 @@ class Ability
       can :roster_listing, Camp
 
       #can edit/update daily schedule for their camp only
-      can :update, Schedule
+      can :update, Schedule, Schedule.where(:camp_id => user.camp)
     end
 
     if user.is_site_leader?
       #can view and print all camper information for their camp/site combination
-      can :print_camper_information, Site
+      can :read, Site
 
       #can edit/update daily schedule information for their camp/site combination only
-      can :update, Schedule
+      can :update, Schedule, Schedule.where(:camp => user.camp)
       can :read, Camp
     end
 
@@ -68,8 +69,8 @@ class Ability
       can :read, Schedule
 
       #can upload pictures, videos, and their blog entries for their site only
-      can :read, Photo
-      can :read, Camp
+      can :read, Photo, Photo.where(:site => user.site)
+      #can :read, Camp
     end
 
   end
