@@ -35,7 +35,7 @@ class Ability
       #can update site assignments for their camp
       can :update_assignments, Camp
       #can :update, Site, current_user.camp_id =>
-      can :read, Camp
+      can :update, Camp, :current_user.camp_id => user.camp
 
       #can edit camper information for their camp only
 
@@ -55,8 +55,9 @@ class Ability
       can :read, Site
 
       #can edit/update daily schedule information for their camp/site combination only
+      #Need primary key for camps and stuff
       can :update, Schedule, Schedule.where(:camp => user.camp)
-      can :read, Camp
+      can :read, Camp, Camp.where(:camp => user.camp)
     end
 
     if user.is_parent?
@@ -66,10 +67,10 @@ class Ability
 
     if user.is_camper?
       #can view daily schedule from their site only
-      can :read, Schedule
+      can :read, Schedule, Schedule.where(:site => user.site, :current_user.user_id => user.id)
 
       #can upload pictures, videos, and their blog entries for their site only
-      can :read, Photo, Photo.where(:site => user.site)
+      can :read, Photo, Photo.where(:site => user.site, :current_user.user_id => user.id)
       #can :read, Camp
     end
 
