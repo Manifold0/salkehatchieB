@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
   User.create(first_name: "Alfred", last_name: "Admin", password: "adminadmin", email: "admin@admin.com", permission_level: 5)
+  User.create(first_name: "Alfred2", last_name: "Admin2", password: "adminadmin", email: "admin2@admin.com", permission_level: 5)
   User.create(first_name: "Samuel", last_name: "Jackson", password:"director", email: "director@director.com", permission_level: 4)
   User.create(first_name: "Shaniqua", last_name: "Jones", password:"siteleader", email: "siteldr@siteldr.com", permission_level: 3)
   User.create(first_name: "Momma", last_name: "Dadda", password: "bigdaddy", email:  "parent@parent.com", permission_level: 2)

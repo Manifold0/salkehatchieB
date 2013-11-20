@@ -10,6 +10,15 @@ class CovenantFormsController < ApplicationController
   # GET /covenant_forms/1
   # GET /covenant_forms/1.json
   def show
+    @covenant_form = CovenantForm.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = CovenantPdf.new(@covenant_form)
+        pdf.text "Hello World"
+        send_data pdf.render, filename: "covenant form", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /covenant_forms/new
