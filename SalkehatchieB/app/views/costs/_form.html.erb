@@ -10,22 +10,24 @@
       </ul>
     </div>
   <% end %>
-
+This will need to be approved by another admin.
   <div class="field">
     <%= f.label :year %><br>
-    <%= f.text_field :year %>
+    <% 
+    current_year = DateTime.now.year;
+    years = Array.new()
+
+
+    years[0] = [current_year,current_year]
+    years[1] = [current_year+1,current_year+1]
+    years[2] = [current_year+2,current_year+2]
+
+    %>
+    <%= f.select( :year, options_for_select(years)) %>
   </div>
   <div class="field">
     <%= f.label :amount %><br>
     <%= f.text_field :amount %>
-  </div>
-  <div class="field">
-    <%= f.label :admin_approver %><br>
-    <%= f.text_field :admin_approver %>
-  </div>
-  <div class="field">
-    <%= f.label :approved_date %><br>
-    <%= f.date_select :approved_date %>
   </div>
   <div class="actions">
     <%= f.submit %>
