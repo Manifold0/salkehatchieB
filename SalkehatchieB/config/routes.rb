@@ -2,8 +2,6 @@ SalkehatchieB::Application.routes.draw do
   
   resources :camp_assignments
 
-  resources :costs
-
   resources :payments, only: [:new,:index,:show]
 
   resources :camps, only: [:index, :show]
@@ -33,6 +31,8 @@ SalkehatchieB::Application.routes.draw do
       get 'payments' => 'payments#index', :as => :admin_payments
       get 'payments/:id' => 'payments#show', :as => :admin_payments_show
     end
+    resources :costs
+    get 'cost/approve' => "costs#approve", as: :cost_approve
   end
 
   get '/request' => 'camp_requests#new', :as => :request_camps

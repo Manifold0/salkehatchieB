@@ -1,6 +1,6 @@
 class CampsController < ApplicationController
   before_action :set_camp, only: [:show, :edit, :update, :destroy, :camp_params]
-
+  before_action :create_camp, only: :create
 
   #CanCan specific authorization
   load_and_authorize_resource
@@ -8,7 +8,11 @@ class CampsController < ApplicationController
   # GET /camps
   # GET /camps.json
   def index
-    @camps = Camp.all
+    current_year = DateTime.now.year
+    date_registration_opens = DateTime.new(current_year, 1, 1)
+    date_registration_closes = DateTime.new(current_year+1, 1, 1)
+    @camps = Camp.where("(start_date >= ? AND start_date < ?)", date_registration_opens, date_registration_closes).all;
+
   end
 
   # GET /camps/1
@@ -28,18 +32,7 @@ class CampsController < ApplicationController
   # POST /camps
   # POST /camps.json
   def create
-    @camp = Camp.new(camp_params)
-
-    respond_to do |format|
-      if @camp.save
-        
-        format.html { redirect_to admin_camp_url(@camp), notice: 'Camp was successfully created.' }
-        #format.json { render action: 'show', status: :created, location: @camp }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @camp.errors, status: :unprocessable_entity }
-      end
-    end
+    
   end
 
   # PATCH/PUT /camps/1
@@ -122,6 +115,21 @@ class CampsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def camp_params
       params.require(:camp).permit(:start_date, :end_date, :city, :hq_address)
+    end
+
+    def create_camp
+      @camp = Camp.new(camp_params)
+
+    respond_to do |format|
+      if @camp.save
+        
+        format.html { redirect_to admin_camp_url(@camp), notice: 'Camp was successfully created.' }
+        #format.json { render action: 'show', status: :created, location: @camp }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @camp.errors, status: :unprocessable_entity }
+      end
+    end
     end
 
 

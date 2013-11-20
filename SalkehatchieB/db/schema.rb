@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120182344) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20131120183949) do
+=======
+ActiveRecord::Schema.define(version: 20131120194637) do
+>>>>>>> b40ed5de2a571f18cddfd8b2ba24b8df06e526c9
 
 # Could not dump table "camp_assignments" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -56,19 +60,12 @@ ActiveRecord::Schema.define(version: 20131120182344) do
     t.date     "end_date"
     t.string   "city"
     t.string   "hq_address"
-    t.integer  "max_campers"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "costs", force: true do |t|
-    t.date     "year"
-    t.float    "amount"
-    t.integer  "admin_approver_id"
-    t.date     "approved_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "costs" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "covenant_forms", force: true do |t|
     t.integer  "user_id"
@@ -222,7 +219,7 @@ ActiveRecord::Schema.define(version: 20131120182344) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -258,9 +255,18 @@ ActiveRecord::Schema.define(version: 20131120182344) do
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
