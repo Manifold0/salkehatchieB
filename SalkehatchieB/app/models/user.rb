@@ -58,10 +58,13 @@ class User < ActiveRecord::Base
 
   def current_camp_assignment
     self.camp_assignments.each do |camp_assignment|
-      if camp_assignment.camp.start_date.year == time.now.year
+      if camp_assignment.camp.start_date.year == DateTime.now.year
         return camp_assignment
       end
     end
+  end
+  def site
+    return current_camp_assignment.site
   end
 end
 

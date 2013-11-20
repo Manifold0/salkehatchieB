@@ -23,6 +23,7 @@ SalkehatchieB::Application.routes.draw do
     resources :camps
     as resources :camps do
       get 'camps/' => "camps#index", :as => :admin_camps
+      get 'camps/:id' => "camps#show", as: :admin_camp
     end
     resources :users
     resources :camp_requests
@@ -36,7 +37,7 @@ SalkehatchieB::Application.routes.draw do
 
   get '/request' => 'camp_requests#new', :as => :request_camps
 
-  post '/request#create' => 'camp_requests#create', :as => :request_camps_create
+  post '/request' => 'camp_requests#create', :as => :request_camps_create
 
   get '/', to: redirect('/signin')
 

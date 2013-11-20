@@ -9,6 +9,8 @@ class Ability
     if user.is_admin?
       can :manage, :all
 
+      can :manage, Camp
+
       #can update camp assignments for all applicants
       can :update, CampAssignment
       #cannot assign camper unless payment has been made
@@ -67,10 +69,10 @@ class Ability
 
     if user.is_camper?
       #can view daily schedule from their site only
-      can :read, Schedule, Schedule.where(:site => user.site, :current_user.user_id => user.id)
+      can :read, Schedule, Schedule.where(:site => user.site)
 
       #can upload pictures, videos, and their blog entries for their site only
-      can :read, Photo, Photo.where(:site => user.site, :current_user.user_id => user.id)
+      can :read, Photo, Photo.where(:site => user.site)
       #can :read, Camp
     end
 

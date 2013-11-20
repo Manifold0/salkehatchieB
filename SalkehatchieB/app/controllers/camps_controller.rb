@@ -1,5 +1,5 @@
 class CampsController < ApplicationController
-  before_action :set_camp, only: [:show, :edit, :update, :destroy]
+  before_action :set_camp, only: [:show, :edit, :update, :destroy, :camp_params]
 
 
   #CanCan specific authorization
@@ -32,8 +32,9 @@ class CampsController < ApplicationController
 
     respond_to do |format|
       if @camp.save
-        format.html { redirect_to @camp, notice: 'Camp was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @camp }
+        
+        format.html { redirect_to admin_camp_url(@camp), notice: 'Camp was successfully created.' }
+        #format.json { render action: 'show', status: :created, location: @camp }
       else
         format.html { render action: 'new' }
         format.json { render json: @camp.errors, status: :unprocessable_entity }
@@ -102,6 +103,14 @@ class CampsController < ApplicationController
     #TODO
     @camp = current_user.camp
 
+  end
+
+  def get_camp_link(camp)
+    if current_user.is_admin?
+      return admin_camp_path(camp)
+    else
+      return camp_path(camp) 
+    end
   end
 
   private
