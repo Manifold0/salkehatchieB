@@ -22,7 +22,7 @@
         <td><%= camp.camp_assignments.count %></td>
 
        <% if can? :read, Camp %>
-          <td><%= link_to 'Show', camp %></td>
+          <td><%= link_to 'Show', admin_camp_path(camp) %></td>
        <% end %>
 
        <% if can? :update, Camp %>

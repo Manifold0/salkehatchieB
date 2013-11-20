@@ -12,8 +12,9 @@ class ApplicationController < ActionController::Base
   		return admin_camps_path
   	else
    		return camps_path
-	end
+	  end
   end
 
+  
 
 end
