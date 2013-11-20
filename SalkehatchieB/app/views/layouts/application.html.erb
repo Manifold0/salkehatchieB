@@ -7,40 +7,111 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="row index">
-	<div id="sideBar" class="col-md-3 btn-group-vertical index-btn custom-vertical-nav-bar">
-	<div class="row list-group">
-  <%= link_to "Sign Out", destroy_user_session_path, :method => "DELETE" %>
-	<% 
-	admin = false;
-	if admin==true %>
-		
-      <div class="col-md-12 index-head"><h5>Admin</h5></div></div>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
-		  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span>Forms</button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
-  		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+    <% signedIn=true;
+       admin = false;
+       director = true;
+    if !signedIn%>
+    <div class="col-lg-offset-5">
+        <div class="col-lg-offset-1">
+        <h2>Salkehatchie Camps</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <%= yield %>
+            </div>
+        </div>
+    </div>
 
     <% else %>
-<div class="col-md-12 index-head"><h5>Camper</h5></div></div>
+
+    <div class="row index">
+    <div class="row top">
+        <div class="col-md-5 header">
+        <div class="text-left">
+            <h4>Salkehatchie</h4>
+        </div>
+        </div>
+        <%if director%>
+        <div class="col-md-5 tab">
+            <ul class="nav nav-tabs nav-justified ">
+                <li class="active"><%#get primary camp %>
+                    <a href="#">Primary<%# primary camp name %></a>
+                </li>
+                <%#for each remaining camp %>
+                <li>
+                    <a href="#">Secondary<%# camp name%></a>
+                </li>
+            </ul>
+        </div>
+        <% end %>
+    </div>
+        <div id="sideBar" class="col-md-2 btn-group-vertical index-btn custom-vertical-nav-bar">
+        <%= link_to "Sign Out", destroy_user_session_path, :method => "DELETE" %>
+	        <div class="row list-group">
+        	<%if admin %>
+		        <div class="col-md-2 index-head"><h5>Admin</h5>
+                </div>
+            </div>
+
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Users</button>
+		        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tree-conifer"></span>Camps</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-bullhorn"></span>Directors</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-inbox"></span>Applications</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-check"></span>Payments</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-usd"></span>Costs</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>
+
+
+            <% else if director%>
+                <div class="col-md-2 index-head"><h5>Camp Director</h5>
+                </div>
+            </div>
+                <!--<div class="row index">
+	<div id="sideBar" class="col-md-3 btn-group-vertical index-btn custom-vertical-nav-bar">
+		<div class="row list-group">
+      <div class="col-md-12 index-head"><h5>Lake City (2013)</h5></div></div>
       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
 		  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span>Forms</button>
       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
   		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+      <div class="row"><div class="col-md-12 index-head"><h5>Site 5</h5></div></div>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>-->
 
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Users</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tree-conifer"></span>Camps</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-bullhorn"></span>Directors</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-inbox"></span>Applications</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-check"></span>Payments</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-usd"></span>Costs</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>
+
+
+            <% else %>
+                <div class="col-md-12 index-head"><h5>Camper</h5>
+                </div>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+		        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span>Forms</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
+  		        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+
+            <% end %>
     <% end %>
+        </div>
       <!--<div class="row"><div class="col-md-12 index-head"><h5>Site 5</h5></div></div>
       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>-->
   </div>
-  <div class="col-md-9">
-    <h2>Home</h2>
-    <div class="row">
-<div class="col-md-6">
-<%= yield %>
-</div>
+  <% end%>
 </body>
 </html>
