@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120182344) do
+ActiveRecord::Schema.define(version: 20131120183949) do
 
 # Could not dump table "camp_assignments" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -61,14 +61,8 @@ ActiveRecord::Schema.define(version: 20131120182344) do
     t.datetime "updated_at"
   end
 
-  create_table "costs", force: true do |t|
-    t.date     "year"
-    t.float    "amount"
-    t.integer  "admin_approver_id"
-    t.date     "approved_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "costs" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "covenant_forms", force: true do |t|
     t.integer  "user_id"
