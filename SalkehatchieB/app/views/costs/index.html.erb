@@ -3,10 +3,12 @@
 <table>
   <thead>
     <tr>
+    <th>Created By</th>
       <th>Year</th>
       <th>Amount</th>
       <th>Admin approver</th>
       <th>Approved date</th>
+      <th>Approve</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,10 +18,15 @@
   <tbody>
     <% @costs.each do |cost| %>
       <tr>
+        <td><%= cost.created_by.first_name %> <%= cost.created_by.last_name %></td>
         <td><%= cost.year %></td>
         <td><%= cost.amount %></td>
-        <td><%= cost.admin_approver %></td>
+        <% if cost.admin_approver == nil %><td></td><td></td><td><%= link_to 'Approve', cost_approve_path(cost: cost) %></td><% else %>
+        <td><%= cost.admin_approver.first_name %> <%= cost.admin_approver.last_name %></td>
         <td><%= cost.approved_date %></td>
+        <td>Approved</td>
+        <% end %>
+
         <td><%= link_to 'Show', cost %></td>
         <td><%= link_to 'Edit', edit_cost_path(cost) %></td>
         <td><%= link_to 'Destroy', cost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
