@@ -15,7 +15,6 @@ class CovenantFormsController < ApplicationController
       format.html
       format.pdf do
         pdf = CovenantPdf.new(@covenant_form)
-        pdf.text "Hello World"
         send_data pdf.render, filename: "covenant form", type: "application/pdf", disposition: "inline"
       end
     end
