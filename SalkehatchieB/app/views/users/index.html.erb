@@ -12,9 +12,19 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user.permission_level %></td>
+        <% if can? :read, user %>
+            <td><%= link_to 'Show', user %></td>
+        <% end %>
+
+        <% if can? :update, user %>
+            <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <% end %>
+
+        <% if can? :destroy, user %>
+            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
       </tr>
     <% end %>
   </tbody>

@@ -11,6 +11,7 @@ gem 'sqlite3'
 
 #Use devise for user authentication
 gem 'devise'
+gem 'devise_invitable'
 
 #Use cancan for user permissions/abilities
 gem 'cancan'

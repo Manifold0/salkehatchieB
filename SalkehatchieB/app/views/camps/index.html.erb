@@ -12,7 +12,6 @@
       <th></th>
     </tr>
   </thead>
-
   <tbody>
     <% @camps.each do |camp| %>
       <tr>
@@ -21,9 +20,19 @@
         <td><%= camp.city %></td>
         <td><%= camp.hq_address %></td>
         <td><%= camp.camp_assignments.count %></td>
-        <td><%= link_to 'Show', camp %></td>
-        <td><%= link_to 'Edit', edit_camp_path(camp) %></td>
-        <td><%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+       <% if can? :read, Camp %>
+          <td><%= link_to 'Show', admin_camp_path(camp) %></td>
+       <% end %>
+
+       <% if can? :update, Camp %>
+          <td><%= link_to 'Edit', edit_camp_path(camp) %></td>
+       <% end %>
+
+       <% if can? :destroy, Camp %>
+          <td><%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       <% end %>
+
       </tr>
     <% end %>
   </tbody>
@@ -31,4 +40,6 @@
 
 <br>
 
-<%= link_to 'New Camp', new_camp_path %>
+<% if can? :create, Camp %>
+    <%= link_to 'New Camp', new_camp_path %>
+<% end %>

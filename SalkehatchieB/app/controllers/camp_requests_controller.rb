@@ -48,6 +48,20 @@ class CampRequestsController < ApplicationController
   def create
     p = camp_request_params
 
+    current_year = DateTime.now.year
+    date_registration_opens = DateTime.new(current_year, 1, 1)
+    date_registration_closes = DateTime.new(current_year+1, 1, 1)
+    number_of_times_currently_registered = CampRequest.where("(created_at >= ? AND created_at < ?) and user_id = ?", date_registration_opens, date_registration_closes , current_user.id).count;
+
+    if (number_of_times_currently_registered > 0)
+      #problem already requested camps.
+      render :text => "User already created "+number_of_times_currently_registered.to_s+" request between "+date_registration_opens.strftime("%F")+" and "+date_registration_closes.strftime("%F")
+      #TO-DO: this needs to show a prettier error.
+      #redirect_to request_camps_path
+      return
+    end
+
+
     @camp_request = CampRequest.new(p)
     @camp_request.user = current_user
 
@@ -107,4 +121,10 @@ class CampRequestsController < ApplicationController
     def camp_request_params
       params.require(:camp_request).permit(:user_id, :camp_id, :status, :preference1_id, :preference2_id, :preference3_id)
     end
+
+    def before_for_params
+      resource = controller_name.singularize.to_sym
+      method = "#{resource}_params"
+      params[resource] &&= send(method) if respond_to?(method, true)
+  end
 end

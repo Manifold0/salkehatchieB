@@ -4,7 +4,6 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    
     if current_user.is_admin?
       @payments = Payment.all
     else
@@ -82,6 +81,16 @@ class PaymentsController < ApplicationController
       return payments_path
     end
   end
+
+  def has_paid?
+    #FIXME
+    @payment = Payment.where(user_id:params[:id]).sum(:amount)
+    @current_cost = Cost.where(year: Time.now.year)
+    @balance = @current_cost.amount - @payment
+     if balance == 0
+       return true
+     end
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.

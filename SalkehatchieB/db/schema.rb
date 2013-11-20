@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131113195009) do
+ActiveRecord::Schema.define(version: 20131120182344) do
 
-  create_table "camp_assignments", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "camp_id"
-    t.integer  "permission_level"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "camp_assignments", ["camp_id"], name: "index_camp_assignments_on_camp_id"
-  add_index "camp_assignments", ["user_id"], name: "index_camp_assignments_on_user_id"
+# Could not dump table "camp_assignments" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "camp_permission_forms", force: true do |t|
     t.integer  "user_id"
@@ -64,6 +56,7 @@ ActiveRecord::Schema.define(version: 20131113195009) do
     t.date     "end_date"
     t.string   "city"
     t.string   "hq_address"
+    t.integer  "max_campers"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

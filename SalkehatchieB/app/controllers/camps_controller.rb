@@ -1,5 +1,9 @@
 class CampsController < ApplicationController
-  before_action :set_camp, only: [:show, :edit, :update, :destroy]
+  before_action :set_camp, only: [:show, :edit, :update, :destroy, :camp_params]
+
+
+  #CanCan specific authorization
+  load_and_authorize_resource
 
   # GET /camps
   # GET /camps.json
@@ -28,8 +32,9 @@ class CampsController < ApplicationController
 
     respond_to do |format|
       if @camp.save
-        format.html { redirect_to @camp, notice: 'Camp was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @camp }
+        
+        format.html { redirect_to admin_camp_url(@camp), notice: 'Camp was successfully created.' }
+        #format.json { render action: 'show', status: :created, location: @camp }
       else
         format.html { render action: 'new' }
         format.json { render json: @camp.errors, status: :unprocessable_entity }
@@ -61,20 +66,29 @@ class CampsController < ApplicationController
     end
   end
 
-  def update_assignments
+   def load_camp
+     @camp = Camp.new(camp_params)
+   end
+
+  def update_camp_assignments
     #TODO
+    @camp = current_user.camp
+
   end
 
   def manage_campers
     #TODO
+    @camp = current_user.camp
+    @users = User
   end
 
   def print_health_info
+    #TODO
      @camp = current_user.camp
      @users = User.where(camp: @camp).order(:site)
   end
 
-  def print_roster_listing
+  def roster_listing
     @camp = current_user.camp
     @users = User.where(camp: @camp)
   end
@@ -83,6 +97,20 @@ class CampsController < ApplicationController
     @camp = current_user.camp
     #might need to add this property
     camp.schedule
+  end
+
+  def missing_insurance_cards
+    #TODO
+    @camp = current_user.camp
+
+  end
+
+  def get_camp_link(camp)
+    if current_user.is_admin?
+      return admin_camp_path(camp)
+    else
+      return camp_path(camp) 
+    end
   end
 
   private
