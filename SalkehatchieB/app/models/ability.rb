@@ -10,6 +10,8 @@ class Ability
     if user.is_admin?
       can :manage, :all
 
+      can :manage, Camp
+
       #can update camp assignments for all applicants
       can :update, CampAssignment
       #cannot assign camper unless payment has been made
