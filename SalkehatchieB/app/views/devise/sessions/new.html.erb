@@ -7,9 +7,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <form accept-charset="UTF-8" role="form">
 
-                        <fieldset>
                             <div class="form-group">
                                 <%= form_for(resource, :as => resource_name, :url => new_user_session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
 
@@ -42,8 +40,7 @@
 
                                 <%= render "devise/shared/links" %>
                             </div>
-                        </fieldset>
-                        </form>
+
                       </div>
                 </div>
             </div>
