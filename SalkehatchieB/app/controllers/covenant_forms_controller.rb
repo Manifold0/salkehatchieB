@@ -33,7 +33,7 @@ class CovenantFormsController < ApplicationController
   # POST /covenant_forms.json
   def create
     @covenant_form = CovenantForm.new(covenant_form_params)
-
+    @covenant_form.user = current_user
     respond_to do |format|
       if @covenant_form.save
         format.html { redirect_to @covenant_form, notice: 'Covenant form was successfully created.' }
