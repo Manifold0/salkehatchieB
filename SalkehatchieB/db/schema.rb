@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 20131120194637) do
 
   create_table "payments", force: true do |t|
     t.integer  "user_id"
-    t.integer  "year"
+    t.date     "year"
     t.float    "amount"
     t.string   "identifier"
     t.datetime "created_at"
