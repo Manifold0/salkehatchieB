@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20131120183949) do
-=======
 ActiveRecord::Schema.define(version: 20131120194637) do
->>>>>>> b40ed5de2a571f18cddfd8b2ba24b8df06e526c9
 
 # Could not dump table "camp_assignments" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -60,6 +56,7 @@ ActiveRecord::Schema.define(version: 20131120194637) do
     t.date     "end_date"
     t.string   "city"
     t.string   "hq_address"
+    t.integer  "max_campers"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -135,7 +132,7 @@ ActiveRecord::Schema.define(version: 20131120194637) do
 
   create_table "payments", force: true do |t|
     t.integer  "user_id"
-    t.date     "year"
+    t.integer  "year"
     t.float    "amount"
     t.string   "identifier"
     t.datetime "created_at"

@@ -3,9 +3,10 @@
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Permission Level</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Balance</th>
     </tr>
   </thead>
 
@@ -13,17 +14,12 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.permission_level %></td>
-        <% if can? :read, user %>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.current_balance %></td>
             <td><%= link_to 'Show', user %></td>
-        <% end %>
-
-        <% if can? :update, user %>
             <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <% end %>
-
-        <% if can? :destroy, user %>
             <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
 
       </tr>
     <% end %>

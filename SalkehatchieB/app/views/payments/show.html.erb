@@ -21,4 +21,10 @@
 </p>
 
 <%= link_to 'Edit', edit_payment_path(@payment) %> |
-<%= link_to 'Back', self.payments_back %>
+<%= 
+if current_user.is_admin?
+      link_to 'Back', admin_payments_path
+    else
+      link_to 'Back', payments_path
+    end
+ %>

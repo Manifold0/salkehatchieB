@@ -10,9 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @payment = Payment.where(user_id:params[:id]).sum(:amount)
-    @current_cost = Cost.where(year: Time.now.year)
-    @balance = @current_cost.amount - @payment
+    
   end
 
   # GET /users/new

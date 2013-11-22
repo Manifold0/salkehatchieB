@@ -51,7 +51,7 @@ class CampRequestsController < ApplicationController
     date_registration_opens = DateTime.new(current_year, 1, 1)
     date_registration_closes = DateTime.new(current_year+1, 1, 1)
     
-    number_of_times_currently_registered = CampRequest.where("(created_at >= ? AND created_at < ?) and user_id = ?", date_registration_opens, date_registration_closes , current_user.id).count;
+    number_of_times_currently_registered = CampRequest.where("(created_at >= ? AND created_at < ?) and user_id = ?", date_registration_opens, date_registration_closes , current_user.id).count
 
     if (number_of_times_currently_registered > 0)
       #problem already requested camps.

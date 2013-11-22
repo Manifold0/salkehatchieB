@@ -66,5 +66,24 @@ class User < ActiveRecord::Base
   def site
     return current_camp_assignment.site
   end
+  def current_camps_assigned
+    assignments = Array.new()
+    self.camp_assignments.each do |camp_assignment|
+      if camp_assignment.camp.start_date.year == DateTime.now.year
+        assignments.push(camp_assignment)
+      end
+    end
+    return assignments
+  end
+
+  def current_balance
+    current_year = Time.now.year
+    payment = Payment.where(user_id:self.id,year:current_year).sum(:amount)
+    
+    current_cost = Cost.where(year:current_year).sum(:amount)
+    num_camps = current_camps_assigned.count
+
+    @balance = (current_cost*num_camps) - payment
+  end
 end
 

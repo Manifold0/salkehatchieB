@@ -29,9 +29,10 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     p = payment_params
-
+    current_year = DateTime.now.year
     @payment = Payment.new(payment_params)
     @payment.user = current_user
+    @payment.year = current_year
 
     respond_to do |format|
       if @payment.save
@@ -69,18 +70,10 @@ class PaymentsController < ApplicationController
   def destroy
     @payment.destroy
     respond_to do |format|
-      format.html { redirect_to payments_url }
+      format.html { redirect_to admin_payments_url }
       format.json { head :no_content }
     end
-  end
-
-  def payments_back
-    if current_user.is_admin?
-      return admin_payments_path
-    else
-      return payments_path
-    end
-  end
+  end  
 
   def has_paid?
     #FIXME
