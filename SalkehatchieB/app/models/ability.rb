@@ -35,12 +35,12 @@ class Ability
 
     if user.is_camp_director?
       #can update site assignments for their camp
-      can :update_assignments, Camp
+      can :manage, CampAssignment, camp: user.current_camp_assignment
       #can :update, Site, current_user.camp_id =>
-      can :update, Camp, :current_user.camp_id => user.camp
+      can :show, Camp, id:  user.current_camp_assignment.camp.id
+      can :update, Camp, Camp.where(id: user.current_camp_assignment.camp.id)
 
       #can edit camper information for their camp only
-
 
       #can print health information on all campers from that camp, organized by site
       can :print_health_info, Camp
@@ -49,7 +49,7 @@ class Ability
       can :roster_listing, Camp
 
       #can edit/update daily schedule for their camp only
-      can :update, Schedule, Schedule.where(:camp_id => user.camp)
+      can :update, Schedule, Schedule.where(:camp_id => user.current_camp_assignment.id)
     end
 
     if user.is_site_leader?

@@ -21,6 +21,10 @@ class CampAssignmentsController < ApplicationController
 
   # GET /camp_assignments/1/edit
   def edit
+    current_year = DateTime.now.year
+    date_registration_opens = DateTime.new(current_year, 1, 1)
+    date_registration_closes = DateTime.new(current_year+1, 1, 1)
+    @camps = Camp.where("(start_date >= ? AND start_date < ?)", date_registration_opens, date_registration_closes).all
   end
 
   # POST /camp_assignments

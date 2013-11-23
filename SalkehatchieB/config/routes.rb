@@ -10,10 +10,14 @@ SalkehatchieB::Application.routes.draw do
 
   resources :events
 
-  resources :covenant_forms
+  scope 'forms' do
+    resources :covenant_forms
+    resources :reference_forms
+    resources :camp_permission_forms
+    resources :medical_forms
+  end
 
-  resources :reference_forms
-
+  
 
   resources :camps, only: :show
 
@@ -26,6 +30,7 @@ SalkehatchieB::Application.routes.draw do
     resources :users
     resources :camp_requests
     get 'camp_request/assign' => "camp_requests#assign", as: :camp_request_assign
+    resources :camp_assignments
     resources :payments
     as :payments do
       get 'payments' => 'payments#index', :as => :admin_payments
@@ -58,9 +63,7 @@ SalkehatchieB::Application.routes.draw do
 
   resources :sites
   resources :photos
-  resources :camp_permission_forms
-
-  resources :medical_forms
+  
 
   resources :questionnaires
 

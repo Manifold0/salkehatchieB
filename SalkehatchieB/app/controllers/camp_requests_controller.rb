@@ -37,6 +37,11 @@ class CampRequestsController < ApplicationController
   # GET /camp_requests/new
   def new
     @camp_request = CampRequest.new
+    current_year = DateTime.now.year
+    date_registration_opens = DateTime.new(current_year, 1, 1)
+    date_registration_closes = DateTime.new(current_year+1, 1, 1)
+    @camps = Camp.where("(start_date >= ? AND start_date < ?)", date_registration_opens, date_registration_closes).all
+
   end
 
   # GET /camp_requests/1/edit
@@ -47,13 +52,19 @@ class CampRequestsController < ApplicationController
   # POST /camp_requests.json
   def create
     p = camp_request_params
+
+    create_for_user = current_user
+    if p['user_id'] != nil
+      create_for_user = User.find(p['user_id'])
+    end
+
     current_year = DateTime.now.year
     date_registration_opens = DateTime.new(current_year, 1, 1)
     date_registration_closes = DateTime.new(current_year+1, 1, 1)
     
-    number_of_times_currently_registered = CampRequest.where("(created_at >= ? AND created_at < ?) and user_id = ?", date_registration_opens, date_registration_closes , current_user.id).count
+    number_of_times_currently_registered = CampRequest.where("(created_at >= ? AND created_at < ?) and user_id = ?", date_registration_opens, date_registration_closes , create_for_user.id).count
 
-    if (number_of_times_currently_registered > 0)
+    if (number_of_times_currently_registered > 0 && !current_user.is_admin?)
       #problem already requested camps.
       render :text => "User already created "+number_of_times_currently_registered.to_s+" request between "+date_registration_opens.strftime("%F")+" and "+date_registration_closes.strftime("%F")
       #TO-DO: this needs to show a prettier error.
@@ -61,9 +72,8 @@ class CampRequestsController < ApplicationController
       return
     end
 
-
     @camp_request = CampRequest.new(p)
-    @camp_request.user = current_user
+    @camp_request.user = create_for_user
 
     if @camp_request.save
       redirect_to root_path

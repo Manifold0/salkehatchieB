@@ -12,13 +12,29 @@
     </div>
   <% end %>
 
-  
+  <% 
+  if current_user.is_admin?
+
+    users = Array.new()
+    User.all.each do |user|
+      users.push([user.last_name,user.id])
+    end
+    %>
+    <div class="field">
+    <%= f.label :user %><br>
+    <%= f.select(:user_id, users) %>
+  </div>
+<%
+
+  end
+
+  %>
 
   <%
 
   array = Array.new()
   array.push(['none',nil]);
-  Camp.all.each do |camp|
+  @camps.each do |camp|
     array.push([camp.city,camp.id])
   end
 %>

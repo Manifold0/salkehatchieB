@@ -13,15 +13,30 @@
 
   <div class="field">
     <%= f.label :user %><br>
-    <%= f.text_field :user %>
+    <%= @camp_assignment.user.full_name %>
   </div>
   <div class="field">
+    <% 
+      camps_select = Array.new()
+      @camps.each do |camp|
+        camps_select.push([camp.city,camp.id])
+      end
+
+    %>
     <%= f.label :camp %><br>
-    <%= f.text_field :camp %>
+    <%= f.select( :camp, camps_select) %>
   </div>
   <div class="field">
+    <%
+      permission_levels = Array.new()
+      permission_levels.push(['Admin',5])
+      permission_levels.push(['Camp Director',4])
+      permission_levels.push(['Site Leader',3])
+      permission_levels.push(['Jr. Site Leader',2])
+      permission_levels.push(['Camper',1])
+    %>
     <%= f.label :permission_level %><br>
-    <%= f.text_field :permission_level %>
+    <%= f.select( :permission_level,permission_levels) %>
   </div>
   <div class="actions">
     <%= f.submit %>

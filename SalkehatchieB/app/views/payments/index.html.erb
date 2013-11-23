@@ -16,11 +16,11 @@
   <tbody>
     <% @payments.each do |payment| %>
       <tr>
-        <td><%= payment.user %></td>
+        <td><%= payment.user.full_name %></td>
         <td><%= payment.year %></td>
         <td><%= payment.amount %></td>
         <td><%= payment.identifier %></td>
-        <td><% if false %>
+        <td><% if !current_user.is_admin? %>
         <%= link_to 'Show', payment %>
         <% else %>
         <td><%= link_to 'Admin Show',admin_payments_show_path(payment) %>

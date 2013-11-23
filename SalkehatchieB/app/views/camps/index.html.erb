@@ -21,15 +21,15 @@
         <td><%= camp.hq_address %></td>
         <td><%= camp.camp_assignments.count %></td>
 
-       <% if can? :read, Camp %>
+       <% if can? :read, camp %>
           <td><%= link_to 'Show', admin_camp_path(camp) %></td>
        <% end %>
 
-       <% if can? :update, Camp %>
+       <% if can? :update, camp %>
           <td><%= link_to 'Edit', edit_camp_path(camp) %></td>
        <% end %>
 
-       <% if can? :destroy, Camp %>
+       <% if can? :destroy, camp %>
           <td><%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
        <% end %>
 

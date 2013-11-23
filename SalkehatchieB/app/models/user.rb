@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   has_many :camp_assignments
+  has_one :covenant_form
 
 	#belongs_to :medical_form
 	#has_one :whatever_form
@@ -84,6 +85,20 @@ class User < ActiveRecord::Base
     num_camps = current_camps_assigned.count
 
     @balance = (current_cost*num_camps) - payment
+  end
+
+  def covenant_form_up_to_date
+    current_year = Time.now.year
+    if self.covenant_form != nil
+      if self.covenant_form.signature_date.year == current_year
+        return true
+      end
+    end
+    return false
+  end
+
+  def full_name
+    return "#{last_name}, #{first_name}"
   end
 end
 
