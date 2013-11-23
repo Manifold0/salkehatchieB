@@ -37,8 +37,8 @@ class Ability
       #can update site assignments for their camp
       can :manage, CampAssignment, camp: user.current_camp_assignment
       #can :update, Site, current_user.camp_id =>
-      can :show, Camp, id:  user.current_camp_assignment.camp.id
-      can :update, Camp, Camp.where(id: user.current_camp_assignment.camp.id)
+      can :manage, Camp, id:  user.current_camp_assignment.camp.id
+      can :update, Camp, id:  user.current_camp_assignment.camp.id
 
       #can edit camper information for their camp only
 

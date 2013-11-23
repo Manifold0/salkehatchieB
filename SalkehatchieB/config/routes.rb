@@ -17,8 +17,6 @@ SalkehatchieB::Application.routes.draw do
     resources :medical_forms
   end
 
-  
-
   resources :camps, only: :show
 
   scope 'admin' do
