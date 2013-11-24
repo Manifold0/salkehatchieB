@@ -13,3 +13,76 @@
  */
 @import "bootstrap";
 @import "bootstrap/theme";
+
+html,body {
+    height:100%;
+}
+
+.row {
+    margin: 0px
+}
+
+.top {
+    border-bottom:1px solid #CCC;
+    top: -3px;
+    position: relative;
+    background: #EEE;
+}
+
+.header {
+    top:3px;
+}
+.header h4 {
+    padding-left:10px;
+}
+
+.tab {
+    position: absolute;
+    right: 0px;
+}
+
+.index {
+    height:100%;
+    top: -3px;
+    position: relative;
+}
+
+.index-btn {
+    padding-right: -1px;
+}
+
+.btn-default {
+    border-right:0px;
+    border-left:0px;
+}
+
+.nav-tabs.nav-justified > li > a {
+    border-bottom: 0px;
+}
+.nav-tabs.nav-justified > li > a:hover {
+    border-bottom:0px;
+    background-color: #FFF;
+}
+
+.index-head {
+    text-align:center;
+}
+
+.checkList {
+    width: 100%;
+}
+.checkList > tbody > tr > td > .glyphicon {
+    float: right;
+}
+
+#sideBar {
+    height: 100%;
+    top: 0px;
+    padding: 0px;
+    border-right:1px solid #CCC;
+}
+#sideBar > .btn > .glyphicon {
+    float: left;
+    position: absolute;
+    top: 8px;
+}
