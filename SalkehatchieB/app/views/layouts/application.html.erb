@@ -7,10 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <% signedIn=true;
-       admin = false;
+    <% admin = false;
        director = true;
-    if !signedIn%>
+    if !current_user%>
     <div class="col-lg-offset-5">
         <div class="col-lg-offset-1">
         <h2>Salkehatchie Camps</h2>
@@ -23,15 +22,13 @@
     </div>
 
     <% else %>
-
-    <div class="row index">
     <div class="row top">
         <div class="col-md-5 header">
         <div class="text-left">
             <h4>Salkehatchie</h4>
         </div>
         </div>
-        <%if director%>
+        <%if !current_user.is_admin?%>
         <div class="col-md-5 tab">
             <ul class="nav nav-tabs nav-justified ">
                 <li class="active"><%#get primary camp %>
@@ -44,15 +41,11 @@
             </ul>
         </div>
         <% end %>
-    </div>
-        <div id="sideBar" class="col-md-2 btn-group-vertical index-btn custom-vertical-nav-bar">
-        <%= link_to "Sign Out", destroy_user_session_path, :method => "DELETE" %>
-	        <div class="row list-group">
-        	<%if admin %>
-		        <div class="col-md-2 index-head"><h5>Admin</h5>
-                </div>
-            </div>
 
+    </div>
+    <div class="row index">
+        <div id="sideBar" class="col-md-2 btn-group-vertical index-btn custom-vertical-nav-bar">
+        	<%if current_user.is_admin? %>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Users</button>
 		        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tree-conifer"></span>Camps</button>
@@ -63,26 +56,7 @@
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>
-
-
-            <% else if director%>
-                <div class="col-md-2 index-head"><h5>Camp Director</h5>
-                </div>
-            </div>
-                <!--<div class="row index">
-	<div id="sideBar" class="col-md-3 btn-group-vertical index-btn custom-vertical-nav-bar">
-		<div class="row list-group">
-      <div class="col-md-12 index-head"><h5>Lake City (2013)</h5></div></div>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
-		  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span>Forms</button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
-  		<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
-      <div class="row"><div class="col-md-12 index-head"><h5>Site 5</h5></div></div>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>-->
-
+            <% else if current_user.is_camp_director?%>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Users</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tree-conifer"></span>Camps</button>
@@ -93,30 +67,23 @@
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>
-
-
             <% else %>
-                <div class="col-md-12 index-head"><h5>Camper</h5>
-                </div>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
 		        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span>Forms</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
   		        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
-
             <% end %>
+
     <% end %>
-        </div>
-      <!--<div class="row"><div class="col-md-12 index-head"><h5>Site 5</h5></div></div>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>-->
-  </div>
+        <%= link_to "Sign Out", destroy_user_session_path, :method => "DELETE" %>
+        </div><div class="col-md-9"><%= yield %></div>
+    </div>
 
   <% end%>
 
   <div class="col-md-6">
-<%= yield %>
+
 </div>
 </body>
 </html>
