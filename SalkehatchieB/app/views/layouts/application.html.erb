@@ -78,30 +78,24 @@
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
                 <%= link_to "Photos", photos_path, :class => "btn"%>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
-                <%# link_to "Schedule", schedule_path, :class => "btn"%>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>-->
-                <%# link_to "Queries", query_path(with query), :class => "btn"%>
+
             <% else if current_user.is_camp_director?%>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Users</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tree-conifer"></span>Camps</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-bullhorn"></span>Directors</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-inbox"></span>Applications</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-check"></span>Payments</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-usd"></span>Costs</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>
-                <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Users</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tree-conifer"></span>Camps</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-bullhorn"></span>Directors</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-inbox"></span>Applications</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-check"></span>Payments</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-usd"></span>Costs</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>-->
+                <%# link_to "Home", director_home_path, :class => "btn"%>
+                <%= link_to "Camps", camps_path, :class => "btn"%>
+                <li class="divider"></li>
+                <div class="col-md-12 index-head"><h5>What's my camp?<!--get name of current camp--></h5></div>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Forms</button>
+                    <%# link_to "Forms", forms_path, :class => "btn"%>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
+                    <%# link_to "Campers", campers_path, :class => "btn"%>
+                    <%= link_to "Photos", photos_path, :class => "btn"%>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-map-marker"></span>Map</button>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+                    <%# link_to "Schedule", schedule_path, :class => "btn"%>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tag"></span>Shirt Sizes</button>
+                    <div class="row"><div class="col-md-12 index-head"><h5>What's my site?</h5></div></div>
             <% else %>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
 		        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span>Forms</button>
