@@ -10,8 +10,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(user)
   	if current_user.is_admin?
   		return admin_camps_path
-  	else  
+  	elsif(current_user.first_name == nil)
    		return user_basic_info_path
+    else
+      return camps_path
 	  end
   end
 

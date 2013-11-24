@@ -18,6 +18,7 @@ SalkehatchieB::Application.routes.draw do
   end
 
   resources :camps, only: :show
+  resources :users, only: [:show, :edit, :update]
 
   scope 'admin' do
     resources :camps
