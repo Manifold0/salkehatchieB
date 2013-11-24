@@ -54,6 +54,7 @@ SalkehatchieB::Application.routes.draw do
     get 'apply' => 'devise/registrations#new', :as => :new_user_registration
     post 'apply' => 'devise/registrations#create', :as => :user_registration
     get 'signin' => 'devise/sessions#new', :as => :new_user_session
+    get 'basicinfo' => 'users#edit', as: :user_basic_info
     post 'signin.user' => 'devise/sessions#create', :as => :user_session
     match 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session,
     :via => Devise.mappings[:user].sign_out_via
