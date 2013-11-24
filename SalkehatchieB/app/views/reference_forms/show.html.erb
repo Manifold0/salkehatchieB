@@ -37,3 +37,4 @@
 
 <%= link_to 'Edit', edit_reference_form_path(@reference_form) %> |
 <%= link_to 'Back', reference_forms_path %>
+<%= link_to 'Print PDF', reference_form_path(@reference_form, format: "pdf") %>

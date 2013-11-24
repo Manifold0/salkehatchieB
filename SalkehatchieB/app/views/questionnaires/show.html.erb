@@ -117,3 +117,4 @@
 
 <%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %> |
 <%= link_to 'Back', questionnaires_path %>
+<%= link_to 'Print PDF', questionnaire_path(@questionnaire, format: "pdf") %>
