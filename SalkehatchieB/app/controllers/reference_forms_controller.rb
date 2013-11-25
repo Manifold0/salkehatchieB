@@ -10,6 +10,14 @@ class ReferenceFormsController < ApplicationController
   # GET /reference_forms/1
   # GET /reference_forms/1.json
   def show
+    @reference_form = ReferenceForm.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReferencePdf.new(@reference_form)
+        send_data pdf.render, filename: "reference form", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /reference_forms/new
@@ -25,7 +33,7 @@ class ReferenceFormsController < ApplicationController
   # POST /reference_forms.json
   def create
     @reference_form = ReferenceForm.new(reference_form_params)
-
+    @reference_form.user = current_user
     respond_to do |format|
       if @reference_form.save
         format.html { redirect_to @reference_form, notice: 'Reference form was successfully created.' }

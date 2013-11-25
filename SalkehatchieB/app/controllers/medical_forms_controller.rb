@@ -10,6 +10,14 @@ class MedicalFormsController < ApplicationController
   # GET /medical_forms/1
   # GET /medical_forms/1.json
   def show
+    @medical_form = MedicalForm.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = MedicalPdf.new(@medical_form)
+        send_data pdf.render, filename: "medical form", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /medical_forms/new
@@ -25,7 +33,7 @@ class MedicalFormsController < ApplicationController
   # POST /medical_forms.json
   def create
     @medical_form = MedicalForm.new(medical_form_params)
-
+    @medical_form.user = current_user
     respond_to do |format|
       if @medical_form.save
         format.html { redirect_to @medical_form, notice: 'Medical form was successfully created.' }
