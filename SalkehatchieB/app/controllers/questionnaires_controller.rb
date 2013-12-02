@@ -10,6 +10,14 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires/1
   # GET /questionnaires/1.json
   def show
+    @questionnaire = Questionnaire.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = QuestionnairePdf.new(@questionnaire)
+        send_data pdf.render, filename: "questionnaire", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /questionnaires/new
@@ -25,6 +33,7 @@ class QuestionnairesController < ApplicationController
   # POST /questionnaires.json
   def create
     @questionnaire = Questionnaire.new(questionnaire_params)
+    @questionnaire.user = current_user
 
     respond_to do |format|
       if @questionnaire.save
