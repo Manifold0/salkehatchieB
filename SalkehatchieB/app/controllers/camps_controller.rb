@@ -60,6 +60,11 @@ class CampsController < ApplicationController
     end
   end
 
+  def campers
+    @camp = Camp.find(params[:id])
+    @assignments = @camp.camp_assignments.all
+  end
+
    def load_camp
      @camp = Camp.new(camp_params)
    end
