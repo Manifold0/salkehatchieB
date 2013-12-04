@@ -2,7 +2,7 @@ class CreateCampPermissionForms < ActiveRecord::Migration
   def change
     create_table :camp_permission_forms do |t|
       t.references :user, index: true
-      t.string :type
+      t.string :type_of
       t.string :relationship
       t.string :name
       t.string :address1

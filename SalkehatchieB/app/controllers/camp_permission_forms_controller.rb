@@ -77,6 +77,6 @@ class CampPermissionFormsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def camp_permission_form_params
-      params.require(:camp_permission_form).permit(:user_id, :type, :relationship, :name, :address1, :address2, :city, :state, :zip, :business, :work_phone_number, :phone_number, :signature_of_guardian, :approval, :camp, :printed_date)
+      params.require(:camp_permission_form).permit(:user_id, :type_of, :relationship, :name, :address1, :address2, :city, :state, :zip, :business, :work_phone_number, :phone_number, :signature_of_guardian, :approval, :camp, :printed_date)
     end
 end
