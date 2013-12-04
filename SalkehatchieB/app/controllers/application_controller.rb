@@ -16,18 +16,16 @@ class ApplicationController < ActionController::Base
       return camps_path
 	  end
   end
-  
+
   def admin_filter
   	if !current_user.is_admin?
   		redirect_to root_path
-  		break
   	end
   end
  
   def camp_director_filter
   	if !current_user.is_camp_director?
   		redirect_to root_path
-  		break
   	end
   end
 
@@ -35,21 +33,18 @@ class ApplicationController < ActionController::Base
 def site_leader_filter
 	if !current_user.is_site_leader?
 		redirect_to root_path
-		break
 	end
 end
 
 def parent_filter
 	if !current_user.is_parent?
 		redirect_to root_path
-		break
 	end
 end
 
 def camper_filter 
 	if !current_user.is_camper?
 		redirect_to root_path
-		break
 	end
-end
+ end
 end

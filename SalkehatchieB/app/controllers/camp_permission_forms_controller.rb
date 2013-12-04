@@ -10,6 +10,14 @@ class CampPermissionFormsController < ApplicationController
   # GET /camp_permission_forms/1
   # GET /camp_permission_forms/1.json
   def show
+    @camp_permission_form = CampPermissionForm.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = CampPermissionPdf.new(@camp_permission_form)
+        send_data pdf.render, filename: "camp permission form", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /camp_permission_forms/new
@@ -25,7 +33,7 @@ class CampPermissionFormsController < ApplicationController
   # POST /camp_permission_forms.json
   def create
     @camp_permission_form = CampPermissionForm.new(camp_permission_form_params)
-
+    @camp_permission_form.user = current_user
     respond_to do |format|
       if @camp_permission_form.save
         format.html { redirect_to @camp_permission_form, notice: 'Camp permission form was successfully created.' }
