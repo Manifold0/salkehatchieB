@@ -31,13 +31,16 @@
         <%if !current_user.is_admin?%>
         <div class="col-md-5 tab">
             <ul class="nav nav-tabs nav-justified ">
-                <li class="active"><%#get primary camp %>
-                    <a href="#">Primary<%# primary camp name %></a>
-                </li>
-                <%#for each remaining camp %>
-                <li>
-                    <a href="#">Secondary<%# camp name%></a>
-                </li>
+                <% current_user.current_camps_assigned.each do |assignment|%>
+                    <% if assignment.camp.id.to_i == params[:id].to_i %>
+                    <% @current_camp = assignment.camp %>
+                      <li class = "active">
+                    <% else %>
+                      <li>
+                    <% end %>
+                        <a href="#"><%= assignment.camp.city %></a>
+                      </li>
+                <% end %>
             </ul>
         </div>
         <% end %>
@@ -85,7 +88,7 @@
                 <%# link_to "Home", director_home_path, :class => "btn"%>
                 <%= link_to "Camps", camps_path, :class => "btn"%>
                 <li class="divider"></li>
-                <div class="col-md-12 index-head"><h5>What's my camp?<!--get name of current camp--></h5></div>
+                <div class="col-md-12 index-head"><h5><%= @current_camp.city %></h5></div>
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Forms</button>
                     <%# link_to "Forms", forms_path, :class => "btn"%>
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
