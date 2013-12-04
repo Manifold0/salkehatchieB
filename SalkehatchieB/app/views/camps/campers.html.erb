@@ -1,0 +1,18 @@
+<h1>Listing campers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @assignments.each do |assign| %>
+      <tr>
+        <td><%= assign.user.first_name %></td>
+        <td><%= assign.user.last_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
