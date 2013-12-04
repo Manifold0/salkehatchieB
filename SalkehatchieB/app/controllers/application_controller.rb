@@ -17,4 +17,34 @@ class ApplicationController < ActionController::Base
 	  end
   end
 
+  def admin_filter
+  	if !current_user.is_admin?
+  		redirect_to root_path
+  	end
+  end
+ 
+  def camp_director_filter
+  	if !current_user.is_camp_director?
+  		redirect_to root_path
+  	end
+  end
+
+
+def site_leader_filter
+	if !current_user.is_site_leader?
+		redirect_to root_path
+	end
+end
+
+def parent_filter
+	if !current_user.is_parent?
+		redirect_to root_path
+	end
+end
+
+def camper_filter 
+	if !current_user.is_camper?
+		redirect_to root_path
+	end
+ end
 end

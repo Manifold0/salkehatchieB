@@ -1,5 +1,6 @@
 class MedicalFormsController < ApplicationController
   before_action :set_medical_form, only: [:show, :edit, :update, :destroy]
+  #before_action :camper_filter, only: [:show, :edit, :update]
 
   # GET /medical_forms
   # GET /medical_forms.json
