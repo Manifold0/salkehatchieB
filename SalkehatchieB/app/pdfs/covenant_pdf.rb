@@ -7,18 +7,19 @@ class CovenantPdf < Prawn::Document
     def initialize(form)
       super(top_margin: 10)
       @form = form
-      text "<u>Name: #{@form.user.first_name}" + " #{@form.user.last_name}</u>", :inline_format => true
+      text "<b>Name:</b> #{@form.user.first_name}" + " #{@form.user.last_name}", :inline_format => true
       #stroke_horizontal_rule
       header
       intro
       statements
       questions
       agreement
+      closing
     end
 
     def header
       move_down(10)
-      text "#{DateTime.now.year} Salkehatchie Summer Service Covenant Statement Required by All", style: :bold
+      text "#{DateTime.now.year} Salkehatchie Summer Service Covenant Statement Required by All", style: :bold, :size => 15
       move_down(5)
     end
 
@@ -38,22 +39,63 @@ informed of policies and state lawes regarding child abuse"     +
 
   def questions
     move_down(30)
-    text "As a volunteer, do you agree to observe and abide by all policies regarding working in ministries with children and youth?" +" <u>Your response:</u> #{@form.policy}", :inline_format => true
+    #all policies
+    if @form.policy
+      text "As a volunteer, do you agree to observe and abide by all policies regarding working in ministries with children and youth?" +" <b>Yes</b>", :inline_format => true
+    else
+      text "As a volunteer, do you agree to observe and abide by all policies regarding working in ministries with children and youth?" +" <b>No</b>", :inline_format => true
+    end
+
     move_down(4)
-    text "As a volunteer, do you agree to observe the 'Two-Adult' rule at all times?" +" <u>Your response:</u> #{@form.two_adult}", :inline_format => true
+    #two adult rule
+    if @form.two_adult
+      text "As a volunteer, do you agree to observe the 'Two-Adult' rule at all times?" +" <b>Yes</b>", :inline_format => true
+    else
+      text "As a volunteer, do you agree to observe the 'Two-Adult' rule at all times?" +" <b>No</b>", :inline_format => true
+    end
+
     move_down(4)
-    text "As a volunteer, do you agree to participate in training and education events related to your volunteer assignment if required?" +" <u>Your reponse:</u> #{@form.training}", :inline_format => true
+    #training
+    if @form.training
+      text "As a volunteer, do you agree to participate in training and education events related to your volunteer assignment if required?" +" <b>Yes</b>", :inline_format => true
+    else
+      text "As a volunteer, do you agree to participate in training and education events related to your volunteer assignment if required?" +" <b>Yes</b>", :inline_format => true
+    end
+
     move_down(4)
-    text "As a volunteer, do you agree to promptly report abusive or inappropriate behavior to the camp director?" +" <u>Your response:</u> #{@form.report_abuse}", :inline_format => true
+    #report abuse
+    if @form.report_abuse
+      text "As a volunteer, do you agree to promptly report abusive or inappropriate behavior to the camp director?" +" <b>Yes</b>", :inline_format => true
+    else
+      text "As a volunteer, do you agree to promptly report abusive or inappropriate behavior to the camp director?" +" <b>No</b>", :inline_format => true
+    end
+
+    #child abuse
     move_down(4)
-    text "As a volunteer, do you agree to inform the camp direcot if you have ever been convicted of child abuse?" +" <u>Your response:</u> #{@form.child_abuse}", :inline_format => true
+    if @form.child_abuse
+      text "As a volunteer, do you agree to inform the camp direcot if you have ever been convicted of child abuse?" +" <b>Yes</b>", :inline_format => true
+    else
+      text "As a volunteer, do you agree to inform the camp direcot if you have ever been convicted of child abuse?" +" <b>No</b>", :inline_format => true
+    end
   end
 
   def agreement
-    move_down(20)
-    text "I have read this Participant Covenant, and I agree to observe and abide by the policies set forth above."
+    move_down(30)
+    text "I have read this Participant Covenant, and I agree to observe and abide by the policies set forth above.", :style => :italic
     move_down(10)
-    text "Signature" + "<u> #{@form.user_signature} </u>", :inline_format => true
+    text "<b>Signature: </b>" + "#{@form.user_signature}", :inline_format => true
+    text "<b>Date: </b>" + "#{@form.signature_date}", :inline_format => true
+  end
+
+  def closing
+    move_down(25)
+    text "Please return these forms along with a <b>wallet</b> sized photo (not to be returned) <b>to the Camp Director</b> for the camp you are registered in by <b>May 25</b>.", :inline_format => true
+    move_down(8)
+    text "You can find the address these forms need to be mailed to at <b>www.salkehatchie.org.</b>", :inline_format => true
+    move_down(8)
+    text "<b>Do not mail these forms to the Conference Office.</b>", :inline_format => true
+    move_down(8)
+    text "You are reminded that the Camp Directors will make the final decision as to <b>which camp you will attend</b>", :inline_format => true
   end
 
 end
