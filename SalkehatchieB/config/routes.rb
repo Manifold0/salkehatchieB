@@ -5,7 +5,7 @@ SalkehatchieB::Application.routes.draw do
   resources :payments, only: [:new,:index,:show, :create]
 
   resources :camps, only: [:index, :show]
-  get 'camps/:id/campers' => "camps#campers"
+  get 'camps/:id/campers' => "camps#campers" , as: :camps_campers
 
   resources :schedules
 
