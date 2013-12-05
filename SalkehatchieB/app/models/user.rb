@@ -57,9 +57,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def site
-    return current_camp_assignment.site
-  end
   def current_camps_assigned
     assignments = Array.new()
     self.camp_assignments.each do |camp_assignment|

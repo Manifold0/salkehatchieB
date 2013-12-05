@@ -68,11 +68,14 @@ class Ability
 
     if user.is_camper?
       #can view daily schedule from their site only
-      can :read, Schedule, Schedule.where(:site => user.site)
+      #can :read, Schedule, Schedule.where(:site => user.site)
 
       #can upload pictures, videos, and their blog entries for their site only
-      can :read, Photo, Photo.where(:site => user.site)
+      #can :read, Photo, Photo.where(:site => user.site)
       #can :read, Camp
+      can :read, Camp
+      can :read, Payment, Payment.where(:user => user)
+      can :create, Payment
     end
 
   end
