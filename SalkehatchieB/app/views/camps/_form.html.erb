@@ -1,4 +1,4 @@
-<%= form_for @camp, url: {action: "create"} do |f| %>
+<%=  form_for(@camp, url: (@camp.new_record? ? admin_camps_path : admin_camp_path(@camp)) ) do |f| %>
   <% if @camp.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@camp.errors.count, "error") %> prohibited this camp from being saved:</h2>

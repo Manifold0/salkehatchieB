@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   		return admin_camps_path
   	elsif(current_user.first_name == nil)
    		return user_basic_info_path
+    elsif current_user.current_camps_assigned.length > 0
+      return camp_path(current_user.current_camps_assigned[0].camp)
     else
       return camps_path
 	  end

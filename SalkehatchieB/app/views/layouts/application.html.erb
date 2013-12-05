@@ -36,7 +36,7 @@
         <div class="col-md-5 tab">
             <ul class="nav nav-tabs nav-justified ">
                 <% current_user.current_camps_assigned.each do |assignment|%>
-                    <% if assignment.camp.id.to_i == params[:id].to_i %>
+                    <% if assignment.camp.id.to_i == params[:campid].to_i %>
                     <% @current_camp = assignment.camp
                         current_permission_level = assignment.permission_level %>
                       <li class = "active">

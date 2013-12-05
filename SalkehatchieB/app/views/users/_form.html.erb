@@ -95,7 +95,18 @@
     <%= f.label :church_pastor %><br>
     <%= f.text_field :church_pastor %>
   </div>
+<%  if current_user.permission_level == 5 %>
+  <div class="field">
+    <%
+      permission_levels = Array.new()
+      permission_levels.push(['Admin',5])
+      permission_levels.push(['Other',1])
+    %>
+    <%= f.label :permission_level %><br>
+    <%= f.select( :permission_level,permission_levels) %>
 
+  </div>
+    <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

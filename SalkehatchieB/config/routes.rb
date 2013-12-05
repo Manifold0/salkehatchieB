@@ -4,8 +4,8 @@ SalkehatchieB::Application.routes.draw do
 
   resources :payments, only: [:new,:index,:show, :create]
 
-  resources :camps, only: [:index, :show]
-  get 'camps/:id/campers' => "camps#campers" , as: :camps_campers
+  resources :camps, only: [:index, :show], param: :campid
+  get 'camps/:campid/campers' => "camps#campers" , as: :camps_campers
 
   resources :schedules
 
@@ -18,14 +18,13 @@ SalkehatchieB::Application.routes.draw do
     resources :medical_forms
   end
 
-  resources :camps, only: :show
   resources :users, only: [:show, :edit, :update]
 
   scope 'admin' do
-    resources :camps
+    resources :camps, param: :campid
     as resources :camps do
       get 'camps/' => "camps#index", :as => :admin_camps
-      get 'camps/:id' => "camps#show", as: :admin_camp
+      get 'camps/:campid' => "camps#show", as: :admin_camp
     end
     resources :users
     resources :camp_requests

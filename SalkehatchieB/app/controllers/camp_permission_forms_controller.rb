@@ -10,7 +10,6 @@ class CampPermissionFormsController < ApplicationController
   # GET /camp_permission_forms/1
   # GET /camp_permission_forms/1.json
   def show
-    @camp_permission_form = CampPermissionForm.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -72,7 +71,7 @@ class CampPermissionFormsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_camp_permission_form
-      @camp_permission_form = CampPermissionForm.find(params[:id])
+      @camp_permission_form = CampPermissionForm.find(params[:formid])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

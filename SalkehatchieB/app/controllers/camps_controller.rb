@@ -2,6 +2,7 @@ class CampsController < ApplicationController
   before_action :set_camp, only: [:show, :edit, :update, :destroy, :camp_params, :campers]
   before_action :create_camp, only: :create
   before_action :permissions, except: [:index, :show]
+  before_action :show_permissions, only: :show
 
   #CanCan specific authorization
   load_and_authorize_resource
@@ -13,7 +14,6 @@ class CampsController < ApplicationController
     date_registration_opens = DateTime.new(current_year, 1, 1)
     date_registration_closes = DateTime.new(current_year+1, 1, 1)
     @camps = Camp.where("(start_date >= ? AND start_date < ?)", date_registration_opens, date_registration_closes).all
-
   end
 
   # GET /camps/1
@@ -115,7 +115,7 @@ class CampsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_camp
-      @camp = Camp.find(params[:id])
+      @camp = Camp.find(params[:campid])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -137,14 +137,28 @@ class CampsController < ApplicationController
         end
       end
     end
+
     def permissions
-      if current_user.current_camps_assigned.each do |assignment|
+      current_user.current_camps_assigned.each do |assignment|
         if assignment.permission_level < 4 && @camp == assignment.camp
           redirect_to camp_path(@camp)
         end
       end
     end
+
+    def show_permissions
+      if current_user.permission_level == 5
+        return
+      end
+      in_camp = false
+      current_user.current_camps_assigned.each do |assignment|
+        if @camp == assignment.camp
+          in_camp = true
+        end
+      end
+      if !in_camp
+        redirect_to camp_path(@camp)
+      end
+    end
   end
 
-
-end

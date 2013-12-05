@@ -10,7 +10,6 @@ class CovenantFormsController < ApplicationController
   # GET /covenant_forms/1
   # GET /covenant_forms/1.json
   def show
-    @covenant_form = CovenantForm.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
