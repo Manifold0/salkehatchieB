@@ -1,6 +1,7 @@
 class CampsController < ApplicationController
-  before_action :set_camp, only: [:show, :edit, :update, :destroy, :camp_params]
+  before_action :set_camp, only: [:show, :edit, :update, :destroy, :camp_params, :campers]
   before_action :create_camp, only: :create
+  before_action :permissions, except: [:index, :show]
 
   #CanCan specific authorization
   load_and_authorize_resource
@@ -61,7 +62,6 @@ class CampsController < ApplicationController
   end
 
   def campers
-    @camp = Camp.find(params[:id])
     @assignments = @camp.camp_assignments.all
   end
 
@@ -126,17 +126,25 @@ class CampsController < ApplicationController
     def create_camp
       @camp = Camp.new(camp_params)
 
-    respond_to do |format|
-      if @camp.save
-        
-        format.html { redirect_to admin_camp_url(@camp), notice: 'Camp was successfully created.' }
-        #format.json { render action: 'show', status: :created, location: @camp }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @camp.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @camp.save
+          
+          format.html { redirect_to admin_camp_url(@camp), notice: 'Camp was successfully created.' }
+          #format.json { render action: 'show', status: :created, location: @camp }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @camp.errors, status: :unprocessable_entity }
+        end
       end
     end
+    def permissions
+      if current_user.current_camps_assigned.each do |assignment|
+        if assignment.permission_level < 4 && @camp == assignment.camp
+          redirect_to camp_path(@camp)
+        end
+      end
     end
+  end
 
 
 end

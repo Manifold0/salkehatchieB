@@ -28,12 +28,16 @@
             <h4>Salkehatchie</h4>
         </div>
         </div>
-        <%if !current_user.is_admin?%>
+        <%
+        current_permission_level = 1
+
+        if !current_user.is_admin?%>
         <div class="col-md-5 tab">
             <ul class="nav nav-tabs nav-justified ">
                 <% current_user.current_camps_assigned.each do |assignment|%>
                     <% if assignment.camp.id.to_i == params[:id].to_i %>
-                    <% @current_camp = assignment.camp %>
+                    <% @current_camp = assignment.camp
+                        current_permission_level = assignment.permission_level %>
                       <li class = "active">
                     <% else %>
                       <li>
@@ -83,7 +87,7 @@
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>-->
 
-            <% else if current_user.is_camp_director?%>
+            <% else if current_permission_level == 4%>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
                 <%# link_to "Home", director_home_path, :class => "btn"%>
                 <%= link_to "Camps", camps_path, :class => "btn"%>
