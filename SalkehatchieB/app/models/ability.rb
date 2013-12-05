@@ -38,6 +38,7 @@ class Ability
       can :manage, CampAssignment 
       #can :update, Site, current_user.camp_id =>
       can :manage, Camp 
+      cannot :delete, Camp
 
       #can edit camper information for their camp only
 
@@ -49,6 +50,7 @@ class Ability
 
       #can edit/update daily schedule for their camp only
       can :update, Schedule #, Schedule.where(:camp_id => user.current_camp_assignment.id)
+      #can :manage, ReferenceForm
     end
 
     if user.is_site_leader?
@@ -76,6 +78,8 @@ class Ability
       can :read, Camp
       can :read, Payment, Payment.where(:user => user)
       can :create, Payment
+
+      #can :manage, ReferenceForm, ReferenceForm.where(:user => user)
     end
 
   end

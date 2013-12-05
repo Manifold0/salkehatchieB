@@ -19,7 +19,7 @@
   <tbody>
     <% @reference_forms.each do |reference_form| %>
       <tr>
-        <td><%= reference_form.user %></td>
+        <td><%= reference_form.user.full_name %></td>
         <td><%= reference_form.name %></td>
         <td><%= reference_form.email %></td>
         <td><%= reference_form.relationship %></td>

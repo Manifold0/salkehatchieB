@@ -4,7 +4,7 @@ SalkehatchieB::Application.routes.draw do
 
   resources :payments, only: [:new,:index,:show, :create]
 
-  resources :camps, only: [:index, :show], param: :campid
+  resources :camps, only: [:index, :show], param: :campid #delete will redirect!
   get 'camps/:campid/campers' => "camps#campers" , as: :camps_campers
 
   resources :schedules
@@ -14,8 +14,13 @@ SalkehatchieB::Application.routes.draw do
   scope 'forms' do
     resources :covenant_forms
     resources :reference_forms
+    get 'references/:id/approve' => 'reference_forms#approve', as: :approve_reference
     resources :camp_permission_forms
     resources :medical_forms
+  end
+
+  scope 'camps/:campid/forms' do
+    resources :reference_forms, as: :camps_reference_forms
   end
 
   resources :users, only: [:show, :edit, :update]
@@ -38,6 +43,8 @@ SalkehatchieB::Application.routes.draw do
     end
     resources :costs
     get 'cost/approve' => "costs#approve", as: :cost_approve
+
+
   end
 
   get '/request' => 'camp_requests#new', :as => :request_camps
@@ -48,7 +55,6 @@ SalkehatchieB::Application.routes.draw do
 
   root 'devise/session#new'
 
-  # devise_for :users
 
   devise_for :users, :skip => [:sessions,:registrations]
   as :user do

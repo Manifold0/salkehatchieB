@@ -10,11 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -29,9 +24,22 @@
   </div>
   <div class="field">
     <%= f.label :approval_status %><br>
-    <%= f.check_box :approval_status %>
+    <%= f.check_box :approval_status, disabled: true  %>
   </div>
-  <div class="field">
+  <%
+  has_the_authority = false
+  if @reference_form.user
+    @reference_form.user.current_camps_assigned.each do |assignment|
+      current_user.current_camps_assigned.each do |director_assignment|
+        if assignment.camp == director_assignment.camp && director_assignment.permission_level > 3
+          has_the_authority = true
+        end
+      end
+    end
+  end
+  if has_the_authority 
+
+   %><div class="field">
     <%= f.label :reviewed_by_camp_director %><br>
     <%= f.check_box :reviewed_by_camp_director %>
   </div>
@@ -39,6 +47,8 @@
     <%= f.label :printed_date %><br>
     <%= f.datetime_select :printed_date %>
   </div>
+  <% end %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

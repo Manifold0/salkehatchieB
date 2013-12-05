@@ -139,26 +139,27 @@ class CampsController < ApplicationController
     end
 
     def permissions
+      if current_user.permission_level == 5
+        return
+      end
       current_user.current_camps_assigned.each do |assignment|
-        if assignment.permission_level < 4 && @camp == assignment.camp
-          redirect_to camp_path(@camp)
+        if assignment.permission_level > 3 && @camp == assignment.camp
+          return
         end
       end
+      redirect_to camp_path(@camp)
     end
 
     def show_permissions
       if current_user.permission_level == 5
         return
       end
-      in_camp = false
       current_user.current_camps_assigned.each do |assignment|
         if @camp == assignment.camp
-          in_camp = true
+          return
         end
       end
-      if !in_camp
-        redirect_to camp_path(@camp)
-      end
+      redirect_to camps_path
     end
   end
 

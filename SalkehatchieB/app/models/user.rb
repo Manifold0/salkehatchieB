@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :camp_assignments
   has_one :covenant_form
+  has_many :reference_form
 
 	#belongs_to :medical_form
 	#has_one :whatever_form

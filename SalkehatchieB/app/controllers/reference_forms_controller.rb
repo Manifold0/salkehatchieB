@@ -1,10 +1,17 @@
 class ReferenceFormsController < ApplicationController
-  before_action :set_reference_form, only: [:show, :edit, :update, :destroy]
+  before_action :set_reference_form, only: [:show, :edit, :update, :approve, :destroy]
 
   # GET /reference_forms
   # GET /reference_forms.json
   def index
-    @reference_forms = ReferenceForm.all
+    if (params[:campid])
+      @reference_forms = Array.new
+      Camp.find(params[:campid]).camp_assignments.each do |assignment|
+        @reference_forms.concat(assignment.user.reference_form)
+      end
+    else
+      @reference_forms = ReferenceForm.where(user: current_user)
+    end
   end
 
   # GET /reference_forms/1
@@ -59,6 +66,8 @@ class ReferenceFormsController < ApplicationController
     end
   end
 
+  def approve
+  end
   # DELETE /reference_forms/1
   # DELETE /reference_forms/1.json
   def destroy
