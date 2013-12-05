@@ -1,0 +1,31 @@
+<%= form_for(@reference_form) do |f| %>
+  <% if @reference_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reference_form.errors.count, "error") %> prohibited this reference_form from being saved:</h2>
+
+      <ul>
+      <% @reference_form.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>Hello <%= @reference_form.name %> (<%= @reference_form.email %>), <%= @reference_form.user.full_name %> said you are their <%= @reference_form.relationship %>. Please read the following:
+
+  
+Salkehatchie Summer Service is a pioneering servant ministry at selected sites in South Carolina, North Carolina and Georgia involving high school and college age youth, adult community leaders and persons of different cultures in upgrading housing, motivating community cooperative efforts by helping persons to help themselves, and providing all participants with opportunities for personal growth and service.
+Salkehatchie Summer Service is for high school and college age youth drawn primarily from the South Carolina United Methodist Conference. Participants must be at least 14 years old by the beginning of the camp they attend. Adult leaders are also needed to offer guidance and support.
+The above applicant is required by the South Carolina Conference to receive three references prior to being accepted for service. Please review the below information and indicate whether you would recommend this applicant to attend an intense Saturday to Saturday experience with Salkehatchie Summer Service.
+• I have known the applicant for at least six months.
+• I recommend the applicant to work with youth and adults.
+• I would willingly work along the side of the applicant in such a ministry
+• I would recommend the above applicant attend Salkehatchie.
+• I understand that I may forward any additional comments about the above applicant to Salkehatchie@umcsc.org. Any additional information I provide will be shared with the appropriate camp director.</div>
+  <div class="field">
+    <%= f.label :approval_status %><br>
+    <%= f.check_box :approval_status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
