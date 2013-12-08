@@ -78,7 +78,8 @@ class Ability
       can :read, Camp
       can :read, Payment, Payment.where(:user => user)
       can :create, Payment
-      can [:read, :update, :destroy], CovenantForm, :user_id => user.id
+      can [:read, :update, :destroy], [CovenantForm, MedicalForm, ReferenceForm], :user_id => user.id
+
       #don't want this user to be able to view index page
 
       #can :manage, ReferenceForm, ReferenceForm.where(:user => user)
