@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @reference.user.full_name %> needs a reference</h1>
+    <p>
+      Please follow this link to approve your recomendation. <%= link_to 'Link', approve_reference_url(@reference) %>
+    </p>
+    <p>
+    </p>
+    <p>Thanks for your help!</p>
+  </body>
+</html>

@@ -82,6 +82,10 @@ class Ability
       #can :manage, ReferenceForm, ReferenceForm.where(:user => user)
     end
 
+    if user.permission_level == nil
+      cannot :update, User, user
+    end
+
   end
 
 end
