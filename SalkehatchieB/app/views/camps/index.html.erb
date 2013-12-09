@@ -1,8 +1,30 @@
-<h1>Listing camps</h1>
 
-<table>
-  <thead>
-    <tr>
+<h1 class="text-muted">Camp Listing</h1>
+
+<nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class=".col-md-3">
+            <table class="table table-striped table-condensed">
+                <thead>
+                <tr>
       <th>Start date</th>
       <th>End date</th>
       <th>City</th>
@@ -40,6 +62,18 @@
 
 <br>
 
-<% if can? :create, Camp %>
-    <%= link_to 'New Camp', new_camp_path %>
-<% end %>
+
+
+            <% if can? :create, Camp %>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <%= link_to 'New Camp', new_camp_path, :class => "btn btn-default col-md-12", style:"height:40px" %>
+                </div>
+            </div>
+            <% end %>
+
+   </div>
+</div>
+    </div>
+
