@@ -38,6 +38,7 @@ class CampRequestsController < ApplicationController
 
   # GET /camp_requests/new
   def new
+    @camp_requests = CampRequest.where(user: current_user,status: false)
     @camp_request = CampRequest.new
     current_year = DateTime.now.year
     date_registration_opens = DateTime.new(current_year, 1, 1)
