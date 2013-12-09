@@ -1,6 +1,21 @@
-<h1>Listing camp_requests</h1>
+<h1 class="text-muted">Camp Requests</h1>
 
-<table>
+<nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+
+    </div><!-- /.navbar-collapse -->
+</nav>
+<div class="container">
+    <div class="row">
+        <div class=".col-md-3">
+            <table class="table table-striped table-condensed">
   <thead>
     <tr>
       <th>User</th>
@@ -52,15 +67,29 @@
               <td></td>
             <% end %>
         <% end %>
-
-        <td><%= link_to 'Show', camp_request %></td>
-        <td><%= link_to 'Edit', edit_camp_request_path(camp_request) %></td>
-        <td><%= link_to 'Destroy', camp_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
+        <% if can? :read, camp_request %>
+            <td><%= link_to 'Show', camp_request %></td>
+        <% end %>
+        <% if can? :update, camp_request %>
+            <td><%= link_to 'Edit', edit_camp_request_path(camp_request) %></td>
+        <% end %>
+        <% if can? :destroy, camp_request %>
+            <td><%= link_to 'Destroy', camp_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'New Camp request', new_camp_request_path %>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                <%= link_to 'New Camp request', new_camp_request_path, :class => "btn btn-default col-md-12", style:"height:40px" %>
+
+                </div>
+
+</div>
+            </div>
+        </div>
+    </div>
