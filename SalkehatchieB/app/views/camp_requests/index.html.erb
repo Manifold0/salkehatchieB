@@ -53,9 +53,15 @@
         <td><%= Camp.find(camp_request.preference3_id).city %></td>
         <% end %>
         <% end %>
-        <td><%= link_to 'Show', camp_request %></td>
-        <td><%= link_to 'Edit', edit_camp_request_path(camp_request) %></td>
-        <td><%= link_to 'Destroy', camp_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :read, camp_request %>
+            <td><%= link_to 'Show', camp_request %></td>
+        <% end %>
+        <% if can? :update, camp_request %>
+            <td><%= link_to 'Edit', edit_camp_request_path(camp_request) %></td>
+        <% end %>
+        <% if can? :destroy, camp_request %>
+            <td><%= link_to 'Destroy', camp_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
 
       </tr>
     <% end %>
