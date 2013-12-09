@@ -1,6 +1,21 @@
-<h1>Listing camp_requests</h1>
+<h1 class="text-muted">Camp Requests</h1>
 
-<table>
+<nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+
+    </div><!-- /.navbar-collapse -->
+</nav>
+<div class="container">
+    <div class="row">
+        <div class=".col-md-3">
+            <table class="table table-striped table-condensed">
   <thead>
     <tr>
       <th>User</th>
@@ -49,4 +64,14 @@
 
 <br>
 
-<%= link_to 'New Camp request', new_camp_request_path %>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                <%= link_to 'New Camp request', new_camp_request_path, :class => "btn btn-default col-md-12", style:"height:40px" %>
+
+                </div>
+
+</div>
+            </div>
+        </div>
+    </div>
+
