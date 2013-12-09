@@ -39,7 +39,7 @@
   <tbody>
     <% @medical_forms.each do |medical_form| %>
       <tr>
-        <td><%= medical_form.user %></td>
+        <td><%= medical_form.user.first_name + " " +  medical_form.user.last_name %></td>
         <td><%= medical_form.camp %></td>
         <td><%= medical_form.information %></td>
         <td><%= medical_form.insurance_card_image %></td>

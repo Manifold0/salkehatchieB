@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20131209212436) do
 
   create_table "camp_permission_forms", force: true do |t|
     t.integer  "user_id"
-    t.string   "type"
+    t.string   "type_of"
     t.string   "relationship"
     t.string   "name"
     t.string   "address1"
