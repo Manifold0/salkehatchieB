@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120194637) do
+ActiveRecord::Schema.define(version: 20131209212436) do
 
 # Could not dump table "camp_assignments" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
 
   create_table "camp_permission_forms", force: true do |t|
     t.integer  "user_id"
-    t.string   "type_of"
+    t.string   "type"
     t.string   "relationship"
     t.string   "name"
     t.string   "address1"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20131120194637) do
 
   create_table "camp_requests", force: true do |t|
     t.integer  "user_id"
-    t.boolean  "status"
+    t.boolean  "status",         default: false
     t.integer  "preference1_id"
     t.integer  "preference2_id"
     t.integer  "preference3_id"

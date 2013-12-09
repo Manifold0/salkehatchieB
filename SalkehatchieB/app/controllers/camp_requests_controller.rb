@@ -4,7 +4,7 @@ class CampRequestsController < ApplicationController
   # GET /camp_requests
   # GET /camp_requests.json
   def index
-    @camp_requests = CampRequest.where("status == 1")
+    @camp_requests = CampRequest.where(status: false)
   end
 
   def assign
