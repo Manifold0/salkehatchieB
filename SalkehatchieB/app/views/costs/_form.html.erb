@@ -1,4 +1,10 @@
-<%= form_for(@cost) do |f| %>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+
+            <%= form_for(@cost) do |f| %>
   <% if @cost.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@cost.errors.count, "error") %> prohibited this cost from being saved:</h2>
@@ -11,8 +17,9 @@
     </div>
   <% end %>
 This will need to be approved by another admin.
+
   <div class="field">
-    <%= f.label :year %><br>
+    <%= f.label :year, class:"text-muted" %><br>
     <% 
     current_year = DateTime.now.year;
     years = Array.new()
@@ -25,11 +32,12 @@ This will need to be approved by another admin.
     %>
     <%= f.select( :year, options_for_select(years)) %>
   </div>
+
   <div class="field">
-    <%= f.label :amount %><br>
-    <%= f.text_field :amount %>
+  <%= f.text_field :amount, placeholder: "Amount", class: "form-control", style: "padding:4px", style: "width:300px" %><br />
   </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-default col-md-5", style:"height:40px"  %>
   </div>
 <% end %>
