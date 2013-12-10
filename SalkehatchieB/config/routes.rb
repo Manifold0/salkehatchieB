@@ -30,6 +30,7 @@ SalkehatchieB::Application.routes.draw do
     as resources :camps do
       get 'camps/' => "camps#index", :as => :admin_camps
       get 'camps/:campid' => "camps#show", as: :admin_camp
+      delete 'camps/:campid' => "camps#delete", as: :admin_camp_delete
     end
     resources :users
     resources :camp_requests

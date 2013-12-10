@@ -52,7 +52,7 @@
        <% end %>
 
        <% if can? :destroy, camp %>
-          <td><%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Destroy', admin_camp_delete_path(camp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
        <% end %>
 
       </tr>
