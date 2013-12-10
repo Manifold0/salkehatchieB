@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :camp_assignments
   has_many :camp_requests
   has_one :covenant_form
+  has_one :questionnaire
   has_many :reference_form
 
 	#belongs_to :medical_form
@@ -88,6 +89,26 @@ class User < ActiveRecord::Base
     current_year = Time.now.year
     if self.covenant_form != nil
       if self.covenant_form.signature_date.year == current_year
+        return true
+      end
+    end
+    return false
+  end
+
+  def questionnaire_up_to_date
+    current_year = Time.now.year
+    if self.questionnaire != nil
+      if self.questionnaire.user_approval_date.year == current_year
+        return true
+      end
+    end
+    return false
+  end
+
+  def reference_form_up_to_date
+    current_year = Time.now.year
+    if self.reference_form != nil
+      if self.reference_form.updated_at.year == current_year
         return true
       end
     end

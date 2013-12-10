@@ -36,7 +36,7 @@
                 <tbody>
                 <% @photos.each do |photo| %>
                     <tr>
-                        <td><%= photo.user_id %></td>
+                        <td><%= photo.user.first_name + " " + photo.user.last_name %></td>
                         <td><%= photo.approval %></td>
                         <td><%= photo.users_tagged %></td>
                         <td><%= photo.image %></td>
