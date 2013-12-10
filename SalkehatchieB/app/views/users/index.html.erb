@@ -36,6 +36,7 @@
 
   <tbody>
     <% @users.each do |user| %>
+      <% if can? :read, user %>
       <tr>
         <td><%= user.permission_level %></td>
             <td><%= user.first_name %></td>
@@ -47,6 +48,7 @@
             <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

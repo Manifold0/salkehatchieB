@@ -52,11 +52,7 @@ class User < ActiveRecord::Base
 
   def is_camper?
     #current_camp_assignment?
-    if self.permission_level == 1
-      return true
-    else
-      return false
-    end
+    return !is_admin?
   end
   def current_camps_requested
     requests = Array.new()

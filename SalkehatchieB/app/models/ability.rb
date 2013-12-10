@@ -76,17 +76,15 @@ class Ability
       #can :read, Photo, Photo.where(:site => user.site)
       #can :read, Camp
       can :read, Camp
-      can :read, Payment, Payment.where(:user => user)
+      #can :read, Payment, Payment.where(:user => user)
       can :create, Payment
       can [:read, :update, :destroy, :create], [CovenantForm, MedicalForm, ReferenceForm, CampRequest], :user_id => user.id
 
       #don't want this user to be able to view index page
+      cannot :read, User
+      can :manage, User, id: user.id 
 
       #can :manage, ReferenceForm, ReferenceForm.where(:user => user)
-    end
-
-    if user.permission_level == nil
-      cannot :update, User, user
     end
 
   end
