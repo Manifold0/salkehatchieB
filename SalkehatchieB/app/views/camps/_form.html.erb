@@ -1,4 +1,16 @@
-<%=  form_for(@camp, url: (@camp.new_record? ? admin_camps_path : admin_camp_path(@camp)) ) do |f| %>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+
+
+
+
+
+<%=  form_for(@camp, url: (@camp.new_record? ? admin_camps_path : admin_camp_path(@camp)), :html => {:class => "form-horizontal"}) do |f| %>
   <% if @camp.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@camp.errors.count, "error") %> prohibited this camp from being saved:</h2>
@@ -12,22 +24,30 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :start_date %><br>
+    <%= f.label :start_date, class: "text-muted" %><br>
     <%= f.date_select :start_date %>
   </div>
   <div class="field">
-    <%= f.label :end_date %><br>
+    <%= f.label :end_date, class: "text-muted" %><br>
     <%= f.date_select :end_date %>
   </div>
+
   <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+  <%=f.text_field :city, autofocus: true, placeholder: "City", class:"form-control", style:"padding:4px", style: "width:250px" %><br />
   </div>
+
+
   <div class="field">
-    <%= f.label :hq_address %><br>
-    <%= f.text_field :hq_address %>
+  <%=f.text_field :hq_address, autofocus: true, placeholder: "HQ Address", class:"form-control", style:"padding:4px", style: "width:250px" %><br />
   </div>
+
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-default col-md-2", style:"height:40px" %>
   </div>
 <% end %>
+ </div>
+                </div>
+            </div>
+        </div>
+

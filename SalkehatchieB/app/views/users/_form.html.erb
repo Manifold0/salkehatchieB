@@ -25,6 +25,9 @@
                 <legend class=""></legend>
             </div>
 
+  <div class="field">
+  <%= f.text_field :email, placeholder: "Email", class: "form-control", style: "padding:4px" %><br />
+  </div>
 
   <div class="field">
     <%= f.text_field :first_name, placeholder: "First Name", class: "form-control", style: "padding:4px" %><br />
@@ -213,8 +216,16 @@
 
   <div class="actions">
     <%= f.submit :class => "btn btn-default col-md-4 col-md-offset-1", style:"height:40px" %>
+
   </div>
+
 <% end %>
+</div>
+
+</nav>
+
+
+
 
 
 
