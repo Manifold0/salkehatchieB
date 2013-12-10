@@ -60,20 +60,20 @@
     <div class="row index">
         <div id="sideBar" class="col-md-2 btn-group-vertical index-btn custom-vertical-nav-bar dropdown-menu">
         	<%if current_user.is_admin? %>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+                <button type="button" class="btn btn-default"> Home <span class="glyphicon glyphicon-home"></span></button>
                 <%# link_to "Home", admin_home_path, :class => "btn"%>
                 <%= link_to "Users", users_path, :class => "btn"%>
 		        <%= link_to "Camps", camps_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-bullhorn"></span>Directors</button>
+                <button type="button" class="btn btn-default"> Directors <span class="glyphicon glyphicon-bullhorn"></span></button>
                 <%# link_to "Directors", users_path,(query for camp directors) :  class => "btn"%>
                 <%= link_to "Applications", camp_requests_path, :class => "btn"%>
                 <%= link_to "Assignments", camp_assignments_path, :class => "btn"%>
                 <%= link_to "Payments", admin_payments_path, :class => "btn"%>
                 <%= link_to "Costs", costs_path, :class => "btn"%>
                 <%= link_to "Photos", photos_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+                <button type="button" class="btn btn-default"> Schedule <span class="glyphicon glyphicon-calendar"></span></button>
                 <%# link_to "Schedule", schedule_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>
+                <button type="button" class="btn btn-default"> Queries <span class="glyphicon glyphicon-list"></span></button>
                 <%# link_to "Queries", query_path(with query), :class => "btn"%>
 
                 <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
