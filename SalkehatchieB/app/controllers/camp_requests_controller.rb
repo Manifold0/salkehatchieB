@@ -4,13 +4,16 @@ class CampRequestsController < ApplicationController
   # GET /camp_requests
   # GET /camp_requests.json
   def index
-    @camp_requests = CampRequest.find(:all, :order => "status ASC")
+    @camp_requests = CampRequest.where(status: false)
   end
 
   def assign
     p = params.permit(:user, :camp, :camp_request)
 
     request = CampRequest.find(p['camp_request'])
+    if request.user.current_balance != 0
+      redirect_to camp_requests_path
+    end
     
     request.status = 1
 
@@ -23,9 +26,8 @@ class CampRequestsController < ApplicationController
     if assignment.save
       redirect_to camp_requests_path
     else
-      render action: 'new'
+      render action: 'show'
     end
-
 
   end
 
@@ -36,6 +38,7 @@ class CampRequestsController < ApplicationController
 
   # GET /camp_requests/new
   def new
+    @camp_requests = CampRequest.where(user: current_user,status: false)
     @camp_request = CampRequest.new
     current_year = DateTime.now.year
     date_registration_opens = DateTime.new(current_year, 1, 1)

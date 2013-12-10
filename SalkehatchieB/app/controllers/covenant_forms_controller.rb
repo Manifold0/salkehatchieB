@@ -33,6 +33,29 @@ class CovenantFormsController < ApplicationController
   def create
     @covenant_form = CovenantForm.new(covenant_form_params)
     @covenant_form.user = current_user
+
+    p = covenant_form_params
+    create_for_user = current_user
+    if p['user_id'] != nil
+      create_for_user = User.find(p['user_id'])
+    end
+
+    current_year = DateTime.now.year
+    date_registration_opens = DateTime.new(current_year, 1, 1)
+    date_registration_closes = DateTime.new(current_year+1, 1, 1)
+
+    number_of_forms = CovenantForm.where("(created_at >= ? AND created_at < ?) and user_id = ?", date_registration_opens, date_registration_closes , create_for_user.id).count
+
+    if (number_of_times_currently_registered > 0 && !current_user.is_admin?)
+      #problem already requested camps.
+      render :text => "You have already created "+number_of_forms.to_s+" form between "+date_registration_opens.strftime("%F")+" and "+date_registration_closes.strftime("%F")
+      #TO-DO: this needs to show a prettier error.
+      #redirect_to request_camps_path
+      return
+    end
+
+
+
     respond_to do |format|
       if @covenant_form.save
         format.html { redirect_to @covenant_form, notice: 'Covenant form was successfully created.' }

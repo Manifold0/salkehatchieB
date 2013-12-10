@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   has_many :camp_assignments
+  has_many :camp_requests
   has_one :covenant_form
   has_many :reference_form
 
@@ -57,6 +58,15 @@ class User < ActiveRecord::Base
       return false
     end
   end
+  def current_camps_requested
+    requests = Array.new()
+    self.camp_requests.each do |camp_request|
+      if camp_request.created_at.year == DateTime.now.year
+        requests.push(camp_request)
+      end
+    end
+    return requests
+  end
 
   def current_camps_assigned
     assignments = Array.new()
@@ -73,7 +83,7 @@ class User < ActiveRecord::Base
     payment = Payment.where(user_id:self.id,year:current_year).sum(:amount)
     
     current_cost = Cost.where(year:current_year).sum(:amount)
-    num_camps = current_camps_assigned.count
+    num_camps = current_camps_requested.count
 
     @balance = (current_cost*num_camps) - payment
   end
