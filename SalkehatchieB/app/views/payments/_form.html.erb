@@ -1,4 +1,10 @@
-<%= form_for(@payment) do |f| %>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+
+            <%= form_for(@payment) do |f| %>
   <% if @payment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
@@ -11,15 +17,25 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= f.label :amount %><br>
-    <%= f.number_field :amount %>
+  <%= f.number_field :amount, placeholder: "Amount", class: "form-control", style: "padding:4px", style: "width:300px" %><br />
   </div>
+
+
   <div class="field">
-    <%= f.label :identifier %><br>
-    <%= f.text_field :identifier %>
+  <%= f.text_field :identifier, placeholder: "Identifier", class: "form-control", style: "padding:4px", style: "width:300px" %><br />
   </div>
+
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-default col-md-5", style:"height:40px"  %>
   </div>
 <% end %>
+
+
+
+</div>
+            </div>
+        </div>
+    </div>
