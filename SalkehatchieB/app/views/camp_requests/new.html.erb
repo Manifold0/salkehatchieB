@@ -2,13 +2,11 @@
 
 
 <% if @camp_requests.count > 0 %>
-  <div>You have already requested a camp.</div>
+  <div>You have already requested a camp. You are limited to 1 camp per summer unless you get the approval of the camp director. Contact the camp director directly and they will assign you to that camp.</div>
 <% end %>
 
 <%= render 'form' %>
 
 <% if current_user.is_admin? %>
     <%= link_to 'Back', camp_requests_path, :class => "btn btn-default col-md-1 col-md-offset-1", style:"height:40px" %>
-<% else %>
-    <%= link_to 'Home', root_url %>
 <% end %>

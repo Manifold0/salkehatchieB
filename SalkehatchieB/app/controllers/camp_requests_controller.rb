@@ -38,11 +38,17 @@ class CampRequestsController < ApplicationController
 
   # GET /camp_requests/new
   def new
-    @camp_requests = CampRequest.where(user: current_user,status: false)
-    @camp_request = CampRequest.new
     current_year = DateTime.now.year
     date_registration_opens = DateTime.new(current_year, 1, 1)
     date_registration_closes = DateTime.new(current_year+1, 1, 1)
+
+    @camp_requests = CampRequest.where(user: current_user,status: false).where("(created_at >= ? AND created_at < ?)", date_registration_opens, date_registration_closes)
+    if (@camp_requests.count > 0)
+      @camp_request = @camp_requests[0]
+    else
+      @camp_request = CampRequest.new
+    end
+    
     @camps = Camp.where("(start_date >= ? AND start_date < ?)", date_registration_opens, date_registration_closes).all
 
   end
@@ -79,7 +85,7 @@ class CampRequestsController < ApplicationController
     @camp_request.user = create_for_user
 
     if @camp_request.save
-      redirect_to root_path
+      redirect_to payments_path
     else
       render action: 'new'
     end
