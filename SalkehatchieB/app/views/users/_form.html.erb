@@ -63,17 +63,25 @@
   <%= f.text_field :district, placeholder: "District", class: "form-control", style: "padding:4px" %><br />
   </div>
 
+  <div class="field">Gender Identity: <% genders_options = ['Prefer to Not Specify','Female','Genderqueer/Androgynous','Intersex','Male','Transgender','Transsexual','Cross-dresser','FTM (female-to-male)','MTF (male-to-female)','Other']
+  %>
+  <%= f.select :gender, genders_options, class: "form-control", style: "padding:4px" %><br />
+  </div>
+  
+
+  <div class="field">T-Shirt Size: <%
+
+  tshirt_sizes = ['Unset','XXXL','XXL','XL','L','M','S','XS']
+%><%= f.select :tshirt_size, tshirt_sizes, class: "form-control", style: "padding:4px" %><br />
+  </div>
   <div class="field">
-  <%= f.text_field :gender, placeholder: "Gender", class: "form-control", style: "padding:4px" %><br />
+  <%  current_year = DateTime.now.year
+      first_years = current_year-13
+      last_years = first_years-80 %>
+  <%= f.date_select :date_of_birth, placeholder: "Birth Date", class: "form-control", style: "padding:4px", start_year: first_years, end_year: last_years %><br />
   </div>
 
-  <div class="field">
-  <%= f.text_field :tshirt_size, placeholder: "T-shirt size", class: "form-control", style: "padding:4px" %><br />
-  </div>
-
-
-  <div class="field">
-
+  <!--<div class="field">
             <label for="text-muted">
                 Birth Date</label>
             <div class="row">
@@ -155,13 +163,14 @@
             </div>
       </div>
 
-
+  -->
   <div class="field">
   <%= f.text_field :phone_number, placeholder: "Phone Number (###) ###-####", class: "form-control", style: "padding:4px" %><br />
   </div>
 
   <div class="field">
-  <%= f.text_field :mobile_devices, placeholder: "Mobile Devices", class: "form-control", style: "padding:4px" %><br />
+  <% devices = ['iPhone','Android','Windows','Blackberry','call & text only','text'] %>
+  Phone Device: <%= f.select :mobile_devices, devices, placeholder: "Mobile Devices", class: "form-control", style: "padding:4px" %><br />
   </div>
 
 
