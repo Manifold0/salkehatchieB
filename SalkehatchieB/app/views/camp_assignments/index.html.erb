@@ -39,7 +39,7 @@
       <tr>
         <td><%= camp_assignment.user.full_name %></td>
         <td><%= camp_assignment.camp.city %></td>
-        <td><%= camp_assignment.permission_level %></td>
+        <td><%= camp_assignment.user.permission_level %></td>
         <td><%= link_to 'Show', camp_assignment %></td>
         <td><%= link_to 'Edit', edit_camp_assignment_path(camp_assignment) %></td>
         <td><%= link_to 'Destroy', camp_assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
