@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 20131209212436) do
     t.string   "relationship"
     t.boolean  "approval_status"
     t.boolean  "reviewed_by_camp_director"
+    t.date     "user_approval_date"
     t.datetime "printed_date"
     t.datetime "created_at"
     t.datetime "updated_at"
