@@ -80,90 +80,6 @@
       last_years = first_years-80 %>
   <%= f.date_select :date_of_birth, placeholder: "Birth Date", class: "form-control", style: "padding:4px", start_year: first_years, end_year: last_years %><br />
   </div>
-
-  <!--<div class="field">
-            <label for="text-muted">
-                Birth Date</label>
-            <div class="row">
-                <div class="col-xs-4 col-md-4">
-                    <select class="form-control">
-                        <option value="Month">Month</option>
-                        <option>January</option>
-                        <option>February</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option>May</option>
-                        <option>June</option>
-                        <option>July</option>
-                        <option>August</option>
-                        <option>September</option>
-                        <option>October</option>
-                        <option>November</option>
-                        <option>December</option>
-                    </select>
-                </div>
-                <div class="col-xs-4 col-md-4">
-                    <select class="form-control">
-                        <option value="Day">Day</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                        <option>13</option>
-                        <option>14</option>
-                        <option>15</option>
-                        <option>16</option>
-                        <option>17</option>
-                        <option>18</option>
-                        <option>19</option>
-                        <option>20</option>
-                        <option>21</option>
-                        <option>22</option>
-                        <option>23</option>
-                        <option>24</option>
-                        <option>25</option>
-                        <option>26</option>
-                        <option>27</option>
-                        <option>28</option>
-                        <option>29</option>
-                        <option>30</option>
-                        <option>31</option>
-
-                    </select>
-                </div>
-                <div class="col-xs-4 col-md-4">
-                    <select class="form-control">
-                        <option value="Year">Year</option>
-                        <option>1995</option>
-                        <option>1996</option>
-                        <option>1997</option>
-                        <option>1998</option>
-                        <option>1999</option>
-                        <option>2000</option>
-                        <option>2001</option>
-                        <option>2002</option>
-                        <option>2003</option>
-                        <option>2004</option>
-                        <option>2005</option>
-                        <option>2006</option>
-                        <option>2007</option>
-                        <option>2008</option>
-                        <option>2009</option>
-
-                    </select>
-                </div>
-            </div>
-      </div>
-
-  -->
   <div class="field">
   <%= f.text_field :phone_number, placeholder: "Phone Number (###) ###-####", class: "form-control", style: "padding:4px" %><br />
   </div>
@@ -193,12 +109,8 @@
   <%= f.text_field :church_pastor, placeholder: "Church Pastor", class: "form-control", style: "padding:4px" %><br />
   </div>
 
-
-
-<%  if current_user.permission_level == 5 %>
+<%  if current_user.is_admin? %>
   <div class="field">
-
-
           <label for="text-muted">
               Permission Level</label>
           <div class="row">
@@ -210,13 +122,18 @@
                   %>
 
                   <%= f.select( :permission_level,permission_levels) %>
-
-
-
-
-  </div>
               </div>
-      </div>
+          </div>
+  </div>
+  <div class="field">
+          <label for="text-muted">
+              Has background check and date of last check</label>
+          <div class="row">
+              <div class="col-xs-4 col-md-4">
+                  <%= f.check_box( :background_check) %> on <%= f.date_select( :background_check_date) %>
+              </div>
+          </div>
+  </div>
 
 
 

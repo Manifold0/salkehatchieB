@@ -97,5 +97,13 @@ class User < ActiveRecord::Base
   def full_name
     return "#{last_name}, #{first_name}"
   end
+
+  def background_check_valid?
+    if self.background_check
+      latest_date = Time.now.year - 5 #TO-DO more specificity.
+      return (self.background_check_date.year > latest_date)
+    end
+    return false
+  end
 end
 

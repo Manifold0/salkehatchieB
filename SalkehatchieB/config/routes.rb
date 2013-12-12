@@ -33,6 +33,9 @@ SalkehatchieB::Application.routes.draw do
       delete 'camps/:campid' => "camps#delete", as: :admin_camp_delete
     end
     resources :users
+    as resources :users do
+      delete 'users/:id' => "users#delete", as: :admin_user_delete
+    end
     resources :camp_requests
     get 'camp_request/assign' => "camp_requests#assign", as: :camp_request_assign
     resources :camp_assignments

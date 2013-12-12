@@ -17,7 +17,8 @@ class Ability
       #cannot :update, User, User.includes(:payments).where()
 
       #cannot assign camper 18+ if they haven't passed background check; temporary
-      cannot :update, User, User.where(:background_check => false && :date_of_birth > 1/1/1995)
+      #this will need to be in the controller
+      #cannot :update, User, User.where(:background_check => false && :date_of_birth > 1/1/1995)
 
       #can assign camp directors
 

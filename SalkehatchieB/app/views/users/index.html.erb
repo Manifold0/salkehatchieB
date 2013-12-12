@@ -31,6 +31,7 @@
       <th>Last Name</th>
       <th>Balance</th>
       <th>Covenant</th>
+      <th>Background Check</th>
     </tr>
   </thead>
 
@@ -43,9 +44,11 @@
             <td><%= user.last_name %></td>
             <td><%= user.current_balance %></td>
             <td><%= user.covenant_form_up_to_date %></td>
+            <td><% if user.background_check_valid? %><%= user.background_check_date %><% elsif user.background_check
+               %>Expired<% else %>No<% end %></td>
             <td><%= link_to 'Show', user %></td>
             <td><%= link_to 'Edit', edit_user_path(user) %></td>
-            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Destroy', admin_user_delete_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
       </tr>
       <% end %>
