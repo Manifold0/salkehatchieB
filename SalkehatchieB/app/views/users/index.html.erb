@@ -32,6 +32,9 @@
       <th>Balance</th>
       <th>Covenant</th>
       <th>Background Check</th>
+      <th>Questionnaire</th>
+      <th>Reference Form</th>
+      <th>Medical Form</th>
     </tr>
   </thead>
 
@@ -46,6 +49,9 @@
             <td><%= user.covenant_form_up_to_date %></td>
             <td><% if user.background_check_valid? %><%= user.background_check_date %><% elsif user.background_check
                %>Expired<% else %>No<% end %></td>
+            <td><%= user.questionnaire_up_to_date %></td>
+            <td><%= user.reference_form_up_to_date %></td>
+            <td><%= user.medical_form_up_to_date %></td>
             <td><%= link_to 'Show', user %></td>
             <td><%= link_to 'Edit', edit_user_path(user) %></td>
             <td><%= link_to 'Destroy', admin_user_delete_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>

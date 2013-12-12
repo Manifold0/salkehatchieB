@@ -3,7 +3,9 @@ class User < ActiveRecord::Base
   has_many :camp_assignments
   has_many :camp_requests
   has_one :covenant_form
-  has_many :reference_form
+  has_one :questionnaire
+  has_one :reference_form
+  has_one :medical_form
 
 	#belongs_to :medical_form
 	#has_one :whatever_form
@@ -93,6 +95,39 @@ class User < ActiveRecord::Base
     end
     return false
   end
+
+  def questionnaire_up_to_date
+    current_year = Time.now.year
+    if self.questionnaire != nil
+      if self.questionnaire.user_approval_date.year == current_year
+        return true
+      end
+    end
+    return false
+  end
+
+  def reference_form_up_to_date
+    current_year = Time.now.year
+    if self.reference_form != nil
+      if self.reference_form.user_approval_date.year == current_year
+        return true
+      end
+    end
+    return false
+  end
+
+  def medical_form_up_to_date
+    current_year = Time.now.year
+    if self.medical_form != nil
+      if self.reference_form.guardian_approval_date.year == current_year
+        return true
+      end
+    end
+    return false
+  end
+
+
+
 
   def full_name
     return "#{last_name}, #{first_name}"

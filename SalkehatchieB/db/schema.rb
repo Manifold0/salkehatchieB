@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20131209212436) do
 
   create_table "camp_permission_forms", force: true do |t|
     t.integer  "user_id"
-    t.string   "type"
+    t.string   "type_of"
     t.string   "relationship"
     t.string   "name"
     t.string   "address1"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20131209212436) do
     t.date     "end_date"
     t.string   "city"
     t.string   "hq_address"
+    t.integer  "max_campers"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -131,7 +132,7 @@ ActiveRecord::Schema.define(version: 20131209212436) do
 
   create_table "payments", force: true do |t|
     t.integer  "user_id"
-    t.date     "year"
+    t.integer  "year"
     t.float    "amount"
     t.string   "identifier"
     t.datetime "created_at"
@@ -189,6 +190,7 @@ ActiveRecord::Schema.define(version: 20131209212436) do
     t.string   "relationship"
     t.boolean  "approval_status"
     t.boolean  "reviewed_by_camp_director"
+    t.date     "user_approval_date"
     t.datetime "printed_date"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,4 +1,29 @@
+<h3 class ="text-muted">Viewing User: </h3>
+
+
 <p id="notice"><%= notice %></p>
 Balance: <%= @user.current_balance %>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+<div class="container">
+    <div class="row">
+        <div class=".col-md-3">
+            <table class="table table-striped table-condensed">
+                <thead>
+                  <tr>Covenant Form</tr>
+                  <tr>Questionnaire</tr>
+                  <tr>Reference Form</tr>
+                  <tr>Medical Form</tr>
+                </thead>
+                <tbody>
+                    <%= @user.covenant_form_up_to_date %>
+                    <%= @user.questionnaire_up_to_date %>
+                    <%= @user.reference_form_up_to_date %>
+                    <%= @user.medical_form_up_to_date %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%= link_to 'Edit', edit_user_path(@user), :class => "btn btn-default col-md-2" , style:"height:40px" %>
+<%= link_to 'Back', users_path, :class => "btn btn-default col-md-2" , style:"height:40px" %>
