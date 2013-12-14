@@ -29,6 +29,7 @@
       <th>End date</th>
       <th>City</th>
       <th>Hq address</th>
+      <th>Campers</th>
       <th></th>
       <th></th>
       <th></th>
@@ -41,8 +42,7 @@
         <td><%= camp.end_date %></td>
         <td><%= camp.city %></td>
         <td><%= camp.hq_address %></td>
-        <td><%= camp.camp_assignments.count %></td>
-
+        <td><%= camp.num_of_campers %></td>
        <% if can? :read, camp %>
           <td><%= link_to 'Show', admin_camp_path(camp) %></td>
        <% end %>

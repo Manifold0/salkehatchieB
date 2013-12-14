@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :forms]
   before_action :update_basic_info, only: :update
 
   # GET /users
@@ -13,6 +13,10 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     
+  end
+
+  def forms
+
   end
 
   # GET /users/new
@@ -29,6 +33,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    if @user.permission_level == nil #defaults are not working for some reason.
+      @user.permission_level == 1
+    end
 
     respond_to do |format|
       if @user.save
@@ -92,9 +99,16 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
+      if current_user.is_admin?
+        params.require(:user).permit(:last_name, :first_name, :preferred_name, :address_line1, :address_line2,
+        :city, :state, :district, :gender, :tshirt_size, :date_of_birth, :phone_number, :mobile_devices,
+        :service_provider, :church, :church_city, :church_pastor,:permission_level,:background_check, :background_check_date)
+ 
+      else
       params.require(:user).permit(:last_name, :first_name, :preferred_name, :address_line1, :address_line2,
         :city, :state, :district, :gender, :tshirt_size, :date_of_birth, :phone_number, :mobile_devices,
         :service_provider, :church, :church_city, :church_pastor,:permission_level)
+      end
     end
 
     def update_basic_info

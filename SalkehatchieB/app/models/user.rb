@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   has_many :camp_requests
   has_one :covenant_form
   has_one :questionnaire
-  has_many :reference_form
+  has_many :reference_forms
+  has_one :medical_form
 
 	#belongs_to :medical_form
 	#has_one :whatever_form
@@ -105,18 +106,47 @@ class User < ActiveRecord::Base
     return false
   end
 
-  def reference_form_up_to_date
+  def reference_forms_up_to_date
     current_year = Time.now.year
-    if self.reference_form != nil
-      if self.reference_form.updated_at.year == current_year
+    if self.reference_forms.count > 2
+      self.reference_forms.each do |reference|
+        if reference.reviewed_by_camp_director
+          if reference.user_approval_date.year != current_year
+            return false
+          end
+        else
+          return false
+        end
+      end
+    else
+      return false
+    end
+    return true
+  end
+
+  def medical_form_up_to_date
+    current_year = Time.now.year
+    if self.medical_form != nil
+      if self.reference_form.guardian_approval_date.year == current_year
         return true
       end
     end
     return false
   end
 
+
+
+
   def full_name
     return "#{last_name}, #{first_name}"
+  end
+
+  def background_check_valid?
+    if self.background_check
+      latest_date = Time.now.year - 5 #TO-DO more specificity.
+      return (self.background_check_date.year > latest_date)
+    end
+    return false
   end
 end
 

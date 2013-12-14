@@ -3,20 +3,25 @@ SalkehatchieB::Application.routes.draw do
   resources :camp_assignments
 
   resources :payments, only: [:new,:index,:show, :create]
+  
 
   resources :camps, only: [:index, :show], param: :campid #delete will redirect!
   get 'camps/:campid/campers' => "camps#campers" , as: :camps_campers
+  get 'camps/:campid/forms' => "camps#forms" , as: :camps_forms
+  get 'camps/:campid/home' => "camps#home"
 
   resources :schedules
 
   resources :events
 
+  get 'forms' => "users#forms", as: :forms
   scope 'forms' do
     resources :covenant_forms
     resources :reference_forms
     get 'references/:id/approve' => 'reference_forms#approve', as: :approve_reference
     resources :camp_permission_forms
     resources :medical_forms
+    resources :questionnaires
   end
 
   scope 'camps/:campid/forms' do
@@ -33,6 +38,9 @@ SalkehatchieB::Application.routes.draw do
       delete 'camps/:campid' => "camps#delete", as: :admin_camp_delete
     end
     resources :users
+    as resources :users do
+      delete 'users/:id' => "users#delete", as: :admin_user_delete
+    end
     resources :camp_requests
     get 'camp_request/assign' => "camp_requests#assign", as: :camp_request_assign
     resources :camp_assignments
@@ -44,7 +52,6 @@ SalkehatchieB::Application.routes.draw do
     end
     resources :costs
     get 'cost/approve' => "costs#approve", as: :cost_approve
-
 
   end
 

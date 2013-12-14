@@ -29,8 +29,13 @@
       <th>Permission Level</th>
       <th>First Name</th>
       <th>Last Name</th>
+      <th>Email</th>
       <th>Balance</th>
       <th>Covenant</th>
+      <th>Background Check</th>
+      <th>Questionnaire</th>
+      <th>Reference Form</th>
+      <th>Medical Form</th>
     </tr>
   </thead>
 
@@ -41,11 +46,17 @@
         <td><%= user.permission_level %></td>
             <td><%= user.first_name %></td>
             <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
             <td><%= user.current_balance %></td>
             <td><%= user.covenant_form_up_to_date %></td>
-            <td><%= link_to 'Show', user %></td>
-            <td><%= link_to 'Edit', edit_user_path(user) %></td>
-            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><% if user.background_check_valid? %><%= user.background_check_date %><% elsif user.background_check
+               %>Expired<% else %>No<% end %></td>
+            <td><%= user.questionnaire_up_to_date %></td>
+            <td><%= user.reference_forms_up_to_date %></td>
+            <td><%= user.medical_form_up_to_date %></td>
+            <td><%= link_to 'Show', user, class: 'hidden-print' %></td>
+            <td><%= link_to 'Edit', edit_user_path(user), class: 'hidden-print'%></td>
+            <td><%= link_to 'Destroy', admin_user_delete_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'hidden-print' %></td>
 
       </tr>
       <% end %>

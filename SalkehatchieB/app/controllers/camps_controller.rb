@@ -65,6 +65,14 @@ class CampsController < ApplicationController
     @assignments = @camp.camp_assignments.all
   end
 
+  def forms
+    @forms = [1,2];
+  end
+
+  def home
+
+  end
+
    def load_camp
      @camp = Camp.new(camp_params)
    end

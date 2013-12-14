@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209212436) do
+ActiveRecord::Schema.define(version: 20131214200937) do
 
 # Could not dump table "camp_assignments" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 20131209212436) do
     t.string   "relationship"
     t.boolean  "approval_status"
     t.boolean  "reviewed_by_camp_director"
+    t.datetime "user_approval_date"
     t.datetime "printed_date"
     t.datetime "created_at"
     t.datetime "updated_at"
