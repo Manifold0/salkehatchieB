@@ -31,8 +31,19 @@ class User < ActiveRecord::Base
   def is_camp_director?
     if self.permission_level == 4
       return true
-    else
+     else
       return false
+     end
+  end
+
+  def is_camp_director_for_camp(camp)
+    self.current_camps_assigned.each do |assignment|
+      if assignment.camp == camp
+        if assignment.permission_level == 4
+          return true
+        end
+        return false
+      end
     end
   end
 

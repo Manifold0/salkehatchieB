@@ -1,5 +1,6 @@
 class QueriesController < ApplicationController
-	before_action :is_admin
+	before_action :is_admin, only: [:index,:campers_by_camp,:campers_not_paid, :background_checks]
+	before_action :is_director, only: [:index_for_directors]
 
 	def index
 	end
@@ -38,6 +39,15 @@ class QueriesController < ApplicationController
 				return
 			end
 			if !current_user.is_admin?
+      			redirect_to root_path
+      		end
+		end
+		def is_director
+			if current_user == nil
+				redirect_to root_path
+				return
+			end
+			if !current_user.is_camp_director_for_camp(Camp.find(params[:campid]))
       			redirect_to root_path
       		end
 		end
