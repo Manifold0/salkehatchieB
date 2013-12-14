@@ -1,0 +1,31 @@
+<h1 class="text-muted">Forms</h1>
+<div><h3>Covenant</h3>
+<% if current_user.covenant_form %>
+<%= link_to 'Edit', covenant_form_path(current_user.covenant_form) %>
+<% else %>
+<%= link_to 'Start', new_covenant_form_path() %>
+<% end %></div>
+<div><h3>References</h3>
+<p>You must have 3 references.</p>
+<b>Current References</b>
+<table>
+	<tr><td>Name</td><td>Approved</td></tr>
+<% current_user.reference_forms.each do |reference| %>
+	<tr><td><%= reference.name %></td><td><%= reference.approval_status %></td></tr>
+
+<% end %>
+</table>
+<% if current_user.reference_forms.count < 3 %>
+<%= link_to 'Create new Reference', new_reference_form_path() %>
+<% end %>
+<div><h3>Medical</h3>
+<% if current_user.medical_form %>
+<%= link_to 'Edit', medical_form_path(current_user.medical_form) %>
+<% else %>
+<%= link_to 'Start', new_medical_form_path() %>
+<% end %></div>
+<div><h3>Questionnaire</h3><% if current_user.questionnaire %>
+<%= link_to 'Edit', questionnaire_path(current_user.questionnaire) %>
+<% else %>
+<%= link_to 'Start', new_questionnaire_path() %>
+<% end %></div>

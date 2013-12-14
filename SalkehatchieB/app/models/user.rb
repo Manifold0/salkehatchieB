@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :camp_requests
   has_one :covenant_form
   has_one :questionnaire
-  has_one :reference_form
+  has_many :reference_forms
   has_one :medical_form
 
 	#belongs_to :medical_form
