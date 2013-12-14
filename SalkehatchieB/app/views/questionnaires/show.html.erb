@@ -112,7 +112,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @questionnaire.user %>
+  <%= @questionnaire.user.first_name + " " + @questionnaire.user.last_name %>
 </p>
 
 <%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %> |
