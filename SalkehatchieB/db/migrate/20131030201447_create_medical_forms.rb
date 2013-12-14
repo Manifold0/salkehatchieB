@@ -4,7 +4,7 @@ class CreateMedicalForms < ActiveRecord::Migration
       t.references :user, index: true
       t.references :camp, index: true
       t.text :information
-      t.string :insurance_card_image
+      t.references :insurance_card_image
       t.string :physician_name
       t.string :physician_number
       t.string :physician_address_1

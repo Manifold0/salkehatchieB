@@ -55,7 +55,7 @@ SalkehatchieB::Application.routes.draw do
 
     #queries
     get 'queries' => "queries#index", as: :queries
-    get 'queries/campers_by_camp' => "queries#campers_by_camp", as: :campers_by_camp
+    get 'queries/campers_by_camp' => "queries#campers_by_camp", as: :query_campers_by_camp
   end
 
   get '/request' => 'camp_requests#new', :as => :request_camps

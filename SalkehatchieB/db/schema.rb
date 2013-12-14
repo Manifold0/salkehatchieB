@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214205114) do
+ActiveRecord::Schema.define(version: 20131214205914) do
 
 # Could not dump table "camp_assignments" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -95,41 +95,8 @@ ActiveRecord::Schema.define(version: 20131214205114) do
     t.datetime "updated_at"
   end
 
-  create_table "medical_forms", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "camp_id"
-    t.text     "information"
-    t.string   "insurance_card_image"
-    t.string   "physician_name"
-    t.string   "physician_number"
-    t.string   "physician_address_1"
-    t.string   "physician_address_2"
-    t.string   "physician_city"
-    t.string   "physician_state"
-    t.string   "physician_zip"
-    t.string   "health_insurance_company"
-    t.string   "policy_number"
-    t.string   "company_address"
-    t.string   "company_number"
-    t.string   "health_insurance_agent"
-    t.text     "allergies"
-    t.text     "diet_restrictions"
-    t.text     "recent_illness_injury"
-    t.text     "medications"
-    t.text     "additional_conditions"
-    t.date     "date_of_last_tetanus_shot"
-    t.boolean  "user_approval"
-    t.date     "user_approval_date"
-    t.boolean  "guardian_approval"
-    t.date     "guardian_approval_date"
-    t.datetime "printed_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "guardian_printed"
-  end
-
-  add_index "medical_forms", ["camp_id"], name: "index_medical_forms_on_camp_id"
-  add_index "medical_forms", ["user_id"], name: "index_medical_forms_on_user_id"
+# Could not dump table "medical_forms" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "payments", force: true do |t|
     t.integer  "user_id"
