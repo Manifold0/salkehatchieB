@@ -3,4 +3,9 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @medical_form %> |
-<%= link_to 'Back', medical_forms_path %>
+
+<% if current_user.is_admin? %>
+    <%= link_to 'Back', medical_forms_path %>
+<% else %>
+    <%= link_to 'Back', medical_form_path(current_user.medical_form) %>
+<% end %>
