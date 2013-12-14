@@ -6,6 +6,8 @@ SalkehatchieB::Application.routes.draw do
 
   resources :camps, only: [:index, :show], param: :campid #delete will redirect!
   get 'camps/:campid/campers' => "camps#campers" , as: :camps_campers
+  get 'camps/:campid/forms' => "camps#forms" , as: :camps_forms
+  #get 'camps/:campid/campers' => "camps#campers" , as: :camps_campers
 
   resources :schedules
 
