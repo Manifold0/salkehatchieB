@@ -1,33 +1,41 @@
-<%= form_for(@photo) do |f| %>
-  <% if @photo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <%= form_for @photo, :html => {:multipart => true} do |f| %>
+                  <% if @photo.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
 
-      <ul>
-      <% @photo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+                      <ul>
+                      <% @photo.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                      <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+
+                  <div class="field">
+                    <%= f.label :user, class: "text-muted" %><br>
+                    <%= f.text_field :user, autofocus: "true", placeholder: "User", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :approval %><br>
+                    <%= f.check_box :approval %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :users_tagged, class: "text-muted" %><br>
+                    <%= f.text_area :users_tagged, autofocus: "true", placeholder: "Tag Users Here", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :image %><br>
+                    <%= f.file_field :image %>
+                  </div>
+                  <div class="actions">
+                      <%= f.submit :class => "btn btn-default col-md-2", style:"height:40px" %>
+                  </div>
+                <% end %>
+             </div>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
-    <%= f.label :approval %><br>
-    <%= f.check_box :approval %>
-  </div>
-  <div class="field">
-    <%= f.label :users_tagged %><br>
-    <%= f.text_area :users_tagged %>
-  </div>
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.text_field :image %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

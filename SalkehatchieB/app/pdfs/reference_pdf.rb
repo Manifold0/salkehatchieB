@@ -10,9 +10,9 @@ class ReferencePdf < Prawn::Document
 
 
   def heading
-    text "2013 SALKEHATCHIE SUMMER SERVICE REFERENCE FORM FOR PARTICIPANTS 18 YEARS OLD OR OLDER"
+    text "2013 SALKEHATCHIE SUMMER SERVICE REFERENCE FORM FOR PARTICIPANTS 18 YEARS OLD OR OLDER", :align => :center, style: :bold
     move_down(5)
-    text "Applicant's Name: "  + "#{@form.user.first_name}" + " #{@form.user.last_name} "
+    text "<b>Applicant's Name:</b> "  + "#{@form.user.first_name}" + " #{@form.user.last_name} ", :inline_format => true
     move_down(15)
     text "Salkehatchie Summer Service is a pioneering servant ministry at selected sites in South Carolina, North Carolina and Georgia involving high school and college age youth, adult community leaders and persons of different cultures in upgrading housing, motivating community cooperative efforts by helping persons to help themselves, and providing all participants with opportunities for personal growth and service."
     move_down(15)
@@ -28,27 +28,27 @@ class ReferencePdf < Prawn::Document
   end
 
   def reference
-    move_down(10)
+    move_down(100)
 
     #for each reference, create these...
-    text "Reference Name:"  + " #{@form.name}"
+    text "<b>Reference Name:</b>"  + " #{@form.name}", :inline_format => true
     #insert name
-    text "Address:"
+    text "<b>Address:</b>", :inline_format => true
     #insert adress
-    text "Phone:"
+    text "<b>Phone:</b>", :inline_format => true
     #insert phone
-    text "Email Address:"  + " #{@form.email}"
+    text "<b>Email Address:</b>"  + " #{@form.email}", :inline_format => true
     #insert email address
-    text "Signature:"
+    text "<b>Signature:</b>", :inline_format => true
     #insert signature
-    text "Relationship:" + " #{@form.relationship}"
+    text "<b>Relationship:</b>" + " #{@form.relationship}", :inline_format => true
     #insert relationship
-    move_down(5)
-    text "Reviewed by (Camp Director)" + " #{@form.reviewed_by_camp_director}"
+    move_down(15)
+    text "<b>Reviewed by (Camp Director): </b>" + " #{@form.reviewed_by_camp_director}", :inline_format => true
     #insert name
-    text "Signature:"
+    text "<b>Signature:</b>", :inline_format => true
     #insert signature
-    text "Date:"
+    text "<b>Date:</b>", :inline_format => true
     #insert date
   end
 end

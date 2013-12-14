@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
 
   has_many :camp_assignments
+  has_many :camp_requests
   has_one :covenant_form
-  has_many :reference_form
+  has_one :questionnaire
+  has_one :reference_form
+  has_one :medical_form
 
 	#belongs_to :medical_form
 	#has_one :whatever_form
@@ -51,11 +54,16 @@ class User < ActiveRecord::Base
 
   def is_camper?
     #current_camp_assignment?
-    if self.permission_level == 1
-      return true
-    else
-      return false
+    return !is_admin?
+  end
+  def current_camps_requested
+    requests = Array.new()
+    self.camp_requests.each do |camp_request|
+      if camp_request.created_at.year == DateTime.now.year
+        requests.push(camp_request)
+      end
     end
+    return requests
   end
 
   def current_camps_assigned
@@ -73,7 +81,7 @@ class User < ActiveRecord::Base
     payment = Payment.where(user_id:self.id,year:current_year).sum(:amount)
     
     current_cost = Cost.where(year:current_year).sum(:amount)
-    num_camps = current_camps_assigned.count
+    num_camps = current_camps_requested.count
 
     @balance = (current_cost*num_camps) - payment
   end
@@ -88,8 +96,49 @@ class User < ActiveRecord::Base
     return false
   end
 
+  def questionnaire_up_to_date
+    current_year = Time.now.year
+    if self.questionnaire != nil
+      if self.questionnaire.user_approval_date.year == current_year
+        return true
+      end
+    end
+    return false
+  end
+
+  def reference_form_up_to_date
+    current_year = Time.now.year
+    if self.reference_form != nil
+      if self.reference_form.user_approval_date.year == current_year
+        return true
+      end
+    end
+    return false
+  end
+
+  def medical_form_up_to_date
+    current_year = Time.now.year
+    if self.medical_form != nil
+      if self.reference_form.guardian_approval_date.year == current_year
+        return true
+      end
+    end
+    return false
+  end
+
+
+
+
   def full_name
     return "#{last_name}, #{first_name}"
+  end
+
+  def background_check_valid?
+    if self.background_check
+      latest_date = Time.now.year - 5 #TO-DO more specificity.
+      return (self.background_check_date.year > latest_date)
+    end
+    return false
   end
 end
 

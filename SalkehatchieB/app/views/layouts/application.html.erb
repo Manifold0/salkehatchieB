@@ -8,9 +8,8 @@
 </head>
 <body>
 <div class="container-fluid">
-    <% admin = false;
-       director = true;
-    if !current_user%>
+    <%
+    if !current_user || (current_user.current_camps_assigned.count == 0 && !current_user.is_admin?) %>
         <div class="col-md-4 col-md-offset-4">
             <div class="col-md-12 text-center">
             <h2>Salkehatchie Camps</h2>
@@ -20,8 +19,15 @@
                     <%= yield %>
                 </div>
             </div>
+            <% if current_user %>
+            <div>
+            <%= link_to "Basic Info", user_basic_info_path, :class => "btn" %>
+            <%= link_to "Request Camp", request_camps_path, :class => "btn" %>
+            <%= link_to "Payments", payments_path, :class => "btn" %>
+                <%= link_to "Sign Out", destroy_user_session_path, :class => "btn", :method => "DELETE" %>
+            </div>
+            <% end %>
         </div>
-
     <% else %>
     <div class="row top">
         <div class="col-md-5 header">
@@ -54,19 +60,20 @@
     <div class="row index">
         <div id="sideBar" class="col-md-2 btn-group-vertical index-btn custom-vertical-nav-bar dropdown-menu">
         	<%if current_user.is_admin? %>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+                <button type="button" class="btn btn-default"> Home <span class="glyphicon glyphicon-home"></span></button>
                 <%# link_to "Home", admin_home_path, :class => "btn"%>
                 <%= link_to "Users", users_path, :class => "btn"%>
 		        <%= link_to "Camps", camps_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-bullhorn"></span>Directors</button>
+                <button type="button" class="btn btn-default"> Directors <span class="glyphicon glyphicon-bullhorn"></span></button>
                 <%# link_to "Directors", users_path,(query for camp directors) :  class => "btn"%>
                 <%= link_to "Applications", camp_requests_path, :class => "btn"%>
+                <%= link_to "Assignments", camp_assignments_path, :class => "btn"%>
                 <%= link_to "Payments", admin_payments_path, :class => "btn"%>
                 <%= link_to "Costs", costs_path, :class => "btn"%>
                 <%= link_to "Photos", photos_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+                <button type="button" class="btn btn-default"> Schedule <span class="glyphicon glyphicon-calendar"></span></button>
                 <%# link_to "Schedule", schedule_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>
+                <button type="button" class="btn btn-default"> Queries <span class="glyphicon glyphicon-list"></span></button>
                 <%# link_to "Queries", query_path(with query), :class => "btn"%>
 
                 <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
@@ -116,6 +123,7 @@
 
     <% end %>
         <li class="divider"></li>
+        <%= link_to "Payments", payments_path, :class => "btn" %>
         <%= link_to "Sign Out", destroy_user_session_path, :class => "btn", :method => "DELETE" %>
         </div><div class="col-md-9"><%= yield %></div>
     </div>

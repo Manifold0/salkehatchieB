@@ -43,7 +43,8 @@ class ReferenceFormsController < ApplicationController
     @reference_form.user = current_user
     respond_to do |format|
       if @reference_form.save
-        format.html { redirect_to @reference_form, notice: 'Reference form was successfully created.' }
+        ReferenceRequestMailer.request_email(@reference_form).deliver
+        format.html { redirect_to @reference_form, notice: 'Reference form was successfully created. An email was sent to your referencer.' }
         format.json { render action: 'show', status: :created, location: @reference_form }
       else
         format.html { render action: 'new' }

@@ -7,7 +7,10 @@ class CreateReferenceForms < ActiveRecord::Migration
       t.string :relationship
       t.boolean :approval_status
       t.boolean :reviewed_by_camp_director
+      t.date :user_approval_date
+
       t.timestamp :printed_date
+
 
       t.timestamps
     end

@@ -1,4 +1,12 @@
-<%= form_for(@camp_assignment) do |f| %>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+
+
+            <%= form_for(@camp_assignment) do |f| %>
   <% if @camp_assignment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@camp_assignment.errors.count, "error") %> prohibited this camp_assignment from being saved:</h2>
@@ -42,3 +50,7 @@
     <%= f.submit %>
   </div>
 <% end %>
+</div>
+            </div>
+        </div>
+    </div>

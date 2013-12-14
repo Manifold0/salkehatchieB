@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     elsif current_user.current_camps_assigned.length > 0
       return camp_path(current_user.current_camps_assigned[0].camp)
     else
-      return camps_path
+      return request_camps_path
 	  end
   end
 

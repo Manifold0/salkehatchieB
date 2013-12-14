@@ -1,13 +1,29 @@
-<h1>Listing camp_requests</h1>
+<h1 class="text-muted">Camp Requests</h1>
 
-<table>
+<nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+
+    </div><!-- /.navbar-collapse -->
+</nav>
+<div class="container">
+    <div class="row">
+        <div class=".col-md-3">
+            <table class="table table-striped table-condensed">
   <thead>
     <tr>
       <th>User</th>
-      <th>Status</th>
-      <th>Preference1</th>
-      <th>Preference2</th>
-      <th>Preference3</th>
+      <th>Balance</th>
+      <th>Background Check</th>
+      <th>First Choice</th>
+      <th>Second Choice</th>
+      <th>Third Choice</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,33 +31,61 @@
   </thead>
 
   <tbody>
-    <% @camp_requests.each do |camp_request| %>
+    <% @camp_requests.each do |camp_request| 
+        if(camp_request.preference1_id != nil)
+          camp_1 = Camp.find(camp_request.preference1_id)
+        end
+        if(camp_request.preference2_id != nil)
+          camp_2 = Camp.find(camp_request.preference2_id)
+        end
+        if(camp_request.preference3_id != nil)
+          camp_3 = Camp.find(camp_request.preference3_id)
+        end %>
       <tr>
         <td><%= camp_request.user.first_name %> <%= camp_request.user.last_name %></td>
-        <td><%= camp_request.status %></td>
+        <% if camp_request.user.current_balance == 0 %><td>Paid</td>
+        <% else %><td><%= camp_request.user.current_balance %></td><% end %>
+        <% if camp_request.user.background_check_valid? %><td>Passed</td>
+        <% else %><td>Not Passed</td><% end %>
         <% if !camp_request.status? %>
-        <% if camp_request.preference1_id != nil %>
-        <td><%= Camp.find(camp_request.preference1_id).city %> [<%= link_to 'Accept', camp_request_assign_path(user: camp_request.user,camp: camp_request.preference1_id, camp_request: camp_request.id) %>]</td>
-        <% end %>
-        <% if camp_request.preference2_id != nil %>
-        <td><%= Camp.find(camp_request.preference2_id).city %> [<%= link_to 'Accept', camp_request_assign_path(user: camp_request.user,camp: camp_request.preference2_id, camp_request: camp_request.id) %>]</td>
-        <% end %>
-        <% if camp_request.preference3_id != nil %>
-        <td><%= Camp.find(camp_request.preference3_id).city %> [<%= link_to 'Accept', camp_request_assign_path(user: camp_request.user,camp: camp_request.preference3_id, camp_request: camp_request.id) %>]</td>
-        <% end %>
+          <% if camp_request.user.current_balance == 0 && camp_request.user.background_check_valid? %>
+            <% if camp_1 %>
+              <td><%= camp_1.city %> [<%= link_to 'Accept', camp_request_assign_path(user: camp_request.user,camp: camp_request.preference1_id, camp_request: camp_request.id) %>] (<%= camp_1.num_of_campers %>)</td>
+            <% else %><td></td><% end %>
+            <% if camp_2 %>
+              <td><%= Camp.find(camp_request.preference2_id).city %> [<%= link_to 'Accept', camp_request_assign_path(user: camp_request.user,camp: camp_request.preference2_id, camp_request: camp_request.id) %>] (<%= camp_2.num_of_campers %>)</td>
+            <% else %><td></td><% end %>
+            <% if camp_3 %>
+              <td><%= Camp.find(camp_request.preference3_id).city %> [<%= link_to 'Accept', camp_request_assign_path(user: camp_request.user,camp: camp_request.preference3_id, camp_request: camp_request.id) %>] (<%= camp_3.num_of_campers %>)</td>
+            <% else %><td></td><% end %>
+          <% else %>
+            <td></td>
+            <td></td>
+            <td></td>
+          <% end %>
         <% else %>
-        <td><%= Camp.find(camp_request.preference1_id).city %></td>
-        <% if camp_request.preference2_id != nil %>
-        <td><%= Camp.find(camp_request.preference2_id).city %></td>
-        <% end 
-        if camp_request.preference3_id != nil %>
-        <td><%= Camp.find(camp_request.preference3_id).city %></td>
+          <td>Paid</td>
+          <td><%= Camp.find(camp_request.preference1_id).city %></td>
+            <% if camp_request.preference2_id != nil %>
+              <td><%= Camp.find(camp_request.preference2_id).city %></td>
+            <% else %>
+              <td></td>
+            <% end 
+            if camp_request.preference3_id != nil %>
+              <td><%= Camp.find(camp_request.preference3_id).city %></td>
+            <% else %>
+              <td></td>
+            <% end %>
         <% end %>
+        <% if can? :read, camp_request %>
+            <td><%= link_to 'Show', camp_request %></td>
         <% end %>
-        <td><%= link_to 'Show', camp_request %></td>
-        <td><%= link_to 'Edit', edit_camp_request_path(camp_request) %></td>
-        <td><%= link_to 'Destroy', camp_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
+        <% if can? :update, camp_request %>
+            <td><%= link_to 'Edit', edit_camp_request_path(camp_request) %></td>
+        <% end %>
+        <% if can? :destroy, camp_request %>
+            <td><%= link_to 'Destroy', camp_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -49,4 +93,13 @@
 
 <br>
 
-<%= link_to 'New Camp request', new_camp_request_path %>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                <%= link_to 'New Camp request', new_camp_request_path, :class => "btn btn-default col-md-12", style:"height:40px" %>
+
+                </div>
+
+</div>
+            </div>
+        </div>
+    </div>

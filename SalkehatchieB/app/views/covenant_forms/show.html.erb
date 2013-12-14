@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @covenant_form.user %>
+  <%= @covenant_form.user.first_name + " " + @covenant_form.user.last_name %>
 </p>
 
 <p>
@@ -37,7 +37,7 @@
 
 <p>
   <strong>User signature:</strong>
-  <%= @covenant_form.user_signature %>
+    <%= image_tag @covenant_form.user_signature_url.to_s, :class => "thmb" %>
 </p>
 
 <p>

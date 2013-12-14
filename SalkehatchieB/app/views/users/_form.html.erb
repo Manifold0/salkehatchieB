@@ -10,104 +10,149 @@
       </ul>
     </div>
   <% end %>
+    <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+    <form class="form-horizontal" action='' method="POST">
+        <fieldset>
+            <div id="legend">
+                <legend class=""></legend>
+            </div>
 
   <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+  <%= f.text_field :email, placeholder: "Email", class: "form-control", style: "padding:4px" %><br />
   </div>
 
   <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :first_name, placeholder: "First Name", class: "form-control", style: "padding:4px" %><br />
   </div>
 
   <div class="field">
-    <%= f.label :preferred_name %><br>
-    <%= f.text_field :preferred_name %>
+  <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control", style: "padding:4px" %><br />
   </div>
 
   <div class="field">
-    <%= f.label :address_line1 %><br>
-    <%= f.text_field :address_line1 %>
+  <%= f.text_field :preferred_name, placeholder: "Preferred Name", class: "form-control", style: "padding:4px" %><br />
   </div>
 
   <div class="field">
-    <%= f.label :address_line2 %><br>
-    <%= f.text_field :address_line2 %>
+  <%= f.text_field :address_line1, placeholder: "Address line 1", class: "form-control", style: "padding:4px" %><br />
+  </div>
+
+
+  <div class="field">
+  <%= f.text_field :address_line2, placeholder: "Address line 2", class: "form-control", style: "padding:4px" %><br />
   </div>
 
   <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+  <%= f.text_field :city, placeholder: "City", class: "form-control", style: "padding:4px" %><br />
   </div>
 
   <div class="field">
-    <%= f.label :state%><br>
-    <%= f.text_field :state %>
+  <%= f.text_field :state, placeholder: "State", class: "form-control", style: "padding:4px" %><br />
+  </div>
+
+
+  <div class="field">
+  <%= f.text_field :district, placeholder: "District", class: "form-control", style: "padding:4px" %><br />
+  </div>
+
+  <div class="field">Gender Identity: <% genders_options = ['Prefer to Not Specify','Female','Genderqueer/Androgynous','Intersex','Male','Transgender','Transsexual','Cross-dresser','FTM (female-to-male)','MTF (male-to-female)','Other']
+  %>
+  <%= f.select :gender, genders_options, class: "form-control", style: "padding:4px" %><br />
+  </div>
+  
+
+  <div class="field">T-Shirt Size: <%
+
+  tshirt_sizes = ['Unset','XXXL','XXL','XL','L','M','S','XS']
+%><%= f.select :tshirt_size, tshirt_sizes, class: "form-control", style: "padding:4px" %><br />
+  </div>
+  <div class="field">
+  <%  current_year = DateTime.now.year
+      first_years = current_year-13
+      last_years = first_years-80 %>
+  <%= f.date_select :date_of_birth, placeholder: "Birth Date", class: "form-control", style: "padding:4px", start_year: first_years, end_year: last_years %><br />
+  </div>
+  <div class="field">
+  <%= f.text_field :phone_number, placeholder: "Phone Number (###) ###-####", class: "form-control", style: "padding:4px" %><br />
   </div>
 
   <div class="field">
-    <%= f.label :district %><br>
-    <%= f.text_field :district %>
+  <% devices = ['iPhone','Android','Windows','Blackberry','call & text only','call only', 'text only'] %>
+  Phone Device: <%= f.select :mobile_devices, devices, placeholder: "Mobile Devices", class: "form-control", style: "padding:4px" %><br />
   </div>
 
-  <div class="field">
-    <%= f.label :gender %><br>
-    <%= f.text_field :gender %>
-  </div>
 
   <div class="field">
-    <%= f.label :tshirt_size %><br>
-    <%= f.text_field :tshirt_size %>
+  <%= f.text_field :service_provider, placeholder: "Service Provider", class: "form-control", style: "padding:4px" %><br />
   </div>
 
-  <div class="field">
-    <%= f.label :date_of_birth %><br>
-    <%= f.date_select :date_of_birth %>
-  </div>
 
   <div class="field">
-    <%= f.label :phone_number %><br>
-    <%= f.text_field :phone_number %>
+  <%= f.text_field :church, placeholder: "Church", class: "form-control", style: "padding:4px" %><br />
   </div>
 
-  <div class="field">
-    <%= f.label :mobile_devices %><br>
-    <%= f.text_field :mobile_devices %>
-  </div>
 
   <div class="field">
-    <%= f.label :service_provider %><br>
-    <%= f.text_field :service_provider %>
+  <%= f.text_field :church_city, placeholder: "Church City", class: "form-control", style: "padding:4px" %><br />
   </div>
 
-  <div class="field">
-    <%= f.label :church %><br>
-    <%= f.text_field :church %>
-  </div>
 
   <div class="field">
-    <%= f.label :church_city %><br>
-    <%= f.text_field :church_city %>
+  <%= f.text_field :church_pastor, placeholder: "Church Pastor", class: "form-control", style: "padding:4px" %><br />
   </div>
 
+<%  if current_user.is_admin? %>
   <div class="field">
-    <%= f.label :church_pastor %><br>
-    <%= f.text_field :church_pastor %>
-  </div>
-<%  if current_user.permission_level == 5 %>
-  <div class="field">
-    <%
-      permission_levels = Array.new()
-      permission_levels.push(['Admin',5])
-      permission_levels.push(['Other',1])
-    %>
-    <%= f.label :permission_level %><br>
-    <%= f.select( :permission_level,permission_levels) %>
+          <label for="text-muted">
+              Permission Level</label>
+          <div class="row">
+              <div class="col-xs-4 col-md-4">
+                  <%
+                     permission_levels = Array.new()
+                     permission_levels.push(['Admin',5])
+                     permission_levels.push(['Other',1])
+                  %>
 
+                  <%= f.select( :permission_level,permission_levels) %>
+              </div>
+          </div>
   </div>
+  <div class="field">
+          <label for="text-muted">
+              Has background check and date of last check</label>
+          <div class="row">
+              <div class="col-xs-4 col-md-4">
+                  <%= f.check_box( :background_check) %> on <%= f.date_select( :background_check_date) %>
+              </div>
+          </div>
+  </div>
+
+
+
     <% end %>
+
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-default col-md-4 col-md-offset-1", style:"height:40px" %>
+
   </div>
+
 <% end %>
+</div>
+
+</nav>
+
+
+
+
+
+
+

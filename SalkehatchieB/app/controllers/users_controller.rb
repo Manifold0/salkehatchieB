@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :update_basic_info, only: :update
 
@@ -28,6 +29,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    if @user.permission_level == nil #defaults are not working for some reason.
+      @user.permission_level == 1
+    end
 
     respond_to do |format|
       if @user.save
@@ -82,15 +86,25 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
-      #@user = current_user
+      if (params[:id])
+        @user = User.find(params[:id])
+      else
+        @user = current_user
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
+      if current_user.is_admin?
+        params.require(:user).permit(:last_name, :first_name, :preferred_name, :address_line1, :address_line2,
+        :city, :state, :district, :gender, :tshirt_size, :date_of_birth, :phone_number, :mobile_devices,
+        :service_provider, :church, :church_city, :church_pastor,:permission_level,:background_check, :background_check_date)
+ 
+      else
       params.require(:user).permit(:last_name, :first_name, :preferred_name, :address_line1, :address_line2,
         :city, :state, :district, :gender, :tshirt_size, :date_of_birth, :phone_number, :mobile_devices,
         :service_provider, :church, :church_city, :church_pastor,:permission_level)
+      end
     end
 
     def update_basic_info

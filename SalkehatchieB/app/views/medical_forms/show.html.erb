@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @medical_form.user %>
+  <%= @medical_form.user.first_name + " " + @medical_form.user.last_name %>
 </p>
 
 <p>
@@ -17,7 +17,7 @@
 
 <p>
   <strong>Insurance card image:</strong>
-  <%= @medical_form.insurance_card_image %>
+    <%= image_tag @medical_form.insurance_card_image_url.to_s, :class => "thmb" %>
 </p>
 
 <p>

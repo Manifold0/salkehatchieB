@@ -17,7 +17,8 @@ class Ability
       #cannot :update, User, User.includes(:payments).where()
 
       #cannot assign camper 18+ if they haven't passed background check; temporary
-      cannot :update, User, User.where(:background_check => false && :date_of_birth > 1/1/1995)
+      #this will need to be in the controller
+      #cannot :update, User, User.where(:background_check => false && :date_of_birth > 1/1/1995)
 
       #can assign camp directors
 
@@ -76,8 +77,13 @@ class Ability
       #can :read, Photo, Photo.where(:site => user.site)
       #can :read, Camp
       can :read, Camp
-      can :read, Payment, Payment.where(:user => user)
+      #can :read, Payment, Payment.where(:user => user)
       can :create, Payment
+      can [:read, :update, :destroy, :create], [CovenantForm, MedicalForm, ReferenceForm, CampRequest], :user_id => user.id
+
+      #don't want this user to be able to view index page
+      cannot :read, User
+      can :manage, User, id: user.id 
 
       #can :manage, ReferenceForm, ReferenceForm.where(:user => user)
     end
