@@ -51,5 +51,10 @@
 </p>
 
 <%= link_to 'Edit', edit_covenant_form_path(@covenant_form) %> |
-<%= link_to 'Back', covenant_forms_path %>
+
+<% if current_user.is_admin? %>
+    <%= link_to 'Back', covenant_forms_path %>
+<% else %>
+    <%= link_to 'Back', forms_path %>
+<% end %>
 <%= link_to 'Print PDF', covenant_form_path(@covenant_form, format: "pdf") %>

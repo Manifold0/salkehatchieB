@@ -46,7 +46,7 @@ class CovenantFormsController < ApplicationController
 
     number_of_forms = CovenantForm.where("(created_at >= ? AND created_at < ?) and user_id = ?", date_registration_opens, date_registration_closes , create_for_user.id).count
 
-    if (number_of_times_currently_registered > 0 && !current_user.is_admin?)
+    if (number_of_forms > 0 && !current_user.is_admin?)
       #problem already requested camps.
       render :text => "You have already created "+number_of_forms.to_s+" form between "+date_registration_opens.strftime("%F")+" and "+date_registration_closes.strftime("%F")
       #TO-DO: this needs to show a prettier error.
