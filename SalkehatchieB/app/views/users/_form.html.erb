@@ -75,7 +75,7 @@
 %><%= f.select :tshirt_size, tshirt_sizes, class: "form-control", style: "padding:4px" %><br />
   </div>
   <div class="field">
-  <%  current_year = DateTime.now.year
+    Birth Date: <% current_year = DateTime.now.year
       first_years = current_year-13
       last_years = first_years-80 %>
   <%= f.date_select :date_of_birth, placeholder: "Birth Date", class: "form-control", style: "padding:4px", start_year: first_years, end_year: last_years %><br />
@@ -134,18 +134,14 @@
               </div>
           </div>
   </div>
-
-
-
-    <% end %>
+ <% end %>
 
 
   <div class="actions">
     <%= f.submit :class => "btn btn-default col-md-4 col-md-offset-1", style:"height:40px" %>
-
   </div>
 
-<% end %>
+    <% end %>
 </div>
 
 </nav>
