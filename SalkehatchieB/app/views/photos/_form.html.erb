@@ -17,7 +17,7 @@
 
                   <div class="field">
                     <%= f.label :user, class: "text-muted" %><br>
-                    <%= f.text_field :user, autofocus: "true", placeholder: "User", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                    <%= current_user.first_name + " " + current_user.last_name %>
                   </div>
                   <div class="field">
                     <%= f.label :approval %><br>
