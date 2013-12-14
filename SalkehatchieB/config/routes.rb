@@ -1,7 +1,5 @@
 SalkehatchieB::Application.routes.draw do
   
-  resources :camp_assignments
-
   resources :payments, only: [:new,:index,:show, :create]
   
 
@@ -55,7 +53,11 @@ SalkehatchieB::Application.routes.draw do
 
     #queries
     get 'queries' => "queries#index", as: :queries
-    get 'queries/campers_by_camp' => "queries#campers_by_camp", as: :query_campers_by_camp
+    scope 'queries' do
+      get 'ByCamp' => "queries#campers_by_camp", as: :query_campers_by_camp
+      get 'NotPaid' => "queries#campers_not_paid", as: :query_campers_not_paid
+      get 'BackgroundChecks' => "queries#background_checks", as: :query_background_checks
+    end
   end
 
   get '/request' => 'camp_requests#new', :as => :request_camps

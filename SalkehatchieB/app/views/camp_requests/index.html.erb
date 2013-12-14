@@ -19,6 +19,8 @@
   <thead>
     <tr>
       <th>User</th>
+      <th>Email</th>
+      <th>Age</th>
       <th>Balance</th>
       <th>Background Check</th>
       <th>First Choice</th>
@@ -42,13 +44,15 @@
           camp_3 = Camp.find(camp_request.preference3_id)
         end %>
       <tr>
-        <td><%= camp_request.user.first_name %> <%= camp_request.user.last_name %></td>
+        <td><%= camp_request.user.full_name %></td>
+        <td><%= camp_request.user.email %></td>
+        <td><%= camp_request.user.age %></td>
         <% if camp_request.user.current_balance == 0 %><td>Paid</td>
         <% else %><td><%= camp_request.user.current_balance %></td><% end %>
         <% if camp_request.user.background_check_valid? %><td>Passed</td>
         <% else %><td>Not Passed</td><% end %>
         <% if !camp_request.status? %>
-          <% if camp_request.user.current_balance == 0 && camp_request.user.background_check_valid? %>
+          <% if camp_request.user.current_balance == 0 && (camp_request.user.background_check_valid? || camp_request.user.under_eighteen?) %>
             <% if camp_1 %>
               <td><%= camp_1.city %> [<%= link_to 'Accept', camp_request_assign_path(user: camp_request.user,camp: camp_request.preference1_id, camp_request: camp_request.id) %>] (<%= camp_1.num_of_campers %>)</td>
             <% else %><td></td><% end %>

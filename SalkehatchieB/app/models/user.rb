@@ -134,12 +134,30 @@ class User < ActiveRecord::Base
     return false
   end
 
-
-
-
   def full_name
     return "#{last_name}, #{first_name}"
   end
+
+  def under_eighteen?
+    return self.age < 18
+  end
+
+  def age
+    if self.date_of_birth == nil
+      return 0
+    end
+    dob = self.date_of_birth
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
+
+=begin  def age
+    if (self.date_of_birth == nil)
+      return 0;
+    end
+    return self.date_of_birth.to_int/(60*60*24*365)
+  end
+=end
 
   def background_check_valid?
     if self.background_check

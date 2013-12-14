@@ -11,7 +11,7 @@ class CampRequestsController < ApplicationController
     p = params.permit(:user, :camp, :camp_request)
 
     request = CampRequest.find(p['camp_request'])
-    if request.user.current_balance != 0
+    if request.user.current_balance != 0 && current_user.background_check_valid?
       redirect_to camp_requests_path
     end
     
