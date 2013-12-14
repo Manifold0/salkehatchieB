@@ -3,4 +3,9 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @questionnaire %> |
-<%= link_to 'Back', questionnaires_path %>
+
+<% if current_user.is_admin? %>
+    <%= link_to 'Back', questionnaires_path %>
+<% else %>
+    <%= link_to 'Back', questionnaire_path(current_user.questionnaire) %>
+<% end %>
