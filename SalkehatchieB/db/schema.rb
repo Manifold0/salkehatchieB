@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214200937) do
+ActiveRecord::Schema.define(version: 20131214205114) do
 
 # Could not dump table "camp_assignments" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20131214200937) do
     t.datetime "printed_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "guardian_printed"
   end
 
   add_index "medical_forms", ["camp_id"], name: "index_medical_forms_on_camp_id"
