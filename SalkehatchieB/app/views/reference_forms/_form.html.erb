@@ -1,55 +1,64 @@
-<%= form_for(@reference_form) do |f| %>
-  <% if @reference_form.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reference_form.errors.count, "error") %> prohibited this reference_form from being saved:</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
 
-      <ul>
-      <% @reference_form.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+                <%= form_for(@reference_form) do |f| %>
+                  <% if @reference_form.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(@reference_form.errors.count, "error") %> prohibited this reference_form from being saved:</h2>
+
+                      <ul>
+                      <% @reference_form.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                      <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="field">
+                    <%= f.label :name %><br>
+                    <%= f.text_field :name, autofocus: true, placeholder: "Name", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :email %><br>
+                    <%= f.text_field :email, autofocus: true, placeholder: "Email", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :relationship %><br>
+                    <%= f.text_field :relationship, autofocus: true, placeholder: "Relationship", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :approval_status %><br>
+                    <%= f.check_box :approval_status, disabled: true  %>
+                  </div>
+                  <%
+                  has_the_authority = false
+                  if @reference_form.user
+                    @reference_form.user.current_camps_assigned.each do |assignment|
+                      current_user.current_camps_assigned.each do |director_assignment|
+                        if assignment.camp == director_assignment.camp && director_assignment.permission_level > 3
+                          has_the_authority = true
+                        end
+                      end
+                    end
+                  end
+                  if has_the_authority
+
+                   %><div class="field">
+                    <%= f.label :reviewed_by_camp_director, class: "text-muted" %><br>
+                    <%= f.check_box :reviewed_by_camp_director %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :printed_date, class: "text-muted" %><br>
+                    <%= f.datetime_select :printed_date %>
+                  </div>
+                  <% end %>
+
+                  <div class="actions">
+                    <%= f.submit :class => "btn btn-default col-md-3", style:"height:40px"%>
+                  </div>
+                <% end %>
+                </div>
+            </div>
+        </div>
     </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :relationship %><br>
-    <%= f.text_field :relationship %>
-  </div>
-  <div class="field">
-    <%= f.label :approval_status %><br>
-    <%= f.check_box :approval_status, disabled: true  %>
-  </div>
-  <%
-  has_the_authority = false
-  if @reference_form.user
-    @reference_form.user.current_camps_assigned.each do |assignment|
-      current_user.current_camps_assigned.each do |director_assignment|
-        if assignment.camp == director_assignment.camp && director_assignment.permission_level > 3
-          has_the_authority = true
-        end
-      end
-    end
-  end
-  if has_the_authority 
-
-   %><div class="field">
-    <%= f.label :reviewed_by_camp_director %><br>
-    <%= f.check_box :reviewed_by_camp_director %>
-  </div>
-  <div class="field">
-    <%= f.label :printed_date %><br>
-    <%= f.datetime_select :printed_date %>
-  </div>
-  <% end %>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

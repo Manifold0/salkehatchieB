@@ -3,7 +3,9 @@ class QueriesController < ApplicationController
 	before_action :is_director, only: [:index_for_directors]
 
 	def index
-	end
+  end
+
+
 
 	def campers_by_camp
 		current_year = DateTime.now.year

@@ -1,109 +1,127 @@
-<%= form_for(@questionnaire) do |f| %>
-  <% if @questionnaire.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@questionnaire.errors.count, "error") %> prohibited this questionnaire from being saved:</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
 
-      <ul>
-      <% @questionnaire.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+                <%= form_for(@questionnaire) do |f| %>
+                  <% if @questionnaire.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(@questionnaire.errors.count, "error") %> prohibited this questionnaire from being saved:</h2>
+
+                      <ul>
+                      <% @questionnaire.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                      <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+
+                  <div class="field">
+                    <%= f.label :occupation %><br>
+                    <%= f.text_field :occupation, autofocus: true, placeholder: "What is your occupation?", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :why_participate %><br>
+                    <%= f.text_field :why_participate, autofocus: true, placeholder: "Why do you want to participate?", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                  </div>
+                  <div>
+                      <p>On a scale of 0-3, rate your skill level in the following:</p>
+                  </div>
+                  <div class="field">
+                    <%= f.label :carpentry %><br>
+                    <%= f.number_field :carpentry, :min => 0, :max => 3 %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :plumbing %><br>
+                    <%= f.number_field :plumbing, :min => 0, :max => 3  %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :electrical %><br>
+                    <%= f.number_field :electrical, :min => 0, :max => 3  %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :roofing %><br>
+                    <%= f.number_field :roofing, :min => 0, :max => 3  %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :song_leader %><br>
+                    <%= f.number_field :song_leader, :min => 0, :max => 3  %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :bible %><br>
+                    <%= f.number_field :bible, :min => 0, :max => 3  %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :recreation %><br>
+                    <%= f.number_field :recreation, :min => 0, :max => 3  %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :lifeguard %><br>
+                    <%= f.number_field :lifeguard, :min => 0, :max => 3  %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :accounting %><br>
+                    <%= f.number_field :accounting, :min => 0, :max => 3  %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :firstaid %><br>
+                    <%= f.number_field :firstaid, :min => 0, :max => 3  %>
+                  </div>
+                  <div>
+                      <p>Do you know CPR?</p>
+                  </div>
+                  <div class="field">
+                    <%= f.label :cpr_firstaid %><br>
+                    <%= f.check_box :cpr_firstaid %>
+                  </div>
+                  <div>
+                      <p>Please name your camp and the current year.</p>
+                  </div>
+                  <div class="field">
+                    <%= f.label :camp %><br>
+                    <%= f.text_field :camp, autofocus: true, placeholder: "Camp", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :year %><br>
+                    <%= f.text_field :year, autofocus: true, placeholder: "Year", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :site_leader %><br>
+                    <%= f.check_box :site_leader %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :involved_activities %><br>
+                    <%= f.text_area :involved_activities, autofocus: true, placeholder: "Activities you are involved in", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :camp_director_approval %><br>
+                    <%= f.check_box :camp_director_approval %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :camp_director_approval_date %><br>
+                    <%= f.date_select :camp_director_approval_date %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :user_approval %><br>
+                    <%= f.check_box :user_approval %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :user_approval_date %><br>
+                    <%= f.date_select :user_approval_date %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :printed_date %><br>
+                    <%= f.datetime_select :printed_date %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :user %><br>
+                    <%= current_user.full_name %>
+                  </div>
+                  <div class="actions">
+                    <%= f.submit :class => "btn btn-default col-md-3", style:"height:40px"%>
+                  </div>
+                <% end %>
+                </div>
+            </div>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :occupation %><br>
-    <%= f.text_field :occupation %>
-  </div>
-  <div class="field">
-    <%= f.label :why_participate %><br>
-    <%= f.text_field :why_participate %>
-  </div>
-  <div class="field">
-    <%= f.label :carpentry %><br>
-    <%= f.number_field :carpentry, :min => 0, :max => 3 %>
-  </div>
-  <div class="field">
-    <%= f.label :plumbing %><br>
-    <%= f.number_field :plumbing, :min => 0, :max => 3  %>
-  </div>
-  <div class="field">
-    <%= f.label :electrical %><br>
-    <%= f.number_field :electrical, :min => 0, :max => 3  %>
-  </div>
-  <div class="field">
-    <%= f.label :roofing %><br>
-    <%= f.number_field :roofing, :min => 0, :max => 3  %>
-  </div>
-  <div class="field">
-    <%= f.label :song_leader %><br>
-    <%= f.number_field :song_leader, :min => 0, :max => 3  %>
-  </div>
-  <div class="field">
-    <%= f.label :bible %><br>
-    <%= f.number_field :bible, :min => 0, :max => 3  %>
-  </div>
-  <div class="field">
-    <%= f.label :recreation %><br>
-    <%= f.number_field :recreation, :min => 0, :max => 3  %>
-  </div>
-  <div class="field">
-    <%= f.label :lifeguard %><br>
-    <%= f.number_field :lifeguard, :min => 0, :max => 3  %>
-  </div>
-  <div class="field">
-    <%= f.label :accounting %><br>
-    <%= f.number_field :accounting, :min => 0, :max => 3  %>
-  </div>
-  <div class="field">
-    <%= f.label :firstaid %><br>
-    <%= f.number_field :firstaid, :min => 0, :max => 3  %>
-  </div>
-  <div class="field">
-    <%= f.label :cpr_firstaid %><br>
-    <%= f.check_box :cpr_firstaid %>
-  </div>
-  <div class="field">
-    <%= f.label :camp %><br>
-    <%= f.text_field :camp %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br>
-    <%= f.text_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :site_leader %><br>
-    <%= f.check_box :site_leader %>
-  </div>
-  <div class="field">
-    <%= f.label :involved_activities %><br>
-    <%= f.text_area :involved_activities %>
-  </div>
-  <div class="field">
-    <%= f.label :camp_director_approval %><br>
-    <%= f.check_box :camp_director_approval %>
-  </div>
-  <div class="field">
-    <%= f.label :camp_director_approval_date %><br>
-    <%= f.date_select :camp_director_approval_date %>
-  </div>
-  <div class="field">
-    <%= f.label :user_approval %><br>
-    <%= f.check_box :user_approval %>
-  </div>
-  <div class="field">
-    <%= f.label :user_approval_date %><br>
-    <%= f.date_select :user_approval_date %>
-  </div>
-  <div class="field">
-    <%= f.label :printed_date %><br>
-    <%= f.datetime_select :printed_date %>
-  </div>
-  <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
