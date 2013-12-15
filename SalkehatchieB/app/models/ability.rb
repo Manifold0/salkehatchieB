@@ -6,13 +6,17 @@ class Ability
     #IMPORTANT: Abilities further down will override a previous one. For example, if we have a can :manage, Camp
     #then a cannot :destroy, Camp, the user will be able to do anything except destroy the camp.
 
+
     if user.is_admin?
       can :manage, :all
 
       can :manage, Camp
 
       #can update camp assignments for all applicants
-      can :update, CampAssignment
+      #can :update, CampAssignment
+      can :manage, CampAssignment
+      can :manage, CampRequest
+
       #cannot assign camper unless payment has been made
       #cannot :update, User, User.includes(:payments).where()
 

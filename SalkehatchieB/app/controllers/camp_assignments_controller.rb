@@ -1,6 +1,7 @@
 class CampAssignmentsController < ApplicationController
+  before_action :before_for_params, only: [:create]
   before_action :set_camp_assignment, only: [:show, :edit, :update, :destroy]
-
+  before_action :current_camps, only: [:edit, :new]
   load_and_authorize_resource
 
   # GET /camp_assignments
@@ -17,10 +18,15 @@ class CampAssignmentsController < ApplicationController
   # GET /camp_assignments/new
   def new
     @camp_assignment = CampAssignment.new
+    @users = User.order(:last_name)
   end
 
   # GET /camp_assignments/1/edit
   def edit
+
+  end
+
+  def current_camps
     current_year = DateTime.now.year
     date_registration_opens = DateTime.new(current_year, 1, 1)
     date_registration_closes = DateTime.new(current_year+1, 1, 1)
@@ -75,6 +81,15 @@ class CampAssignmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def camp_assignment_params
-      params.require(:camp_assignment).permit(:user_id, :camp_id, :permission_level)
+      if current_user.is_admin?
+        params.require(:camp_assignment).permit(:user_id, :camp_id, :permission_level)
+      else
+        params.require(:camp_assignment).permit(:user_id, :camp_id, :permission_level)
+      end
+    end
+    def before_for_params
+      resource = controller_name.singularize.to_sym
+      method = "#{resource}_params"
+      params[resource] &&= send(method) if respond_to?(method, true)
     end
 end

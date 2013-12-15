@@ -3,8 +3,17 @@
         <div class="panel panel-default">
 
             <div class="panel-body">
+<% 
+path = request_camps_create_path(@camp_request)
+if current_user.is_admin?
+  path = admin_request_camps_create_path(@camp_request)
+end
 
-<%= form_for @camp_request, :url => request_camps_create_path(@camp_request) do |f| %>
+if @camp_request.id
+  path = request_camps_update_path(@camp_request)
+ end %>
+<%= form_for @camp_request, :url => path do |f| %>
+
 
   <% if @camp_request.errors.any? %>
     <div id="error_explanation">

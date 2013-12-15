@@ -42,7 +42,7 @@
         end
         if(camp_request.preference3_id != nil)
           camp_3 = Camp.find(camp_request.preference3_id)
-        end %>
+        end %><% if can? :read, camp_request %>
       <tr>
         <td><%= camp_request.user.full_name %></td>
         <td><%= camp_request.user.email %></td>
@@ -91,6 +91,7 @@
             <td><%= link_to 'Destroy', camp_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

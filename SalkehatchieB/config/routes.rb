@@ -1,7 +1,5 @@
 SalkehatchieB::Application.routes.draw do
   
-  resources :camp_assignments
-
   resources :payments, only: [:new,:index,:show, :create]
   
 
@@ -47,8 +45,12 @@ SalkehatchieB::Application.routes.draw do
       delete 'users/:id' => "users#delete", as: :admin_user_delete
     end
     resources :camp_requests
+    post 'camp_request/' => 'camp_requests#create', :as => :admin_request_camps_create
+    patch 'camp_request/:id' => 'camp_requests#update', :as => :request_camps_update
     get 'camp_request/assign' => "camp_requests#assign", as: :camp_request_assign
     resources :camp_assignments
+    post 'camp_assignments' => 'camp_assignments#create', :as => :assignment_camps_create
+    patch 'camp_assignment/:id' => 'camp_assignments#update', :as => :assignment_camps_update
     resources :payments
     as :payments do
       get 'payments' => 'payments#index', :as => :admin_payments
@@ -69,7 +71,6 @@ SalkehatchieB::Application.routes.draw do
   end
 
   get '/request' => 'camp_requests#new', :as => :request_camps
-
   post '/request' => 'camp_requests#create', :as => :request_camps_create
 
   get '/', to: redirect('/signin')
