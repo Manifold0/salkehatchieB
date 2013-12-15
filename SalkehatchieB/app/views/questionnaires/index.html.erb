@@ -78,7 +78,7 @@
                         <td><%= questionnaire.user_approval %></td>
                         <td><%= questionnaire.user_approval_date %></td>
                         <td><%= questionnaire.printed_date %></td>
-                        <td><%= questionnaire.user %></td>
+                        <td><%= questionnaire.user.full_name %></td>
                         <td><%= link_to 'Show', questionnaire %></td>
                         <td><%= link_to 'Edit', edit_questionnaire_path(questionnaire) %></td>
                         <td><%= link_to 'Destroy', questionnaire, method: :delete, data: { confirm: 'Are you sure?' } %></td>
