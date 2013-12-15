@@ -64,6 +64,7 @@ SalkehatchieB::Application.routes.draw do
       get 'ByCamp' => "queries#campers_by_camp", as: :query_campers_by_camp
       get 'NotPaid' => "queries#campers_not_paid", as: :query_campers_not_paid
       get 'BackgroundChecks' => "queries#background_checks", as: :query_background_checks
+      get 'TshirtSizes' => "queries#tshirt_sizes", as: :query_tshirt_sizes
     end
   end
 

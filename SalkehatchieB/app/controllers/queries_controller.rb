@@ -32,6 +32,15 @@ class QueriesController < ApplicationController
 		end
 	end
 
+  def tshirt_sizes
+    all_users = User.all
+    @users = Array.new
+    all_users.each do |user|
+      if user.tshirt_size
+        @users.push(user)
+      end
+    end
+  end
 	private
 		def is_admin
 			if current_user == nil
