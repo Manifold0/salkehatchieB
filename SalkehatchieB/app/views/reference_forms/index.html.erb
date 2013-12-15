@@ -1,4 +1,4 @@
-<h1>Listing reference_forms</h1>
+<h1 class ="text-muted">Reference Forms</h1>
 
 <table>
   <thead>
@@ -36,4 +36,7 @@
 
 <br>
 
-<%= link_to 'New Reference form', new_reference_form_path %>
+<%= link_to 'New Reference form', new_reference_form_path %>|
+<% if current_user.is_admin? %>
+    <%= link_to 'Back', forms_path %>
+<% end %>
