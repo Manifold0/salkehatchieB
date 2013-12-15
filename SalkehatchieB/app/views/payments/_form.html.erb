@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-default">
 
             <div class="panel-body">
@@ -16,19 +16,35 @@
       </ul>
     </div>
   <% end %>
+  <% 
+  if current_user.is_admin?
 
+    users = Array.new()
+    User.order(:last_name).each do |user|
+      users.push([user.full_name,user.id])
+    end
+    %>
+    <div class="field">
+    <%= f.label :user, class: "text-muted" %><br>
+    <%= f.select(:user_id, users) %>
+  </div>
+<%
+  end
+  %>
 
   <div class="field">
-    <%= f.number_field :amount, placeholder: "Amount", class: "form-control", style: "padding:4px", style: "width:300px" %><br />
+    <%= f.number_field :amount, placeholder: "Amount", class: "form-control", style: "padding:4px"%><br />
   </div>
 
 
   <div class="field">
-    <%= f.text_field :identifier, placeholder: "Identifier", class: "form-control", style: "padding:4px", style: "width:300px" %><br />
+    <%= f.text_field :identifier, placeholder: "Identifier", class: "form-control", style: "padding:4px" %><br />
   </div>
 
 
   <div class="actions">
-    <%= f.submit :class => "btn btn-default col-md-5", style:"height:40px"  %>
+    <%= f.submit :class => "btn btn-default col-md-8 col-md-offset-2", style:"height:40px"  %>
   </div>
 <% end %>
+</div>
+</div>

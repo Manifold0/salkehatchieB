@@ -31,7 +31,9 @@ class PaymentsController < ApplicationController
     p = payment_params
     current_year = DateTime.now.year
     @payment = Payment.new(payment_params)
-    @payment.user = current_user
+    if @payment.user == nil
+      @payment.user = current_user
+    end
     @payment.year = current_year
 
     respond_to do |format|
