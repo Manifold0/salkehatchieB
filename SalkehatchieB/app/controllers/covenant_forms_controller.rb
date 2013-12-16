@@ -5,6 +5,20 @@ class CovenantFormsController < ApplicationController
   # GET /covenant_forms.json
   def index
     @covenant_forms = CovenantForm.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = CovenantPdf.new
+        User.all.each do |user|
+          if (user.covenant_form)
+            pdf.create_page(user.covenant_form)
+            pdf.start_new_page
+          end
+        end
+        
+        send_data pdf.render, filename: "covenant form", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /covenant_forms/1
@@ -13,7 +27,8 @@ class CovenantFormsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = CovenantPdf.new(@covenant_form)
+        pdf = CovenantPdf.new()
+        pdf.create_page(@covenant_form)
         send_data pdf.render, filename: "covenant form", type: "application/pdf", disposition: "inline"
       end
     end

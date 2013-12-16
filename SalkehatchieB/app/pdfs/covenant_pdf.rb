@@ -4,8 +4,11 @@ class CovenantPdf < Prawn::Document
   FILLED_CHECKBOX = "\xE2\x98\x91" # "☑"
 
   # To change this template use File | Settings | File Templates.
-    def initialize(form)
+    def initialize()
       super(top_margin: 10)
+    end
+
+    def create_page(form)
       @form = form
       text "<b>Name:</b> #{@form.user.first_name}" + " #{@form.user.last_name}", :inline_format => true
       #stroke_horizontal_rule
@@ -15,6 +18,13 @@ class CovenantPdf < Prawn::Document
       questions
       agreement
       closing
+    end
+
+    def all_forms(users)
+      users.each do |user|
+        initialize(user.covenant_form)
+        start_new_page
+      end
     end
 
     def header
