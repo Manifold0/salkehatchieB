@@ -21,7 +21,13 @@
 
     users = Array.new()
     User.order(:last_name).each do |user|
-      users.push([user.full_name,user.id])
+      identifying_string = user.full_name
+      if user.church
+        if user.church != ""
+          identifying_string << " ~ " << user.church
+        end
+      end
+      users.push([identifying_string,user.id])
     end
     %>
     <div class="field">

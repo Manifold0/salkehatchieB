@@ -102,7 +102,7 @@
                 <% if @current_camp %>
                 <li class="divider"></li>
                     <div class="col-md-12 index-head"><h5><%= @current_camp.city %></h5></div>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Forms</button>
+                    <%= link_to "Forms", camps_forms_path(@current_camp), :class => "btn"%>
                     <% #link_to "Forms", forms_path, :class => "btn"%>
                     <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>-->
                     <%= link_to "Campers", camps_campers_path(@current_camp), :class => "btn"%>

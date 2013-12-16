@@ -19,6 +19,10 @@ class CovenantFormsController < ApplicationController
     end
   end
 
+  def print_all
+    
+  end
+
   # GET /covenant_forms/new
   def new
     @covenant_form = CovenantForm.new

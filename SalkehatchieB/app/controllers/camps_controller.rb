@@ -1,11 +1,11 @@
 class CampsController < ApplicationController
-  before_action :set_camp, only: [:show, :edit, :update, :destroy, :camp_params, :campers]
+  before_action :set_camp, only: [:show, :edit, :update, :destroy, :camp_params, :campers, :forms]
   before_action :create_camp, only: :create
   before_action :permissions, except: [:index, :show]
   before_action :show_permissions, only: :show
 
   #CanCan specific authorization
-  load_and_authorize_resource
+  #load_and_authorize_resource handled by permission before_actions above
 
   # GET /camps
   # GET /camps.json
@@ -66,7 +66,7 @@ class CampsController < ApplicationController
   end
 
   def forms
-    @forms = [1,2];
+    
   end
 
   def home
