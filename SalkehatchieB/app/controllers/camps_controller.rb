@@ -108,8 +108,14 @@ class CampsController < ApplicationController
 
   def missing_insurance_cards
     #TODO
-    @camp = current_user.camp
-
+    #look to queries_controller.rb for definition
+    camp = Camps.find(params[:campid])
+    @users = Array.new
+    camp.camp_assignments.each do |assignment|
+      if !assignment.user.medical_form
+        @users.push(assignment.user)
+      end
+    end
   end
 
   def get_camp_link(camp)
