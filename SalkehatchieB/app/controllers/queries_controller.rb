@@ -35,10 +35,20 @@ class QueriesController < ApplicationController
 	end
 
   def tshirt_sizes
+    @total_large = 0
+    @total_medium = 0
+    @total_small = 0
     all_users = User.all
     @users = Array.new
     all_users.each do |user|
       if user.tshirt_size
+        if user.tshirt_size == "small"
+          total_small += 1
+        elsif user.tshirt_size == "medium"
+               total_medium += 1
+        else
+        total_large+= 1
+        end
         @users.push(user)
       end
     end
