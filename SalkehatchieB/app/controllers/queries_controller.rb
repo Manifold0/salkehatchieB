@@ -80,7 +80,18 @@ class QueriesController < ApplicationController
 		  		@total_unknown += 1
 		  	end
 		end
-	end
+  end
+  def missing_insurance_cards
+    #TODO
+    #@camp = current_user.camp
+    all = User.where(params[:camp] == :campid)
+    @users = Array.new
+    all.each do |user|
+      if !user.medical_form
+        @users.push(user)
+      end
+    end
+  end
 	private
 		def is_admin
 			if current_user == nil
