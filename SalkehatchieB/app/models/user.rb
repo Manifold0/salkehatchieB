@@ -138,7 +138,7 @@ class User < ActiveRecord::Base
   def medical_form_up_to_date
     current_year = Time.now.year
     if self.medical_form != nil
-      if self.reference_form.guardian_approval_date.year == current_year
+      if self.medical_form.guardian_approval_date.year == current_year
         return true
       end
     end

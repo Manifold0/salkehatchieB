@@ -77,9 +77,19 @@
                   <div>
                       <p>Please name your camp and the current year.</p>
                   </div>
+
+                    <%
+
+                       array = Array.new()
+                       array.push(['none',nil]);
+                       @camps.each do |camp|
+                         array.push([camp.city,camp.id])
+                       end
+                    %>
+
                   <div class="field">
                     <%= f.label :camp %><br>
-                    <%= f.text_field :camp, autofocus: true, placeholder: "Camp", class:"form-control", style:"padding:4px", style: "width:250px" %>
+                    <%= f.select(:camp, array) %>
                   </div>
                   <div class="field">
                     <%= f.label :year %><br>
@@ -108,7 +118,7 @@
                   </div>
                   div class="field">
                     <%= f.label :camp_director_approval %><br>
-                    <%= f.check_box :camp_director_approval %>
+                    <%= f.check_box :camp_director_approval,disabled: true %>
                   </div>
                   <div class="field">
                     <%= f.label :camp_director_approval_date %><br>
