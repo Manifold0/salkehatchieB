@@ -5,6 +5,21 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires.json
   def index
     @questionnaires = Questionnaire.all
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = QuestionnairePdf.new
+        User.all.each do |user|
+          if (user.questionnaire)
+            pdf.create_page(user.questionnaire)
+            pdf.start_new_page
+          end
+        end
+
+        send_data pdf.render, filename: "questionnaire", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /questionnaires/1
@@ -14,7 +29,8 @@ class QuestionnairesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = QuestionnairePdf.new(@questionnaire)
+        pdf = QuestionnairePdf.new()
+        pdf.create_page(@questionnaire)
         send_data pdf.render, filename: "questionnaire", type: "application/pdf", disposition: "inline"
       end
     end
