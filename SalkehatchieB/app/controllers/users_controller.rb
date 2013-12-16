@@ -9,6 +9,19 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def directors
+    @users = Array.new
+    Camp.all.each do |camp|
+      camp.camp_assignments.each do |assignment|
+        if assignment.permission_level > 3
+          @users.push(assignment.user)
+        end
+      end
+    end
+
+    render :index
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show

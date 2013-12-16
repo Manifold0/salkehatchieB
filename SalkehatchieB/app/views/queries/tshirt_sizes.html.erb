@@ -21,15 +21,79 @@
 <div class="container">
     <div class="row">
         <div class=".col-md-3">
+            <div class="row">
+                <div class="col-xs-1">
+                    <p></p>
+                </div>
+                <div class="col-xs-1">
+                    <p></p>
+                </div>
+                <div class="col-xs-1">
+                    <b>XXXL</b>
+                </div>
+                <div class="col-xs-1">
+                    <b>XXL</b>
+                </div>
+                <div class="col-xs-1">
+                    <b>XL</b>
+                </div>
+                <div class="col-xs-1">
+                    <b>L</b>
+                </div>
+                <div class="col-xs-1">
+                    <b>M</b>
+                </div>
+                <div class="col-xs-1">
+                    <b>S</b>
+                </div>
+                <div class="col-xs-1">
+                    <b>XS</b>
+                </div>
+                <div class="col-xs-1">
+                    <b>Unknown</b>
+                </div>
+            </div>
+            <div class="row" style="border-top:1px solid #CCC;">
+                <div class="col-xs-1">
+                    <p></p>
+                </div>
+                <div class="col-xs-1">
+                    <p></p>
+                </div>
+                <div class="col-xs-1">
+                    <p><%= @total_xxxl %></p>
+                </div>
+                <div class="col-xs-1">
+                    <p><%= @total_xxl %></p>
+                </div>
+                <div class="col-xs-1">
+                    <p><%= @total_xl %></p>
+                </div>
+                <div class="col-xs-1">
+                    <p><%= @total_l %></p>
+                </div>
+                <div class="col-xs-1">
+                    <p><%= @total_m %></p>
+                </div>
+                <div class="col-xs-1">
+                    <p><%= @total_s %></p>
+                </div>
+                <div class="col-xs-1">
+                    <p><%= @total_xs %></p>
+                </div>
+                <div class="col-xs-1">
+                    <p><%= @total_unknown %></p>
+                </div>
+            </div>
+            
             <table class="table table-striped table-condensed">
 
 
                 <thead>
                 <tr>
-                    <th>Permission Level</th>
                     <th>Name</th>
                     <th>T-Shirt Size</th>
-                    <th><%=@total_large%> Large, <%=@total_medium%> Medium, <%=@total_small%> Small</th>
+                    <th><%=@total_xxxl%> Large, <%=@total_medium%> Medium, <%=@total_small%> Small</th>
                 </tr>
                 </thead>
 
@@ -37,7 +101,6 @@
                 <% @users.each do |user| %>
                     <% if can? :read, user %>
                         <tr>
-                            <td><%= user.permission_level %></td>
                             <td><%= user.full_name %></td>
                             <td><%= user.tshirt_size %></td>
                             <td><%= link_to 'Edit', edit_user_path(user), class: 'hidden-print'%></td>

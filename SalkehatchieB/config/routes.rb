@@ -44,6 +44,8 @@ SalkehatchieB::Application.routes.draw do
     as resources :users do
       delete 'users/:id' => "users#delete", as: :admin_user_delete
     end
+    get 'directors' => "users#directors", as: :directors
+
     resources :camp_requests
     post 'camp_request/' => 'camp_requests#create', :as => :admin_request_camps_create
     patch 'camp_request/:id' => 'camp_requests#update', :as => :request_camps_update

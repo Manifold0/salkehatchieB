@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SalkehatchieB</title>
+  <title>Salkehatchie Summer Service</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -61,18 +61,16 @@
     <div class="row index">
         <div id="sideBar" class="col-md-2 btn-group-vertical index-btn custom-vertical-nav-bar dropdown-menu hidden-print">
         	<%if current_user.is_admin? %>
-                <button type="button" class="btn btn-default"> Home <span class="glyphicon glyphicon-home"></span></button>
                 <%# link_to "Home", admin_home_path, :class => "btn"%>
+                <%= link_to "Camps", camps_path, :class => "btn"%>
                 <%= link_to "Users", users_path, :class => "btn"%>
-		        <%= link_to "Camps", camps_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"> Directors <span class="glyphicon glyphicon-bullhorn"></span></button>
+                <%= link_to "Directors", directors_path, :class => "btn"%>
                 <%# link_to "Directors", users_path,(query for camp directors) :  class => "btn"%>
                 <%= link_to "Applications", camp_requests_path, :class => "btn"%>
                 <%= link_to "Assignments", camp_assignments_path, :class => "btn"%>
                 <%= link_to "Payments", admin_payments_path, :class => "btn"%>
                 <%= link_to "Costs", costs_path, :class => "btn"%>
-                <%= link_to "Photos", photos_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"> Schedule <span class="glyphicon glyphicon-calendar"></span></button>
+                <%# link_to "Photos", photos_path, :class => "btn"%>
                 <%# link_to "Schedule", schedule_path, :class => "btn"%>
                 <%= link_to "Queries", queries_path, :class => "btn"%>
 
@@ -95,8 +93,7 @@
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>-->
 
-            <% else if @current_permission_level == 4%>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+            <% else if @current_permission_level == 4 %>
                 <%# link_to "Home", director_home_path, :class => "btn"%>
                 <%= link_to "Camps", camps_path, :class => "btn"%>
                 <% if @current_camp %>
@@ -106,25 +103,18 @@
                     <% #link_to "Forms", forms_path, :class => "btn"%>
                     <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>-->
                     <%= link_to "Campers", camps_campers_path(@current_camp), :class => "btn"%>
-                    <%= link_to "Photos", photos_path, :class => "btn"%>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-map-marker"></span>Map</button>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+                    <%# link_to "Photos", photos_path, :class => "btn"%>
                     <%# link_to "Schedule", schedule_path, :class => "btn"%>
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tag"></span>Shirt Sizes</button>
                     <%= link_to "Queries", directors_queries_path, :class => "btn"%>
+                    <li class="divider"></li>
                 <% end %>
-            <% else %>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
-		        <%= link_to "Forms", forms_path, :class => "btn" %>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
-  		        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
             <% end %>
 
     <% end %>
-        <li class="divider"></li>
         <%= link_to "Payments", payments_path, :class => "btn" %>
         <%= link_to "Forms", forms_path, :class => "btn" %>
+        <li class="divider"></li>
         <%= link_to "Sign Out", destroy_user_session_path, :class => "btn", :method => "DELETE" %>
         </div><div class="col-md-9"><%= yield %></div>
     </div>

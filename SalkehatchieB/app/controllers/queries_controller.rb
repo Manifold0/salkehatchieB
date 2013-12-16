@@ -3,7 +3,7 @@ class QueriesController < ApplicationController
 	before_action :is_director, only: [:index_for_directors]
 
 	def index
-  end
+  	end
 
 
 
@@ -34,25 +34,45 @@ class QueriesController < ApplicationController
     end
 	end
 
-  def tshirt_sizes
-    @total_large = 0
-    @total_medium = 0
-    @total_small = 0
-    all_users = User.all
-    @users = Array.new
-    all_users.each do |user|
-      if user.tshirt_size
-        if user.tshirt_size == "small"
-          total_small += 1
-        elsif user.tshirt_size == "medium"
-               total_medium += 1
-        else
-        total_large+= 1
-        end
-        @users.push(user)
-      end
-    end
-  end
+	def tshirt_sizes
+		@users = User.all
+
+		total_shirts
+	end
+
+	def total_shirts
+		@total_xxxl = 0
+		@total_xxl = 0
+		@total_xl = 0
+		@total_l = 0
+		@total_m = 0
+		@total_s = 0
+		@total_xs = 0
+		@total_unknown = 0
+		@users.each do |user|
+			if user.tshirt_size
+				if user.tshirt_size == "XXXL"
+		      		@total_xxxl += 1
+		    	elsif user.tshirt_size == "XXL"
+		           	@total_xxl += 1
+		        elsif user.tshirt_size == "XL"
+		           	@total_xl += 1
+		        elsif user.tshirt_size == "L"
+		           	@total_l += 1
+	           	elsif user.tshirt_size == "M"
+		           	@total_m += 1
+	           	elsif user.tshirt_size == "S"
+		           	@total_s += 1
+	           	elsif user.tshirt_size == "XS"
+		           	@total_xs += 1
+		    	else
+		    		@total_unknown += 1
+		    	end
+		  	else
+		  		@total_unknown += 1
+		  	end
+		end
+	end
 	private
 		def is_admin
 			if current_user == nil
