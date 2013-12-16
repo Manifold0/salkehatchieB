@@ -24,6 +24,12 @@ class MedicalFormsController < ApplicationController
   # GET /medical_forms/new
   def new
     @medical_form = MedicalForm.new
+
+    current_year = DateTime.now.year
+    date_registration_opens = DateTime.new(current_year, 1, 1)
+    date_registration_closes = DateTime.new(current_year+1, 1, 1)
+
+    @camps = Camp.where("(start_date >= ? AND start_date < ?)", date_registration_opens, date_registration_closes).all
   end
 
   # GET /medical_forms/1/edit
@@ -68,6 +74,10 @@ class MedicalFormsController < ApplicationController
       format.html { redirect_to medical_forms_url }
       format.json { head :no_content }
     end
+  end
+
+  def return_camps
+
   end
 
   private
