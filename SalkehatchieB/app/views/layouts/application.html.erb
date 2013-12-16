@@ -45,7 +45,8 @@
                 <% current_user.current_camps_assigned.each do |assignment|%>
                     <% if assignment.camp.id.to_i == params[:campid].to_i %>
                     <% @current_camp = assignment.camp
-                        @current_permission_level = assignment.permission_level %>
+                        @current_permission_level = assignment.permission_level
+                         %>
                       <li class = "active">
                     <% else %>
                       <li>
@@ -55,7 +56,11 @@
                 <% end %>
             </ul>
         </div>
-        <% end %>
+        <% 
+        end 
+        current_user.permission_level = @current_permission_level
+        current_user.save
+        %>
 
     </div>
     <div class="row index">
@@ -94,6 +99,7 @@
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>-->
 
             <% else if @current_permission_level == 4 %>
+
                 <%# link_to "Home", director_home_path, :class => "btn"%>
                 <%= link_to "Camps", camps_path, :class => "btn"%>
                 <% if @current_camp %>
@@ -105,7 +111,7 @@
                     <%= link_to "Campers", camps_campers_path(@current_camp), :class => "btn"%>
                     <%# link_to "Photos", photos_path, :class => "btn"%>
                     <%# link_to "Schedule", schedule_path, :class => "btn"%>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tag"></span>Shirt Sizes</button>
+                    <%= link_to "TShirt Sizes", camp_tshirt_sizes_path, :class => "btn"%>
                     <%= link_to "Queries", directors_queries_path, :class => "btn"%>
                     <li class="divider"></li>
                 <% end %>

@@ -40,6 +40,7 @@
   </thead>
 
   <tbody>
+  <%= current_user.permission_level %>
     <% @users.each do |user| %>
       <% if can? :read, user %>
       <tr>

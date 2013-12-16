@@ -35,10 +35,18 @@ class QueriesController < ApplicationController
 	end
 
 	def tshirt_sizes
-		@users = User.all
+		if params[:campid]
+			@users = Array.new
+			camp = Camp.find(params[:campid])
+			camp.camp_assignments.each do |assignment|
+				@users.push(assignment.user)
+			end
+		else
+			@users = User.all
+		end
 
 		total_shirts
-	end
+	end	
 
 	def total_shirts
 		@total_xxxl = 0

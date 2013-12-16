@@ -22,6 +22,15 @@ class UsersController < ApplicationController
     render :index
   end
 
+  def campers
+    camp = Camp.find(params[:campid])
+    @users = Array.new
+    camp.camp_assignments.each do |assignment|
+      @users.push(assignment.user)
+    end
+    render :index
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
