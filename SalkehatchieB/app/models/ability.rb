@@ -42,8 +42,8 @@ class Ability
       #can update site assignments for their camp
       can :manage, CampAssignment 
       #can :update, Site, current_user.camp_id =>
-      can :manage, Camp 
-      cannot :delete, Camp
+      can :read, Camp
+      can :read, User
 
       #can edit camper information for their camp only
 

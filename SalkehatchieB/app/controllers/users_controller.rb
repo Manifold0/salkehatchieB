@@ -2,11 +2,14 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   before_action :set_user, only: [:show, :edit, :update, :destroy, :forms]
   before_action :update_basic_info, only: :update
+  skip_authorize_resource :only => :campers
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if current_user.permission_level == 5
+      @users = User.all
+    end
   end
 
   def directors
@@ -23,12 +26,15 @@ class UsersController < ApplicationController
   end
 
   def campers
-    camp = Camp.find(params[:campid])
-    @users = Array.new
-    camp.camp_assignments.each do |assignment|
-      @users.push(assignment.user)
+    if current_user.permission_level > 3
+      camp = Camp.find(params[:campid])
+      @users = Array.new
+      camp.camp_assignments.each do |assignment|
+        @users.push(assignment.user)
+      end
     end
     render :index
+
   end
 
   # GET /users/1

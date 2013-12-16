@@ -37,7 +37,7 @@
         </div>
         </div>
         <%
-        @current_permission_level = 1
+        @current_permission_level = current_user.permission_level
 
         if !current_user.is_admin?%>
         <div class="col-md-5 tab">
@@ -68,6 +68,7 @@
         	<%if current_user.is_admin? %>
                 <%# link_to "Home", admin_home_path, :class => "btn"%>
                 <%= link_to "Camps", camps_path, :class => "btn"%>
+                <li class="divider"></li>
                 <%= link_to "Users", users_path, :class => "btn"%>
                 <%= link_to "Directors", directors_path, :class => "btn"%>
                 <%# link_to "Directors", users_path,(query for camp directors) :  class => "btn"%>
@@ -103,8 +104,9 @@
                 <%# link_to "Home", director_home_path, :class => "btn"%>
                 <%= link_to "Camps", camps_path, :class => "btn"%>
                 <% if @current_camp %>
-                <li class="divider"></li>
+                    <li class="divider"></li>
                     <div class="col-md-12 index-head"><h5><%= @current_camp.city %></h5></div>
+                    <%= link_to "Home", camp_path(@current_camp), :class => "btn"%>
                     <%= link_to "Forms", camps_forms_path(@current_camp), :class => "btn"%>
                     <% #link_to "Forms", forms_path, :class => "btn"%>
                     <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>-->
@@ -113,11 +115,21 @@
                     <%# link_to "Schedule", schedule_path, :class => "btn"%>
                     <%= link_to "TShirt Sizes", camp_tshirt_sizes_path, :class => "btn"%>
                     <%= link_to "Queries", directors_queries_path, :class => "btn"%>
+                    
+                <% end %>
+            <% else if @current_permission_level == 1 %>
+                <%= link_to "Camps", camps_path, :class => "btn"%>
+                <% if @current_camp %>
                     <li class="divider"></li>
+                    <div class="col-md-12 index-head"><h5><%= @current_camp.city %></h5></div>
+                    <%= link_to "Home", camp_path(@current_camp), :class => "btn"%>
                 <% end %>
             <% end %>
-
+            <% end %>
     <% end %>
+        <li class="divider"></li>
+        <%= link_to "Basic Info", user_basic_info_path, :class => "btn" %>
+        <%= link_to "Request Camp", request_camps_path, :class => "btn" %>
         <%= link_to "Payments", payments_path, :class => "btn" %>
         <%= link_to "Forms", forms_path, :class => "btn" %>
         <li class="divider"></li>
