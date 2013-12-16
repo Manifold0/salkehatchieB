@@ -31,7 +31,7 @@ class QueriesController < ApplicationController
 			if !user.under_eighteen? && !user.background_check_valid?
 				@users.push(user)
 			end
-		end
+    end
 	end
 
   def tshirt_sizes

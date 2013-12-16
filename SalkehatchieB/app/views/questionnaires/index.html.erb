@@ -24,6 +24,7 @@
             <table class = "table table-striped table-condensed">
                 <thead>
                 <tr>
+                    <th>User</th>
                     <th>Occupation</th>
                     <th>Why participate</th>
                     <th>Carpentry</th>
@@ -46,7 +47,6 @@
                     <th>User approval</th>
                     <th>User approval date</th>
                     <th>Printed date</th>
-                    <th>User</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -56,6 +56,7 @@
                 <tbody>
                 <% @questionnaires.each do |questionnaire| %>
                     <tr>
+                        <td><%= questionnaire.user.first_name + " " + questionnaire.user.last_name %></td>
                         <td><%= questionnaire.occupation %></td>
                         <td><%= questionnaire.why_participate %></td>
                         <td><%= questionnaire.carpentry %></td>
@@ -78,7 +79,6 @@
                         <td><%= questionnaire.user_approval %></td>
                         <td><%= questionnaire.user_approval_date %></td>
                         <td><%= questionnaire.printed_date %></td>
-                        <td><%= questionnaire.user.full_name %></td>
                         <td><%= link_to 'Show', questionnaire %></td>
                         <td><%= link_to 'Edit', edit_questionnaire_path(questionnaire) %></td>
                         <td><%= link_to 'Destroy', questionnaire, method: :delete, data: { confirm: 'Are you sure?' } %></td>
