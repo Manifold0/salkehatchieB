@@ -14,43 +14,42 @@
                       </ul>
                     </div>
                   <% end %>
-
+                  <p>Salkehatchie Summer Service is committed to providing a safe and secure environment for all children, youth, vulnerable adults, and volunteers who participate in its ministries. The following policy .statements reflect my commitment to preserving Salkehatchie Summer Service as a holy place of safety and protection for all who would participate and as a place in which all people can experience the love of God through relationships with others.
+                  </p><p>
+1. No adults who have been convicted of child abuse (either sexual abuse, physical abuse, or emotional abuse) should volunteer to work with Salkehatchie Summer Service.<br/>
+2. Volunteers shall observe the "Two-Adult Rule" at all times so that no adult is ever alone with youth.<br/>
+3. Volunteers shall attend regular, training and educational events provided by the camp director(s) to keep informed of .policies and state laws regarding child abuse.<br/>
+4. Volunteers shall immediately report any behavior that seems abusive or inappropriate to the camp director.<br/>
+</p>
                   <div class="field">
-                    <%= f.label :policy %><br>
-                    <%= f.check_box :policy %>
+                    <%= f.check_box :policy %> 1. As a volunteer, do you agree to observe and abide by all policies regarding working in ministries with children and youth?
                   </div>
                   <div class="field">
-                    <%= f.label :two_adult %><br>
-                    <%= f.check_box :two_adult %>
+                    <%= f.check_box :two_adult %> 2. As a volunteer, do you agree to observe the "Two-Adult Rule" at all times?
                   </div>
                   <div class="field">
-                    <%= f.label :training %><br>
-                    <%= f.check_box :training %>
+                    <%= f.check_box :training %> 3. As a volunteer, do you agree to participate in training and education events related to your volunteer assignment if required?
                   </div>
                   <div class="field">
-                    <%= f.label :report_abuse %><br>
-                    <%= f.check_box :report_abuse %>
+                    <%= f.check_box :report_abuse %> 4. As a volunteer, do you agree to promptly report abusive or inappropriate behavior to the camp director?
                   </div>
                   <div class="field">
-                    <%= f.label :child_abuse %><br>
-                    <%= f.check_box :child_abuse %>
+                    <%= f.check_box :child_abuse %> 5. As a volunteer, do you agree to inform the camp director if you have ever been convicted of child abuse?
                   </div>
                   <div class="field">
-                    <%= f.label :agree_to_covenant %><br>
-                    <%= f.check_box :agree_to_covenant %>
+                    <%= f.check_box :agree_to_covenant %> I have read this Participant Covenant, and I agree to observe and abide by the policies set forth above.
+                  </div>
+                  <div>
+                    <% if @covenant_form.user_signature %>
+                      Current Signature<br/>
+                      <%= image_tag @covenant_form.user_signature_url.to_s, :class => "thmb" %>
+                    <% end %>
                   </div>
                   <div class="field">
                     <%= f.label :user_signature %><br>
                     <%= f.file_field :user_signature %>
                   </div>
-                  <div class="field">
-                    <%= f.label :signature_date %><br>
-                    <%= f.date_select :signature_date %>
-                  </div>
-                  <div class="field">
-                    <%= f.label :printed_date %><br>
-                    <%= f.datetime_select :printed_date %>
-                  </div>
+
                   <div class="actions">
                     <%= f.submit :class => "btn btn-default col-md-3", style:"height:40px" %>
                   </div>

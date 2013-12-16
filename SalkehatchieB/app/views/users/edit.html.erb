@@ -1,6 +1,7 @@
 <h1>Editing user</h1>
 
 <%= render 'form' %>
-
+<% if current_user.is_admin? || current_user.is_camp_director? %>
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>
+<% end %>

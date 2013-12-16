@@ -34,6 +34,7 @@ class QuestionnairesController < ApplicationController
   def create
     @questionnaire = Questionnaire.new(questionnaire_params)
     @questionnaire.user = current_user
+    @questionnaire.user_approval_date = Time.now
 
     respond_to do |format|
       if @questionnaire.save
@@ -49,6 +50,7 @@ class QuestionnairesController < ApplicationController
   # PATCH/PUT /questionnaires/1
   # PATCH/PUT /questionnaires/1.json
   def update
+    @questionnaire.user_approval_date = Time.now
     respond_to do |format|
       if @questionnaire.update(questionnaire_params)
         format.html { redirect_to @questionnaire, notice: 'Questionnaire was successfully updated.' }

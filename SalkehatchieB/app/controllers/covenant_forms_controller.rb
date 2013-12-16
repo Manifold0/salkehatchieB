@@ -74,6 +74,7 @@ class CovenantFormsController < ApplicationController
   # PATCH/PUT /covenant_forms/1
   # PATCH/PUT /covenant_forms/1.json
   def update
+    @covenant_form.signature_date = Time.now
     respond_to do |format|
       if @covenant_form.update(covenant_form_params)
         format.html { redirect_to @covenant_form, notice: 'Covenant form was successfully updated.' }

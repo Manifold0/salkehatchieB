@@ -94,6 +94,19 @@
                     <%= f.text_area :involved_activities, autofocus: true, placeholder: "Activities you are involved in", class:"form-control", style:"padding:4px", style: "width:250px" %>
                   </div>
                   <div class="field">
+                    <%= f.label :user_approval %><br>
+                    <%= f.check_box :user_approval %>
+                  </div>
+                  <% if current_user.is_admin? %>
+                   <div class="field">
+                    <%= f.label :user_approval_date %><br>
+                    <%= f.date_select :user_approval_date %>
+                  </div> 
+                  <div class="field">
+                    <%= f.label :user %><br>
+                    <%= current_user.full_name %>
+                  </div>
+                  div class="field">
                     <%= f.label :camp_director_approval %><br>
                     <%= f.check_box :camp_director_approval %>
                   </div>
@@ -102,21 +115,10 @@
                     <%= f.date_select :camp_director_approval_date %>
                   </div>
                   <div class="field">
-                    <%= f.label :user_approval %><br>
-                    <%= f.check_box :user_approval %>
-                  </div>
-                  <div class="field">
-                    <%= f.label :user_approval_date %><br>
-                    <%= f.date_select :user_approval_date %>
-                  </div>
-                  <div class="field">
                     <%= f.label :printed_date %><br>
                     <%= f.datetime_select :printed_date %>
                   </div>
-                  <div class="field">
-                    <%= f.label :user %><br>
-                    <%= current_user.full_name %>
-                  </div>
+                  <% end %>
                   <div class="actions">
                     <%= f.submit :class => "btn btn-default col-md-3", style:"height:40px"%>
                   </div>

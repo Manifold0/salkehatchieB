@@ -2,10 +2,11 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @covenant_form %> |
+
 
 <% if current_user.is_admin? %>
+	<%= link_to 'Show', @covenant_form %> |
     <%= link_to 'Back', covenant_forms_path %>
 <% else %>
-    <%= link_to 'Back', covenant_form_path(current_user.covenant_form) %>
+    <%= link_to 'Back', forms_path %>
 <% end %>
