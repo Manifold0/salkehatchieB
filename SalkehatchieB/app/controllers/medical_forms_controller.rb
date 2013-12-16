@@ -6,6 +6,21 @@ class MedicalFormsController < ApplicationController
   # GET /medical_forms.json
   def index
     @medical_forms = MedicalForm.all
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = MedicalPdf.new
+        User.all.each do |user|
+          if (user.medical_form)
+            pdf.create_page(user.medical_form)
+            pdf.start_new_page
+          end
+        end
+
+        send_data pdf.render, filename: "medical form", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /medical_forms/1
@@ -15,7 +30,8 @@ class MedicalFormsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = MedicalPdf.new(@medical_form)
+        pdf = MedicalPdf.new()
+        pdf.create_page(@medical_form)
         send_data pdf.render, filename: "medical form", type: "application/pdf", disposition: "inline"
       end
     end

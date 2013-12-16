@@ -20,7 +20,8 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Print PDF', covenant_forms_path(format: "pdf") %>
+<%= link_to 'Print All', covenant_forms_path(format: "pdf") %>
+
 <h3>References</h3>
 <table>
   <thead>
@@ -54,7 +55,7 @@
     <% end %>
   </tbody>
 </table>
-Print All
+<%= link_to 'Print All', reference_forms_path(format: "pdf")  %>
 <h3>Medical</h3>
 <table>
   <thead>
@@ -70,13 +71,14 @@ Print All
         <td><%= camper.full_name %></td>
         <td><%= camper.medical_form_up_to_date %></td>
         <% if camper.medical_form %>
-        <td><%= link_to 'Print PDF', medical_form_path(camper.medical_form, format: "pdf") %></td>
+              <td><%= link_to 'Print PDF', medical_form_path(camper.medical_form, format: "pdf") %></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-Print All
+    <%= link_to 'Print All', medical_forms_path(format: "pdf") %>
+
 <h3>Questionnaire</h3>
 <table>
   <thead>
@@ -98,4 +100,4 @@ Print All
     <% end %>
   </tbody>
 </table>
-Print All
+<%= link_to 'Print All', questionnaires_path(format: "pdf") %>

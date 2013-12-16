@@ -1,14 +1,25 @@
 class MedicalPdf < Prawn::Document
 
-  def initialize(form)
+  def initialize()
     super(top_margin: 10)
+  end
+
+  def create_page(form)
     @form = form
+    text "<b>Name:</b> #{@form.user.first_name}" + " #{@form.user.last_name}", :inline_format => true
     #stroke_horizontal_rule
     heading
     name
     random_text
     understanding
     conclusion
+  end
+
+  def all_forms(users)
+    users.each do |user|
+      initialize(user.medical_form)
+      start_new_page
+    end
   end
 
   def heading
