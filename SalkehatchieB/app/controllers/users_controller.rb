@@ -12,6 +12,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    first_name = params[:user][:first_name]
+    last_name = params[:user][:last_name]
+    @users = User.where(first_name: first_name, last_name: last_name)
+    render 'index'
+  end
+
   def directors
     @users = Array.new
     Camp.all.each do |camp|
