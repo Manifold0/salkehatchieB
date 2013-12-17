@@ -12,7 +12,7 @@
  *= require_tree .
  */
 @import "bootstrap";
-@import "bootstrap/theme";
+/*@import "bootstrap/theme";*/
 
 html,body {
     height:100%;

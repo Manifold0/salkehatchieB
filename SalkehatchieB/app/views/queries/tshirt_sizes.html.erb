@@ -93,19 +93,17 @@
                 <tr>
                     <th>Name</th>
                     <th>T-Shirt Size</th>
-                    <th><%=@total_xxxl%> Large, <%=@total_medium%> Medium, <%=@total_small%> Small</th>
+                    <th></th>
                 </tr>
                 </thead>
 
                 <tbody>
                 <% @users.each do |user| %>
-                    <% if can? :read, user %>
                         <tr>
                             <td><%= user.full_name %></td>
                             <td><%= user.tshirt_size %></td>
                             <td><%= link_to 'Edit', edit_user_path(user), class: 'hidden-print'%></td>
                         </tr>
-                    <% end %>
                 <% end %>
                 </tbody>
             </table>
