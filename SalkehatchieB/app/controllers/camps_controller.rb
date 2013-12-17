@@ -66,12 +66,8 @@ class CampsController < ApplicationController
   end
 
   def forms
-<<<<<<< HEAD
     #TODO Need to pull forms out of camp...pull all the forms out off all the campers?
-    @forms = [1,2];
-=======
-    
->>>>>>> d5e912119ed0db7f18afc21ef5c4d0b385b790e6
+    @forms= [1,2];
   end
 
   def home
