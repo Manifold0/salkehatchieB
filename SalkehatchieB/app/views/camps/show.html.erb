@@ -87,11 +87,11 @@
 
                         <span class="pull-right">
                              <% if can? :update, @camp %>
-                    <%= link_to 'Edit', edit_camp_path(@camp), :class => "btn btn-sm btn-warning"%>
+                    <%= link_to 'Edit', edit_camp_path(@camp), :class => "btn btn-sm btn-default"%>
                 <% end %>
 
                             <% if current_user.is_admin? %>
-                    <%= link_to 'Admin Back', admin_camps_path, :class => "btn btn-sm btn-danger" %>
+                    <%= link_to 'Admin Back', admin_camps_path, :class => "btn btn-sm btn-default" %>
                 <% else %>
                     <%= link_to 'Back', camps_path, :class => "btn btn-sm", :style => "margin-right: 10px"  %>
 
