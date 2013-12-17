@@ -93,7 +93,7 @@
                             <% if current_user.is_admin? %>
                     <%= link_to 'Admin Back', admin_camps_path, :class => "btn btn-sm btn-danger" %>
                 <% else %>
-                    <%= link_to 'Back', camps_path, :class => "btn btn-sm btn-danger"  %>
+                    <%= link_to 'Back', camps_path, :class => "btn btn-sm", :style => "margin-right: 10px"  %>
 
                          <% end %>
                         </span>
