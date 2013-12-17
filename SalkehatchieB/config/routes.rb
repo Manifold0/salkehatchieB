@@ -7,7 +7,10 @@ SalkehatchieB::Application.routes.draw do
   get 'camps/:campid/campers' => "users#campers" , as: :camps_campers
   get 'camps/:campid/forms' => "camps#forms" , as: :camps_forms
   get 'camps/:campid/home' => "camps#home"
-  #get 'camps/:campid/sites' => "sites", as: :camps_sites
+
+  scope 'camps/:campid' do
+    resources :sites, as: :camps_sites
+  end
 
   get 'camps/:campid/queries' => "queries#index_for_directors", as: :directors_queries
   scope 'camps/:campid/queries' do
