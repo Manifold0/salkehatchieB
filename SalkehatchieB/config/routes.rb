@@ -9,7 +9,7 @@ SalkehatchieB::Application.routes.draw do
   get 'camps/:campid/home' => "camps#home"
 
   scope 'camps/:campid' do
-    resources :sites, as: :camps_sites
+    resources :sites
   end
 
   get 'camps/:campid/queries' => "queries#index_for_directors", as: :directors_queries
@@ -97,7 +97,6 @@ SalkehatchieB::Application.routes.draw do
     :via => Devise.mappings[:user].sign_out_via
   end
 
-  resources :sites
   resources :photos
   
 

@@ -25,6 +25,7 @@ class SitesController < ApplicationController
   # POST /sites.json
   def create
     @site = Site.new(site_params)
+    @site.camp = Camp.find(params[:campid])
 
     respond_to do |format|
       if @site.save

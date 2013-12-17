@@ -74,27 +74,6 @@
                     <%= f.label :cpr_firstaid %><br>
                     <%= f.check_box :cpr_firstaid %>
                   </div>
-                  <div>
-                      <p>Please name your camp and the current year.</p>
-                  </div>
-
-                    <%
-
-                       array = Array.new()
-                       array.push(['none',nil]);
-                       @camps.each do |camp|
-                         array.push([camp.city,camp.id])
-                       end
-                    %>
-
-                  <div class="field">
-                    <%= f.label :camp %><br>
-                    <%= f.select(:camp, array) %>
-                  </div>
-                  <div class="field">
-                    <%= f.label :year %><br>
-                    <%= f.text_field :year, autofocus: true, placeholder: "Year", class:"form-control", style:"padding:4px", style: "width:250px" %>
-                  </div>
                   <div class="field">
                     <%= f.label :site_leader %><br>
                     <%= f.check_box :site_leader %>

@@ -12,7 +12,7 @@
     if !current_user || (current_user.current_camps_assigned.count == 0 && !current_user.is_admin?) %>
         <div class="col-md-4 col-md-offset-4">
             <div class="col-md-12 text-center">
-            <h2>Salkehatchie Camps</h2>
+            <h2>Salkehatchie</h2>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -41,7 +41,7 @@
 
         if !current_user.is_admin?%>
         <div class="col-md-5 tab">
-            <ul class="nav nav-tabs nav-justified ">
+            <ul class="nav nav-tabs nav-justified hidden-print">
                 <% current_user.current_camps_assigned.each do |assignment|%>
                     <% if assignment.camp.id.to_i == params[:campid].to_i %>
                     <% @current_camp = assignment.camp

@@ -60,17 +60,17 @@ class Ability
 
     if user.is_site_leader?
       #can view and print all camper information for their camp/site combination
-      can :read, Site, Site.where(:site => user.site)
+      #can :read, Site, Site.where(:site => user.site)
 
       #can edit/update daily schedule information for their camp/site combination only
       #Need primary key for camps and stuff
-      can :update, Schedule, Schedule.where(:camp => user.camp)
-      can :read, Camp, Camp.where(:camp => user.camp)
+      #can :update, Schedule, Schedule.where(:camp => user.camp)
+      #can :read, Camp, Camp.where(:camp => user.camp)
     end
 
     if user.is_parent?
       #can view photos from their child's camp only
-      can :read, Photo, Photo.where(:site => user.site)
+      #can :read, Photo, Photo.where(:site => user.site)
     end
 
     if user.is_camper?

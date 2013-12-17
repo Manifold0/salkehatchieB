@@ -2,24 +2,21 @@
 
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top:12px;">
 
-            <%= form_for User.new, class: 'navbar-form navbar-right', url: users_search_url do |f| %>
-        <div class="form-group col-md-2 col-md-offset-7">
+            <%= form_for User.new, class: 'navbar-form navbar-right hidden-print', url: users_search_url do |f| %>
+        <div class="form-group hidden-print col-md-3 col-md-offset-4">
   <%= f.text_field :first_name, class: 'form-control', placeholder: 'First Name' %>
-  </div><div class="form-group col-md-2">
+  </div><div class="form-group hidden-print col-md-3">
   <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name' %>
     </div>
   
-  <div class="form-group col-md-1">
+  <div class="form-group col-md-2 hidden-print">
   <%= f.submit "Search", class: 'form-control' %>
   </div>
 <% end %>
 
 
-    <div class="panel panel-default">
 
-        <div class="container">
             <table class="table table-bordered">
 
 
@@ -29,7 +26,7 @@
         <th><h4 class="text-muted"> </h4></th>
       <th><h4 class="text-muted">Camp Related</h4></th>
       <th><h4 class="text-muted">Form/Background Check Status</h4></th>
-      <th><h4 class="text-muted">Edit</h4></th>
+      <th class="hidden-print"><h4 class="text-muted"></h4></th>
     </tr>
 
   </thead>
@@ -43,7 +40,7 @@
           <td><%= user.gender%></td>
           <td><strong>Permission Level: </strong><%= user.permission_level %></td>
           <td><strong>Covenant Form: </strong><%= user.covenant_form_up_to_date %></td>
-          <td><%= link_to 'Show', user, class: 'hidden-print' %></td>
+          <td class="hidden-print"><%= link_to 'Show', user, class: 'hidden-print' %></td>
           </tr>
       <tr>
           <td><%= user.email %></td>
@@ -51,35 +48,35 @@
            <td><strong>Balance: </strong><%= user.current_balance %></td>
            <td><strong>Background Check: </strong><% if user.background_check_valid? %><%= user.background_check_date %><% elsif user.background_check
                %>Expired<% else %>No<% end %></td>
-          <td><%= link_to 'Edit', edit_user_path(user), class: 'hidden-print'%></td>
+          <td class="hidden-print"><%= link_to 'Edit', edit_user_path(user), class: 'hidden-print'%></td>
           </tr>
       <tr>
           <td><%=user.address_line1 %></td>
           <td><%=user.phone_number %></td>
           <td><strong>T-shirt size: </strong><%=user.tshirt_size %></td>
           <td><strong>Questionnaire: </strong><%= user.questionnaire_up_to_date %></td>
-          <td><%= link_to 'Destroy', admin_user_delete_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'hidden-print' %></td>
+          <td class="hidden-print"><%= link_to 'Destroy', admin_user_delete_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'hidden-print' %></td>
            </tr>
       <tr>
             <td><%=user.address_line2 %></td>
           <td><%=user.service_provider %></td>
           <td><strong>Church: </strong><%=user.church %></td>
             <td><strong>Reference Forms: </strong><%= user.reference_forms_up_to_date %></td>
-          <td></td>
+          <td class="hidden-print"></td>
           </tr>
       <tr>
           <td><%=user.city %> <%=user.state %></td>
-          <td><%=user.gender %></td>
+          <td><%=user.zip %></td>
           <td><strong>Church Pastor: </strong><%=user.church_pastor %></td>
             <td><strong>Medical Form: </strong><%= user.medical_form_up_to_date %></td>
-             <td></td>
+             <td class="hidden-print"></td>
                         </tr>
       <tr><tr class="active">
            <td></td>
           <td></td>
               <td></td>
           <td></td>
-          <td></td>
+          <td class="hidden-print"></td>
       </tr>
     <% end %>
   </tbody>
@@ -94,8 +91,8 @@
 
 
 <%= link_to 'New User', new_user_path, :class => "btn btn-default col-md-4 hidden-print", style:"height:40px" %>
+
 </div>
-    <div class="row">
 
 
 
