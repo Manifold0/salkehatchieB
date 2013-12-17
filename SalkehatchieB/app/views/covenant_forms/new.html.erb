@@ -1,5 +1,10 @@
-<h1>New covenant_form</h1>
+<h1 class ="text-muted">New Covenant Form</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', covenant_forms_path %>
+
+ <% if current_user.is_admin? %>
+    <%= link_to 'Back', covenant_forms_path %>
+ <% else %>
+    <%= link_to 'Back', forms_path %>
+ <% end %>

@@ -1,10 +1,19 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
+        <div class="panel panel-default col-md-12">
 
             <div class="panel-body">
+<% 
+path = request_camps_create_path(@camp_request)
+if current_user.is_admin?
+  path = admin_request_camps_create_path(@camp_request)
+end
 
-<%= form_for @camp_request, :url => request_camps_create_path(@camp_request) do |f| %>
+if @camp_request.id
+  path = request_camps_update_path(@camp_request)
+ end %>
+<%= form_for @camp_request, :url => path do |f| %>
+
 
   <% if @camp_request.errors.any? %>
     <div id="error_explanation">
@@ -31,9 +40,7 @@
     <%= f.select(:user_id, users) %>
   </div>
 <%
-
   end
-
   %>
 
   <%
@@ -45,23 +52,20 @@
   end
 %>
   
-  <div class="field">
-    <%= f.label :preference1, class: "text-muted" %><br>
+  <div class="field"><span class="text-muted">First Choice</span><br/>
     <%= f.select(:preference1_id, array) %>
   </div>
   
 
-  <div class="field">
-    <%= f.label :preference2, class: "text-muted" %><br>
+  <div class="field"><span class="text-muted">Second Choice</span><br/>
     <%= f.select(:preference2_id, array) %>
   </div>
-  <div class="field">
-    <%= f.label :preference3, class: "text-muted" %><br>
+  <div class="field"><span class="text-muted">Third Choice</span><br/>
    <%= f.select(:preference3_id, array) %>
   </div>
 
   <div class="actions">
-    <%= f.submit :class => "btn btn-default col-md-3", style:"height:40px" %>
+    <%= f.submit "Submit Camp Request", :class => "btn btn-default col-md-8 col-md-offset-2", style:"height:40px" %>
   </div>
 <% end %>
                 </div>

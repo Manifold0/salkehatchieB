@@ -5,6 +5,20 @@ class CovenantFormsController < ApplicationController
   # GET /covenant_forms.json
   def index
     @covenant_forms = CovenantForm.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = CovenantPdf.new
+        User.all.each do |user|
+          if (user.covenant_form)
+            pdf.create_page(user.covenant_form)
+            pdf.start_new_page
+          end
+        end
+        
+        send_data pdf.render, filename: "covenant form", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /covenant_forms/1
@@ -13,10 +27,15 @@ class CovenantFormsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = CovenantPdf.new(@covenant_form)
+        pdf = CovenantPdf.new()
+        pdf.create_page(@covenant_form)
         send_data pdf.render, filename: "covenant form", type: "application/pdf", disposition: "inline"
       end
     end
+  end
+
+  def print_all
+    
   end
 
   # GET /covenant_forms/new
@@ -46,7 +65,7 @@ class CovenantFormsController < ApplicationController
 
     number_of_forms = CovenantForm.where("(created_at >= ? AND created_at < ?) and user_id = ?", date_registration_opens, date_registration_closes , create_for_user.id).count
 
-    if (number_of_times_currently_registered > 0 && !current_user.is_admin?)
+    if (number_of_forms > 0 && !current_user.is_admin?)
       #problem already requested camps.
       render :text => "You have already created "+number_of_forms.to_s+" form between "+date_registration_opens.strftime("%F")+" and "+date_registration_closes.strftime("%F")
       #TO-DO: this needs to show a prettier error.
@@ -70,6 +89,7 @@ class CovenantFormsController < ApplicationController
   # PATCH/PUT /covenant_forms/1
   # PATCH/PUT /covenant_forms/1.json
   def update
+    @covenant_form.signature_date = Time.now
     respond_to do |format|
       if @covenant_form.update(covenant_form_params)
         format.html { redirect_to @covenant_form, notice: 'Covenant form was successfully updated.' }

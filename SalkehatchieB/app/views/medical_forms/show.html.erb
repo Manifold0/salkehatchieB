@@ -136,5 +136,11 @@
 </p>
 
 <%= link_to 'Edit', edit_medical_form_path(@medical_form) %> |
-<%= link_to 'Back', medical_forms_path %>
+
+<% if current_user.is_admin? %>
+    <%= link_to 'Back', medical_forms_path %>
+<% else %>
+    <%= link_to 'Back', forms_path %>
+<% end %>
+
 <%= link_to 'Print PDF', medical_form_path(@medical_form, format: "pdf") %>

@@ -1,39 +1,104 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @camp.start_date %>
-</p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @camp.end_date %>
-</p>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Camp Information</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                        <img class="img-circle"
+                                             src="http://images.colourbox.com/thumb_COLOURBOX6376319.jpg"
+                                             alt="Camp Pic"
+                                             width="80%"
+                                             height="80%"
+                                        >
+                                    </div>
 
-<p>
-  <strong>City:</strong>
-  <%= @camp.city %>
-</p>
+                                    <div class="col-10 col-sm-10 hidden-md hidden-lg">
 
-<p>
-  <strong>Hq address:</strong>
-  <%= @camp.hq_address %>
-</p>
-
-<p>
-<strong>Campers:</strong>
- <% @camp.camp_assignments.each do |assignment| %>
- 	<%= assignment.user.first_name %> <%= assignment.user.last_name %>,
- <% end %>
-</p>
+                                        <dl>
+                                            <dt><strong>Start date:</strong></dt>
+                                           <dd><%= @camp.start_date %></dd>
 
 
-    <% if can? :update, @camp %>
-        <%= link_to 'Edit', edit_camp_path(@camp) %> |
-    <% end %>
+                                            <dt><strong>End date:</strong></dt>
+                                            <dd><%= @camp.end_date %></dd>
 
-    <% if current_user.is_admin? %>
-        <%= link_to 'Admin Back', admin_camps_path %>
-    <% else %>
-        <%= link_to 'Back', camps_path %>
-    <% end %>
+                                            <dt><strong>City:</strong></dt>
+                                            <dd><%= @camp.city %></dd>
+
+
+                                            <dt><strong>Hq address:</strong></dt>
+                                            <dd><%= @camp.hq_address %></dd>
+
+
+
+                                            <dt><strong>Campers:</strong></dt>
+                                            <dd><% @camp.camp_assignments.each do |assignment| %>
+                                                <%= assignment.user.first_name %> <%= assignment.user.last_name %>,
+                                            <% end %>
+                                            </dd>
+
+                                        </dl>
+                                    </div>
+                                    <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                            <tr>
+                                                <td><strong>Start date:</strong></td>
+                                                <td><%= @camp.start_date %></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><strong>End date:</strong></td>
+                                                <td><%= @camp.end_date %></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><strong>City:</strong></td>
+                                                <td><%= @camp.city %></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Hq address:</strong></td>
+                                                <td><%= @camp.hq_address %></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Campers:</strong></td>
+                                                <td><% @camp.camp_assignments.each do |assignment| %>
+                                                        <%= assignment.user.first_name %> <%= assignment.user.last_name %>,
+                                                    <% end %>
+                                                </td>
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer" height="100px">
+                                <div class="row">
+
+                        <span class="pull-right">
+                             <% if can? :update, @camp %>
+                    <%= link_to 'Edit', edit_camp_path(@camp), :class => "btn btn-sm btn-warning"%>
+                <% end %>
+
+                            <% if current_user.is_admin? %>
+                    <%= link_to 'Admin Back', admin_camps_path, :class => "btn btn-sm btn-danger" %>
+                <% else %>
+                    <%= link_to 'Back', camps_path, :class => "btn btn-sm", :style => "margin-right: 10px"  %>
+
+                         <% end %>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div>

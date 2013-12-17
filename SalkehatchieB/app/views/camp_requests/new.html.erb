@@ -1,7 +1,7 @@
 <h1 class="text-muted">New Camp Request</h1>
 
 
-<% if @camp_requests.count > 0 %>
+<% if current_user.camp_requests.count > 0 %>
   <div>You have already requested a camp. You are limited to 1 camp per summer unless you get the approval of the camp director. Contact the camp director directly and they will assign you to that camp.</div>
 <% end %>
 

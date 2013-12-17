@@ -1,5 +1,7 @@
 class CampRequestsController < ApplicationController
+  before_action :before_for_params, only: [:create]
   before_action :set_camp_request, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /camp_requests
   # GET /camp_requests.json
@@ -11,7 +13,7 @@ class CampRequestsController < ApplicationController
     p = params.permit(:user, :camp, :camp_request)
 
     request = CampRequest.find(p['camp_request'])
-    if request.user.current_balance != 0
+    if request.user.current_balance != 0 && current_user.background_check_valid?
       redirect_to camp_requests_path
     end
     
@@ -55,6 +57,12 @@ class CampRequestsController < ApplicationController
 
   # GET /camp_requests/1/edit
   def edit
+    current_year = DateTime.now.year
+    date_registration_opens = DateTime.new(current_year, 1, 1)
+    date_registration_closes = DateTime.new(current_year+1, 1, 1)
+    
+    @camps = Camp.where("(start_date >= ? AND start_date < ?)", date_registration_opens, date_registration_closes).all
+
   end
 
   # POST /camp_requests
@@ -85,7 +93,11 @@ class CampRequestsController < ApplicationController
     @camp_request.user = create_for_user
 
     if @camp_request.save
-      redirect_to payments_path
+      if current_user.is_admin?
+        redirect_to camp_requests_path
+      else
+        redirect_to payments_path
+      end
     else
       render action: 'new'
     end
@@ -145,5 +157,5 @@ class CampRequestsController < ApplicationController
       resource = controller_name.singularize.to_sym
       method = "#{resource}_params"
       params[resource] &&= send(method) if respond_to?(method, true)
-  end
+    end
 end

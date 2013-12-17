@@ -12,6 +12,23 @@ class ReferenceFormsController < ApplicationController
     else
       @reference_forms = ReferenceForm.where(user: current_user)
     end
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReferencePdf.new
+        User.all.each do |user|
+          if (user.reference_forms)
+            user.reference_forms.each do |form|
+              pdf.create_page(form)
+              pdf.start_new_page
+            end
+          end
+        end
+
+        send_data pdf.render, filename: "reference forms", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /reference_forms/1
@@ -21,7 +38,8 @@ class ReferenceFormsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = ReferencePdf.new(@reference_form)
+        pdf = ReferencePdf.new()
+        pdf.create_page(@reference_form)
         send_data pdf.render, filename: "reference form", type: "application/pdf", disposition: "inline"
       end
     end

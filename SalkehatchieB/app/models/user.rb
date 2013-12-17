@@ -31,8 +31,19 @@ class User < ActiveRecord::Base
   def is_camp_director?
     if self.permission_level == 4
       return true
-    else
+     else
       return false
+     end
+  end
+
+  def is_camp_director_for_camp(camp)
+    self.current_camps_assigned.each do |assignment|
+      if assignment.camp == camp
+        if assignment.permission_level == 4
+          return true
+        end
+        return false
+      end
     end
   end
 
@@ -106,32 +117,58 @@ class User < ActiveRecord::Base
     return false
   end
 
-  def reference_form_up_to_date
+  def reference_forms_up_to_date
     current_year = Time.now.year
-    if self.reference_form != nil
-      if self.reference_form.user_approval_date.year == current_year
-        return true
+    if self.reference_forms.count > 2
+      self.reference_forms.each do |reference|
+        if reference.reviewed_by_camp_director
+          if reference.user_approval_date.year != current_year
+            return false
+          end
+        else
+          return false
+        end
       end
+    else
+      return false
     end
-    return false
+    return true
   end
 
   def medical_form_up_to_date
     current_year = Time.now.year
     if self.medical_form != nil
-      if self.reference_form.guardian_approval_date.year == current_year
+      if self.medical_form.guardian_approval_date.year == current_year
         return true
       end
     end
     return false
   end
 
-
-
-
   def full_name
     return "#{last_name}, #{first_name}"
   end
+
+  def under_eighteen?
+    return self.age < 18
+  end
+
+  def age
+    if self.date_of_birth == nil
+      return 0
+    end
+    dob = self.date_of_birth
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
+
+=begin  def age
+    if (self.date_of_birth == nil)
+      return 0;
+    end
+    return self.date_of_birth.to_int/(60*60*24*365)
+  end
+=end
 
   def background_check_valid?
     if self.background_check

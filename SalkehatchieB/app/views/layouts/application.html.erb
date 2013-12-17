@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SalkehatchieB</title>
+  <title>Salkehatchie Summer Service</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -23,6 +23,7 @@
             <div>
             <%= link_to "Basic Info", user_basic_info_path, :class => "btn" %>
             <%= link_to "Request Camp", request_camps_path, :class => "btn" %>
+            <%= link_to "Forms", forms_path, :class => "btn" %>
             <%= link_to "Payments", payments_path, :class => "btn" %>
                 <%= link_to "Sign Out", destroy_user_session_path, :class => "btn", :method => "DELETE" %>
             </div>
@@ -36,7 +37,7 @@
         </div>
         </div>
         <%
-        current_permission_level = 1
+        @current_permission_level = current_user.permission_level
 
         if !current_user.is_admin?%>
         <div class="col-md-5 tab">
@@ -44,7 +45,8 @@
                 <% current_user.current_camps_assigned.each do |assignment|%>
                     <% if assignment.camp.id.to_i == params[:campid].to_i %>
                     <% @current_camp = assignment.camp
-                        current_permission_level = assignment.permission_level %>
+                        @current_permission_level = assignment.permission_level
+                         %>
                       <li class = "active">
                     <% else %>
                       <li>
@@ -54,27 +56,29 @@
                 <% end %>
             </ul>
         </div>
-        <% end %>
+        <% 
+        end 
+        current_user.permission_level = @current_permission_level
+        current_user.save
+        %>
 
     </div>
     <div class="row index">
-        <div id="sideBar" class="col-md-2 btn-group-vertical index-btn custom-vertical-nav-bar dropdown-menu">
+        <div id="sideBar" class="col-md-2 btn-group-vertical index-btn custom-vertical-nav-bar dropdown-menu hidden-print">
         	<%if current_user.is_admin? %>
-                <button type="button" class="btn btn-default"> Home <span class="glyphicon glyphicon-home"></span></button>
                 <%# link_to "Home", admin_home_path, :class => "btn"%>
+                <%= link_to "Camps", camps_path, :class => "btn"%>
+                <li class="divider"></li>
                 <%= link_to "Users", users_path, :class => "btn"%>
-		        <%= link_to "Camps", camps_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"> Directors <span class="glyphicon glyphicon-bullhorn"></span></button>
+                <%= link_to "Directors", directors_path, :class => "btn"%>
                 <%# link_to "Directors", users_path,(query for camp directors) :  class => "btn"%>
                 <%= link_to "Applications", camp_requests_path, :class => "btn"%>
                 <%= link_to "Assignments", camp_assignments_path, :class => "btn"%>
                 <%= link_to "Payments", admin_payments_path, :class => "btn"%>
                 <%= link_to "Costs", costs_path, :class => "btn"%>
-                <%= link_to "Photos", photos_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"> Schedule <span class="glyphicon glyphicon-calendar"></span></button>
+                <%# link_to "Photos", photos_path, :class => "btn"%>
                 <%# link_to "Schedule", schedule_path, :class => "btn"%>
-                <button type="button" class="btn btn-default"> Queries <span class="glyphicon glyphicon-list"></span></button>
-                <%# link_to "Queries", query_path(with query), :class => "btn"%>
+                <%= link_to "Queries", queries_path, :class => "btn"%>
 
                 <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
                 <%# link_to "Home", admin_home_path, :class => "btn"%>
@@ -95,36 +99,40 @@
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Queries</button>-->
 
-            <% else if current_permission_level == 4%>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
+            <% else if @current_permission_level == 4 %>
+
                 <%# link_to "Home", director_home_path, :class => "btn"%>
                 <%= link_to "Camps", camps_path, :class => "btn"%>
                 <% if @current_camp %>
-                <li class="divider"></li>
+                    <li class="divider"></li>
                     <div class="col-md-12 index-head"><h5><%= @current_camp.city %></h5></div>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list"></span>Forms</button>
+                    <%= link_to "Home", camp_path(@current_camp), :class => "btn"%>
+                    <%= link_to "Forms", camps_forms_path(@current_camp), :class => "btn"%>
                     <% #link_to "Forms", forms_path, :class => "btn"%>
                     <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>-->
                     <%= link_to "Campers", camps_campers_path(@current_camp), :class => "btn"%>
-                    <%= link_to "Photos", photos_path, :class => "btn"%>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-map-marker"></span>Map</button>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+                    <%# link_to "Photos", photos_path, :class => "btn"%>
                     <%# link_to "Schedule", schedule_path, :class => "btn"%>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tag"></span>Shirt Sizes</button>
-                    <div class="row"><div class="col-md-12 index-head"><h5>What's my site?</h5></div></div>
+                    <%= link_to "TShirt Sizes", camp_tshirt_sizes_path, :class => "btn"%>
+                    <%= link_to "Queries", directors_queries_path, :class => "btn"%>
+                    
                 <% end %>
-            <% else %>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span>Home</button>
-		        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span>Forms</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>Campers</button>
-  		        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Photos</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span>Schedule</button>
+            <% else if @current_permission_level == 1 %>
+                <%= link_to "Camps", camps_path, :class => "btn"%>
+                <% if @current_camp %>
+                    <li class="divider"></li>
+                    <div class="col-md-12 index-head"><h5><%= @current_camp.city %></h5></div>
+                    <%= link_to "Home", camp_path(@current_camp), :class => "btn"%>
+                <% end %>
             <% end %>
-
+            <% end %>
     <% end %>
         <li class="divider"></li>
+        <%= link_to "Basic Info", user_basic_info_path, :class => "btn" %>
+        <%= link_to "Request Camp", request_camps_path, :class => "btn" %>
         <%= link_to "Payments", payments_path, :class => "btn" %>
         <%= link_to "Forms", forms_path, :class => "btn" %>
+        <li class="divider"></li>
         <%= link_to "Sign Out", destroy_user_session_path, :class => "btn", :method => "DELETE" %>
         </div><div class="col-md-9"><%= yield %></div>
     </div>

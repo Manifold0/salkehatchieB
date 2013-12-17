@@ -1,17 +1,103 @@
-<h1>Listing Forms</h1>
-
+<h1 class="text-muted">Forms</h1>
+<div><h3>Covenant</h3>
 <table>
   <thead>
     <tr>
-      <th>Form Name</th>
-      <th></th>
+      <th>Name</th>
+      <th>Completed Form</th>
     </tr>
   </thead>
   <tbody>
-    <% @forms.each do |form| %>
+    <% @camp.camp_assignments.each do |assignment| 
+      camper = assignment.user%>
       <tr>
-        <th>Form info</th>
+        <td><%= camper.full_name %></td>
+        <td><%= camper.covenant_form_up_to_date %></td>
+        <% if camper.covenant_form %>
+        <td><%= link_to 'Print PDF', covenant_form_path(camper.covenant_form, format: "pdf") %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= link_to 'Print All', covenant_forms_path(format: "pdf") %>
+
+<h3>References</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Completed</th>
+      <th>Pending</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @camp.camp_assignments.each do |assignment| 
+      camper = assignment.user%>
+      <tr>
+        <td><%= camper.full_name %></td>
+        <% num_completed = 0
+          num_pending = 0
+          camper.reference_forms.each do |form| 
+            if form.approval_status
+              num_completed = num_completed+1
+            else
+              num_pending = num_pending+1
+            end
+          end
+            %>
+        <td><%= num_completed %></td>
+        <td><%= num_pending %></td>
+        <% if num_completed >= 3 %>
+        <td><%= link_to 'Print PDF', covenant_form_path(camper.covenant_form, format: "pdf") %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Print All', reference_forms_path(format: "pdf")  %>
+<h3>Medical</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Completed Form</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @camp.camp_assignments.each do |assignment| 
+      camper = assignment.user%>
+      <tr>
+        <td><%= camper.full_name %></td>
+        <td><%= camper.medical_form_up_to_date %></td>
+        <% if camper.medical_form %>
+              <td><%= link_to 'Print PDF', medical_form_path(camper.medical_form, format: "pdf") %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    <%= link_to 'Print All', medical_forms_path(format: "pdf") %>
+
+<h3>Questionnaire</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Completed Form</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @camp.camp_assignments.each do |assignment| 
+      camper = assignment.user%>
+      <tr>
+        <td><%= camper.full_name %></td>
+        <td><%= camper.questionnaire_up_to_date %></td>
+        <% if camper.questionnaire %>
+        <td><%= link_to 'Print PDF', questionnaire_path(camper.questionnaire, format: "pdf") %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Print All', questionnaires_path(format: "pdf") %>

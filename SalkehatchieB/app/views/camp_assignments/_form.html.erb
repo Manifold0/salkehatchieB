@@ -4,9 +4,13 @@
         <div class="panel panel-default">
 
             <div class="panel-body">
+<% 
+path = assignment_camps_create_path()
+if @camp_assignment.id
+  path = assignment_camps_update_path(@camp_assignment)
+ end %>
+<%= form_for @camp_assignment, :url => path do |f| %>
 
-
-            <%= form_for(@camp_assignment) do |f| %>
   <% if @camp_assignment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@camp_assignment.errors.count, "error") %> prohibited this camp_assignment from being saved:</h2>
@@ -18,11 +22,27 @@
       </ul>
     </div>
   <% end %>
-
+<% if @camp_assignment.user %>
   <div class="field">
     <%= f.label :user %><br>
     <%= @camp_assignment.user.full_name %>
   </div>
+
+<% else %>
+  
+  <div class="field">
+    <% 
+      users_select = Array.new()
+      @users.each do |user|
+        users_select.push([user.full_name,user.id])
+      end
+
+    %>
+    <%= f.label :user %><br>
+    <%= f.select( :user_id, users_select) %>
+  </div>
+
+<% end %>
   <div class="field">
     <% 
       camps_select = Array.new()
@@ -32,7 +52,7 @@
 
     %>
     <%= f.label :camp %><br>
-    <%= f.select( :camp, camps_select) %>
+    <%= f.select( :camp_id, camps_select) %>
   </div>
   <div class="field">
     <%

@@ -1,6 +1,11 @@
-<h1>Editing questionnaire</h1>
+<h1 class ="text-muted">Editing Questionnaire</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Show', @questionnaire %> |
-<%= link_to 'Back', questionnaires_path %>
+
+<% if current_user.is_admin? %>
+    <%= link_to 'Back', questionnaires_path %>
+<% else %>
+    <%= link_to 'Back', questionnaire_path(current_user.questionnaire) %>
+<% end %>

@@ -1,11 +1,21 @@
 class ReferencePdf < Prawn::Document
 
-  def initialize(form)
+  def initialize()
     super(top_margin: 10)
+  end
+
+  def create_page(form)
     @form = form
     #stroke_horizontal_rule
     heading
     reference
+  end
+
+  def all_forms(users)
+    users.each do |user|
+      initialize(user.reference_forms)
+      start_new_page
+    end
   end
 
 

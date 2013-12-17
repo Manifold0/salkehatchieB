@@ -112,9 +112,14 @@
 
 <p>
   <strong>User:</strong>
-  <%= @questionnaire.user %>
+  <%= @questionnaire.user.first_name + " " + @questionnaire.user.last_name %>
 </p>
 
 <%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %> |
-<%= link_to 'Back', questionnaires_path %>
+
+<% if current_user.is_admin? %>
+    <%= link_to 'Back', questionnaires_path %>
+<% else %>
+    <%= link_to 'Back', forms_path %>
+<% end %>
 <%= link_to 'Print PDF', questionnaire_path(@questionnaire, format: "pdf") %>

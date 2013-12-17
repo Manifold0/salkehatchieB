@@ -6,6 +6,21 @@ class MedicalFormsController < ApplicationController
   # GET /medical_forms.json
   def index
     @medical_forms = MedicalForm.all
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = MedicalPdf.new
+        User.all.each do |user|
+          if (user.medical_form)
+            pdf.create_page(user.medical_form)
+            pdf.start_new_page
+          end
+        end
+
+        send_data pdf.render, filename: "medical form", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /medical_forms/1
@@ -15,7 +30,8 @@ class MedicalFormsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = MedicalPdf.new(@medical_form)
+        pdf = MedicalPdf.new()
+        pdf.create_page(@medical_form)
         send_data pdf.render, filename: "medical form", type: "application/pdf", disposition: "inline"
       end
     end
@@ -24,6 +40,12 @@ class MedicalFormsController < ApplicationController
   # GET /medical_forms/new
   def new
     @medical_form = MedicalForm.new
+
+    current_year = DateTime.now.year
+    date_registration_opens = DateTime.new(current_year, 1, 1)
+    date_registration_closes = DateTime.new(current_year+1, 1, 1)
+
+    @camps = Camp.where("(start_date >= ? AND start_date < ?)", date_registration_opens, date_registration_closes).all
   end
 
   # GET /medical_forms/1/edit
@@ -68,6 +90,10 @@ class MedicalFormsController < ApplicationController
       format.html { redirect_to medical_forms_url }
       format.json { head :no_content }
     end
+  end
+
+  def return_camps
+
   end
 
   private

@@ -1,11 +1,11 @@
 class CampsController < ApplicationController
-  before_action :set_camp, only: [:show, :edit, :update, :destroy, :camp_params, :campers]
+  before_action :set_camp, only: [:show, :edit, :update, :destroy, :camp_params, :campers, :forms]
   before_action :create_camp, only: :create
   before_action :permissions, except: [:index, :show]
   before_action :show_permissions, only: :show
 
   #CanCan specific authorization
-  load_and_authorize_resource
+  #load_and_authorize_resource handled by permission before_actions above
 
   # GET /camps
   # GET /camps.json
@@ -66,8 +66,12 @@ class CampsController < ApplicationController
   end
 
   def forms
+<<<<<<< HEAD
     #TODO Need to pull forms out of camp...pull all the forms out off all the campers?
     @forms = [1,2];
+=======
+    
+>>>>>>> d5e912119ed0db7f18afc21ef5c4d0b385b790e6
   end
 
   def home
@@ -109,8 +113,14 @@ class CampsController < ApplicationController
 
   def missing_insurance_cards
     #TODO
-    @camp = current_user.camp
-
+    #look to queries_controller.rb for definition
+    camp = Camps.find(params[:campid])
+    @users = Array.new
+    camp.camp_assignments.each do |assignment|
+      if !assignment.user.medical_form
+        @users.push(assignment.user)
+      end
+    end
   end
 
   def get_camp_link(camp)

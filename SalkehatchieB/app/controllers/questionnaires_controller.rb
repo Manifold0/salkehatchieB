@@ -5,6 +5,21 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires.json
   def index
     @questionnaires = Questionnaire.all
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = QuestionnairePdf.new
+        User.all.each do |user|
+          if (user.questionnaire)
+            pdf.create_page(user.questionnaire)
+            pdf.start_new_page
+          end
+        end
+
+        send_data pdf.render, filename: "questionnaire", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /questionnaires/1
@@ -14,7 +29,8 @@ class QuestionnairesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = QuestionnairePdf.new(@questionnaire)
+        pdf = QuestionnairePdf.new()
+        pdf.create_page(@questionnaire)
         send_data pdf.render, filename: "questionnaire", type: "application/pdf", disposition: "inline"
       end
     end
@@ -23,6 +39,12 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires/new
   def new
     @questionnaire = Questionnaire.new
+
+    current_year = DateTime.now.year
+    date_registration_opens = DateTime.new(current_year, 1, 1)
+    date_registration_closes = DateTime.new(current_year+1, 1, 1)
+
+    @camps = Camp.where("(start_date >= ? AND start_date < ?)", date_registration_opens, date_registration_closes).all
   end
 
   # GET /questionnaires/1/edit
@@ -34,6 +56,7 @@ class QuestionnairesController < ApplicationController
   def create
     @questionnaire = Questionnaire.new(questionnaire_params)
     @questionnaire.user = current_user
+    @questionnaire.user_approval_date = Time.now
 
     respond_to do |format|
       if @questionnaire.save
@@ -49,6 +72,7 @@ class QuestionnairesController < ApplicationController
   # PATCH/PUT /questionnaires/1
   # PATCH/PUT /questionnaires/1.json
   def update
+    @questionnaire.user_approval_date = Time.now
     respond_to do |format|
       if @questionnaire.update(questionnaire_params)
         format.html { redirect_to @questionnaire, notice: 'Questionnaire was successfully updated.' }

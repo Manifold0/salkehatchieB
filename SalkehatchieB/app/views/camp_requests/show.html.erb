@@ -2,33 +2,32 @@
 
 <p>
   <strong>User:</strong>
-  <%= @camp_request.user %>
-</p>
-
-<p>
-  <strong>Camp:</strong>
-  <%= @camp_request.camp %>
+  <%= @camp_request.user.full_name %>
 </p>
 
 <p>
   <strong>Status:</strong>
   <%= @camp_request.status %>
 </p>
-
+<% if @camp_request.preference1_id %>
 <p>
   <strong>Preference1:</strong>
-  <%= @camp_request.preference1 %>
+  <%= Camp.find(@camp_request.preference1_id).city %>
 </p>
-
+<% end %>
+<% if @camp_request.preference2_id %>
 <p>
   <strong>Preference2:</strong>
-  <%= @camp_request.preference2 %>
+  <%= Camp.find(@camp_request.preference2_id).city %>
 </p>
+<% end %>
+<% if @camp_request.preference3_id %>
 
 <p>
   <strong>Preference3:</strong>
-  <%= @camp_request.preference3 %>
+  <%= Camp.find(@camp_request.preference3_id).city %>
 </p>
+<% end %>
 
 <%= link_to 'Edit', edit_camp_request_path(@camp_request) %> |
 <%= link_to 'Back', camp_requests_path %>

@@ -1,7 +1,11 @@
 class QuestionnairePdf < Prawn::Document
 
-  def initialize(form)
+  def initialize()
     super(top_margin: 10)
+  end
+
+
+  def create_page(form)
     @form = form
     #stroke_horizontal_rule
     top
@@ -21,6 +25,13 @@ class QuestionnairePdf < Prawn::Document
     activities
     move_down(45)
     closing
+  end
+
+  def all_forms(users)
+    users.each do |user|
+      initialize(user.medical_form)
+      start_new_page
+    end
   end
 
 
