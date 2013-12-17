@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20131214205914) do
 
   create_table "camp_permission_forms", force: true do |t|
     t.integer  "user_id"
-    t.string   "type_of"
+    t.string   "type"
     t.string   "relationship"
     t.string   "name"
     t.string   "address1"
@@ -158,7 +158,10 @@ ActiveRecord::Schema.define(version: 20131214205914) do
     t.string   "relationship"
     t.boolean  "approval_status"
     t.boolean  "reviewed_by_camp_director"
+<<<<<<< HEAD
+=======
     t.datetime "user_approval_date"
+>>>>>>> d5e912119ed0db7f18afc21ef5c4d0b385b790e6
     t.datetime "printed_date"
     t.datetime "created_at"
     t.datetime "updated_at"
