@@ -19,44 +19,63 @@
 </nav>
 
 <div class="container">
-    <div class="row">
-        <div class=".col-md-3">
-            <table class="table table-striped table-condensed">
+<table class="table table-striped table-bordered">
 
 
   <thead>
     <tr>
-      <th>Permission Level</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Balance</th>
-      <th>Covenant</th>
-      <th>Background Check</th>
-      <th>Questionnaire</th>
-      <th>Reference Form</th>
-      <th>Medical Form</th>
+      <th><h4 class="text-muted"> Personal Information </h4></th>
+        <th><h4 class="text-muted"> </h4></th>
+      <th><h4 class="text-muted">Camp Related</h4></th>
+      <th><h4 class="text-muted">Form/Background Check Status</h4></th>
+      <th><h4 class="text-muted">Edit</h4></th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.permission_level %></td>
-            <td><%= user.first_name %></td>
-            <td><%= user.last_name %></td>
-            <td><%= user.email %></td>
-            <td><%= user.current_balance %></td>
-            <td><%= user.covenant_form_up_to_date %></td>
-            <td><% if user.background_check_valid? %><%= user.background_check_date %><% elsif user.background_check
+        <td><strong>Full Name: </strong><%= user.first_name %> <%= user.last_name %></td>
+          <td><strong>Gender: </strong><%= user.gender%></td>
+          <td><strong>Permission Level: </strong><%= user.permission_level %></td>
+          <td><strong>Covenant Form: </strong><%= user.covenant_form_up_to_date %></td>
+          <td><%= link_to 'Show', user, class: 'hidden-print' %></td>
+          </tr>
+      <tr>
+          <td><strong>Email: </strong><%= user.email %></td>
+          <td><strong>Date of Birth: </strong><%= user.date_of_birth %></td>
+           <td><strong>Balance: </strong><%= user.current_balance %></td>
+           <td><strong>Background Check: </strong><% if user.background_check_valid? %><%= user.background_check_date %><% elsif user.background_check
                %>Expired<% else %>No<% end %></td>
-            <td><%= user.questionnaire_up_to_date %></td>
-            <td><%= user.reference_forms_up_to_date %></td>
-            <td><%= user.medical_form_up_to_date %></td>
-            <td><%= link_to 'Show', user, class: 'hidden-print' %></td>
-            <td><%= link_to 'Edit', edit_user_path(user), class: 'hidden-print'%></td>
-            <td><%= link_to 'Destroy', admin_user_delete_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'hidden-print' %></td>
-
+          <td><%= link_to 'Edit', edit_user_path(user), class: 'hidden-print'%></td>
+          </tr>
+      <tr>
+          <td><strong>Address: </strong><%=user.address_line1 %></td>
+          <td><strong>Telephone: </strong><%=user.phone_number %></td>
+          <td><strong>T-shirt size: </strong><%=user.tshirt_size %></td>
+          <td><strong>Questionnaire: </strong><%= user.questionnaire_up_to_date %></td>
+          <td><%= link_to 'Destroy', admin_user_delete_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'hidden-print' %></td>
+           </tr>
+      <tr>
+            <td><%=user.address_line2 %></td>
+          <td><strong>Service Provider: </strong><%=user.service_provider %></td>
+          <td><strong>Church: </strong><%=user.church %></td>
+            <td><strong>Reference Forms: </strong><%= user.reference_forms_up_to_date %></td>
+          <td></td>
+          </tr>
+      <tr>
+          <td><strong>City, State: </strong><%=user.city %> <%=user.state %></td>
+          <td><strong>Gender:</strong></td>
+          <td><strong>Church Pastor: </strong><%=user.church_pastor %></td>
+            <td><strong>Medical Form: </strong><%= user.medical_form_up_to_date %></td>
+             <td></td>
+                        </tr>
+      <tr>
+           <td></td>
+          <td></td>
+              <td></td>
+          <td></td>
+          <td></td>
       </tr>
     <% end %>
   </tbody>

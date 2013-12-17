@@ -2,28 +2,110 @@
 
 
 <p id="notice"><%= notice %></p>
-Balance: <%= @user.current_balance %>
 
-<div class="container">
-    <div class="row">
-        <div class=".col-md-3">
-            <table class="table table-striped table-condensed">
-                <thead>
-                  <tr>Covenant Form</tr>
-                  <tr>Questionnaire</tr>
-                  <tr>Reference Form</tr>
-                  <tr>Medical Form</tr>
-                </thead>
-                <tbody>
-                    <%= @user.covenant_form_up_to_date %>
-                    <%= @user.questionnaire_up_to_date %>
-                    <%= @user.reference_forms_up_to_date %>
-                    <%= @user.medical_form_up_to_date %>
-                </tbody>
-            </table>
+
+
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">User information</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                        <img class="img-circle"
+                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+                             alt="User Pic">
+                    </div>
+
+
+                    <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+
+                        <table class="table table-user-information">
+                            <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td><%= @user.first_name %> <%= @user.last_name %></td>
+
+                            </tr>
+                            <tr>
+                                <td>Email: </td>
+                                <td><%= @user.email %></td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td><%= @user.address_line1%></td>
+                            </tr>
+                            <tr>
+                                <td>City and State: </td>
+                                <td><%= @user.city%> <%=@user.state %></td>
+                            </tr>
+                            <tr>
+                                <td>Gender: </td>
+                                <td><%= @user.gender %></td>
+                            </tr>
+                            <tr>
+                                <td>T-shirt Size: </td>
+                                <td><%= @user.tshirt_size %></td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth: </td>
+                                <td><%= @user.date_of_birth%></td>
+                            </tr>
+                            <tr>
+                                <td>Telephone Number:</td>
+                                <td><%= @user.phone_number %></td>
+                            </tr>
+                            <tr>
+                                <td>Service Provider: </td>
+                                <td><% @user.service_provider%></td>
+                            </tr>
+                            <tr>
+                                <td>Church: </td>
+                                <td><%= @user.church %></td>
+                            </tr>
+                            <tr>
+                                <td>Church Pastor: </td>
+                                <td><%= @user.church_pastor%></td>
+                            </tr>
+                            <tr>
+                                <td>Balance: </td>
+                                <td><%= @user.current_balance %></td>
+                                </tr>
+                            <tr>
+
+
+                                <td>Covenant Form: </td>
+                                <td><%= @user.covenant_form_up_to_date %></td>
+                            </tr>
+                            <tr>
+                                <td>Questionnaire: </td>
+                                <td><%= @user.questionnaire_up_to_date %></td>
+                            </tr>
+                            <tr>
+                                <td>Reference Form: </td>
+                                <td><%= @user.reference_forms_up_to_date %></td>
+                            </tr>
+                            <tr>
+                                <td>Medical Form: </td>
+                                <td><%= @user.medical_form_up_to_date %></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+
+                        <span class="pull-right">
+                            <%= link_to 'Edit', edit_user_path(@user), :class => "btn btn-sm btn-warning" %>
+                            <%= link_to 'Back', users_path, :class => "btn btn-sm btn-danger" %>
+
+                        </span>
+                <div class="row">
+            </div>
         </div>
-    </div>
 </div>
-
-<%= link_to 'Edit', edit_user_path(@user), :class => "btn btn-default col-md-2" , style:"height:40px" %>
-<%= link_to 'Back', users_path, :class => "btn btn-default col-md-2" , style:"height:40px" %>
+        </div>
