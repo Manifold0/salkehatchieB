@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :reference_forms
   has_one :medical_form
 
+  mount_uploader :photoID, ImageUploader
+
 	#belongs_to :medical_form
 	#has_one :whatever_form
 	

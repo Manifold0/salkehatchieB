@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user, :html => {:multipart => true} do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -67,6 +67,19 @@
   %>
   <%= f.select :gender, genders_options, class: "form-control", style: "padding:4px" %><br />
   </div>
+
+  <div>
+     <% if @user.photoID %>
+        Current Photo<br/>
+        <%= image_tag @user.photoID_url.to_s, :class => "thmb" %>
+     <% end %>
+  </div>
+
+   <div class="field">
+    <%= f.label :photoID, placeholder: "Photo" %><br>
+    <%= f.file_field :photoID, placeholder:"Photo" %>
+   </div>
+
   
 
   <div class="field">T-Shirt Size: <%
